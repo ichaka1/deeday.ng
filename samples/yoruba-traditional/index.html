@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Wedding Invitation</title>
+  <meta id="og-title" property="og:title" content="You're Invited" />
+  <meta id="og-desc" property="og:description" content="Join us to celebrate our union" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:       #0E0509;
+      --wine:       #7C1328;
+      --wine-mid:   #9B1A35;
+      --gold:       #C4911A;
+      --gold-bright:#E5A820;
+      --gold-pale:  #F5E0A8;
+      --white:      #FFFFFF;
+      --off-white:  #F9F6F1;
+      --text:       #1A1A1A;
+      --muted:      #5A5A5A;
+      --border:     #E0D8CE;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── ASO-OKE STRIPE ── */
+    .aso-border {
+      height: 10px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--wine)      0px,  var(--wine)      10px,
+        var(--gold)      10px, var(--gold)       18px,
+        var(--dark)      18px, var(--dark)       26px,
+        var(--gold)      26px, var(--gold)       34px,
+        var(--wine-mid)  34px, var(--wine-mid)   44px
+      );
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--dark);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .site-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: center;
+      padding: 0 24px 72px;
+      position: relative;
+      overflow: hidden;
+      /* fallback when no image */
+      background: var(--dark);
+    }
+    /* dark gradient overlay — always on top of the photo */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(14,5,9,0.15)  0%,
+        rgba(14,5,9,0.25) 30%,
+        rgba(14,5,9,0.75) 65%,
+        rgba(14,5,9,0.97) 100%
+      );
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      border: 1px solid rgba(196,145,26,0.5);
+      padding: 7px 20px;
+      margin-bottom: 28px;
+    }
+    .hero-names {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(52px, 12vw, 100px);
+      line-height: 0.95;
+      color: var(--white);
+    }
+    .hero-names .amp {
+      display: block;
+      font-size: 0.38em;
+      font-weight: 700;
+      color: var(--gold-bright);
+      letter-spacing: 3px;
+      margin: 10px 0;
+      font-style: italic;
+    }
+    .hero-meta {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-date {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+    }
+    .hero-venue {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 24px auto;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 15px 32px;
+      transition: all 0.2s ease;
+    }
+    .btn-gold         { background: var(--gold-bright); color: var(--dark); }
+    .btn-gold:hover   { background: #f0b822; transform: translateY(-2px); }
+    .btn-ghost        { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); }
+    .btn-ghost:hover  { border-color: var(--gold-bright); color: var(--gold-bright); }
+    .btn-wine         { background: var(--wine); color: var(--white); }
+    .btn-wine:hover   { background: var(--wine-mid); transform: translateY(-2px); }
+    .btn-outline-wine { background: transparent; color: var(--wine); border: 1.5px solid var(--wine); }
+    .btn-outline-wine:hover { background: rgba(124,19,40,0.06); }
+    .btn-full { width: 100%; text-align: center; }
+
+    /* ── SCROLL HINT ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .scroll-caret {
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.45;
+      animation: bob 1.8s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown {
+      background: var(--wine);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
+    }
+    .countdown-grid { display: flex; justify-content: center; gap: clamp(20px, 6vw, 56px); }
+    .cd-unit { text-align: center; }
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(40px, 9vw, 64px);
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+    .cd-word {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ── SECTION HELPERS ── */
+    .section { padding: 72px 24px; max-width: 780px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(28px, 5.5vw, 44px);
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.15;
+    }
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .rule::before, .rule::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .rule span { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+    /* ══════════════════════════════════════════
+       ABOUT SECTION
+    ══════════════════════════════════════════ */
+
+    /* — Story photo with gradient — */
+    .story-photo-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      margin-bottom: 40px;
+      background: var(--dark); /* fallback */
+    }
+    .story-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .story-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 40%,
+        rgba(14,5,9,0.85) 100%
+      );
+    }
+
+    /* — Story text — */
+    .story-text {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.85;
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 48px;
+    }
+
+    /* — Bride & Groom profile cards — */
+    .couple-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 540px) { .couple-cards { grid-template-columns: 1fr; } }
+
+    .person-card { text-align: center; }
+    .person-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+      background: var(--off-white);
+    }
+    .person-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .person-card:hover .person-photo-wrap img { transform: scale(1.03); }
+    .person-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(14,5,9,0.6) 100%);
+    }
+    .person-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .person-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .person-bio {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── EVENT CARDS ── */
+    .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 540px) { .events-grid { grid-template-columns: 1fr; } }
+    .event-card {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+    }
+    .event-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--wine), var(--gold-bright));
+    }
+    .event-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+    .event-type { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .event-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: var(--dark); margin-bottom: 20px; }
+    .event-detail { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .event-venue { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── DRESS CODE ── */
+    .dresscode { background: var(--dark); padding: 52px 24px; text-align: center; }
+    .dresscode-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .dresscode-value { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(26px, 5.5vw, 42px); color: var(--white); }
+
+    /* ── RSVP ── */
+    .rsvp-section {
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .rsvp-inner { max-width: 500px; margin: 0 auto; }
+    .rsvp-note { font-size: 15px; color: var(--muted); margin-bottom: 36px; line-height: 1.7; }
+    .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .rsvp-deadline { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    /* ── GIFT ── */
+    .gift-box { border: 1px solid var(--border); background: var(--off-white); padding: 40px 32px; }
+    .gift-intro { font-size: 15px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; text-align: center; }
+    .bank-block { background: var(--white); border: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    @media (max-width: 480px) { .bank-block { grid-template-columns: 1fr; } }
+    .bank-cell { padding: 24px 20px; text-align: center; border-right: 1px solid var(--border); }
+    .bank-cell:last-child { border-right: none; }
+    @media (max-width: 480px) {
+      .bank-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .bank-cell:last-child { border-bottom: none; }
+    }
+    .bank-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .bank-value { font-size: 16px; font-weight: 700; color: var(--dark); }
+    .copy-btn {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--wine);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 0;
+    }
+    .copy-btn:hover { text-decoration: underline; }
+    .gift-footer { text-align: center; margin-top: 24px; font-size: 14px; color: var(--muted); font-style: italic; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); padding: 48px 24px; text-align: center; }
+    .footer-names { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 28px; color: var(--white); margin-bottom: 8px; }
+    .footer-date { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 28px; }
+    .footer-powered { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .footer-powered a { color: var(--gold); text-decoration: none; }
+
+    /* ══════════════════════════════════════════
+       MODALS
+    ══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(14,5,9,0.75);
+      z-index: 900;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    @media (min-width: 600px) { .modal-overlay { align-items: center; } }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white);
+      width: 100%;
+      max-width: 520px;
+      max-height: 92svh;
+      overflow-y: auto;
+      transform: translateY(40px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-header {
+      background: var(--dark);
+      padding: 28px 28px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .modal-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 6px; }
+    .modal-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 24px; color: var(--white); line-height: 1.2; }
+    .modal-close {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: var(--white);
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.2); }
+    .modal-body { padding: 28px; }
+
+    /* Form */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 420px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .form-input, .form-select, .form-textarea {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--off-white);
+      border: 1.5px solid var(--border);
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--wine); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-hint { font-size: 12px; color: var(--muted); }
+    .form-submit-row { margin-top: 24px; }
+    .form-note { font-size: 13px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+    .success-state { text-align: center; padding: 20px 0 8px; display: none; }
+    .success-icon { font-size: 48px; margin-bottom: 16px; }
+    .success-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 26px; color: var(--dark); margin-bottom: 10px; }
+    .success-msg { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    /* Gift modal */
+    .gift-modal-body { padding: 28px; }
+    .gift-modal-intro { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+    .gift-modal-bank { background: var(--off-white); border: 1px solid var(--border); }
+    .gift-modal-bank-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .gift-modal-bank-row:last-child { border-bottom: none; }
+    .gift-row-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); }
+    .gift-row-value { font-size: 15px; font-weight: 700; color: var(--dark); }
+    .gift-copy-inline {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--wine); cursor: pointer; background: none; border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 0;
+    }
+    .gift-copy-inline:hover { text-decoration: underline; }
+    .gift-modal-note { text-align: center; font-size: 14px; color: var(--muted); font-style: italic; margin-top: 24px; line-height: 1.6; }
+    .gift-modal-wa { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; color: var(--muted); }
+    .gift-modal-wa a { color: var(--wine); font-weight: 700; text-decoration: none; }
+    .gift-modal-wa a:hover { text-decoration: underline; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: var(--gold-bright);
+      padding: 12px 28px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: transform 0.3s ease;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<script>
+  // ============================================================
+  //  EDIT THIS SECTION TO CUSTOMISE FOR EACH CLIENT
+  // ============================================================
+  const config = {
+    // Names
+    bride:           "Adaeze",
+    groom:           "Emeka",
+    bride_full:      "Adaeze Chioma Okonkwo",
+    groom_full:      "Emeka Chukwudi Okafor",
+
+    // Event
+    wedding_date:    "2026-06-14",            // YYYY-MM-DD
+    date_display:    "Saturday, 14th June 2026",
+    ceremony_time:   "11:00 AM",
+    ceremony_venue:  "Our Lady of Apostles Catholic Church, Ikoyi, Lagos",
+    reception_time:  "2:00 PM",
+    reception_venue: "Eko Hotel & Suites, Victoria Island, Lagos",
+    dresscode:       "Aso-Ebi · Gold & Ivory",
+
+    // RSVP & Payment
+    rsvp_whatsapp:   "2348012345678",         // country code + number, no +
+    rsvp_deadline:   "1st June 2026",
+    bank_name:       "GTBank",
+    account_name:    "Emeka Chukwudi Okafor",
+    account_number:  "0123456789",
+
+    // ── IMAGES ──────────────────────────────────────────────
+    // Hero: full-screen background behind the couple names.
+    // Use a high-quality portrait or outdoor couple photo.
+    // Can be a URL or a local path like "./photos/hero.jpg"
+    hero_image:      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1400&q=80",
+
+    // Story section: a couple photo shown in the "Our Story" section.
+    story_image:     "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=1200&q=80",
+
+    // Bride portrait (optional — remove or set to "" to hide)
+    bride_photo:     "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80",
+
+    // Groom portrait (optional — remove or set to "" to hide)
+    groom_photo:     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
+    // ────────────────────────────────────────────────────────
+
+    // About the couple
+    couple_story:
+      "Adaeze and Emeka met during their final year at the University of Lagos in 2019. " +
+      "What started as late-night study sessions in the Faculty of Sciences quickly grew into " +
+      "something neither of them expected. Five years later, a quiet evening walk along " +
+      "Lagos Lagoon ended with a ring and a yes that changed everything. " +
+      "On the 14th of June, they invite you to witness as they begin the next chapter.",
+
+    bride_bio:
+      "Adaeze is a medical doctor and lover of good jollof rice. " +
+      "She is the daughter of Chief and Mrs Okonkwo of Anambra State.",
+
+    groom_bio:
+      "Emeka is a software engineer who still cannot cook to save his life. " +
+      "He is the son of Mr and Mrs Okafor of Delta State.",
+  };
+  // ============================================================
+
+  document.getElementById('page-title').textContent =
+    `${config.bride} & ${config.groom} — Wedding Invitation`;
+  document.getElementById('og-title').content =
+    `You're Invited: ${config.bride} & ${config.groom}`;
+  document.getElementById('og-desc').content =
+    `${config.date_display} · ${config.reception_venue}`;
+</script>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a class="site-logo" href="#">deeday.ng</a>
+</header>
+<div class="aso-border"></div>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <span class="hero-tag">Wedding Invitation</span>
+    <h1 class="hero-names">
+      <span id="h-bride"></span>
+      <span class="amp">&amp;</span>
+      <span id="h-groom"></span>
+    </h1>
+    <div class="hero-meta">
+      <p class="hero-date" id="h-date"></p>
+      <p class="hero-venue" id="h-venue"></p>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-buttons">
+      <button class="btn btn-gold" onclick="openModal('rsvp-modal')">I Am Attending</button>
+      <button class="btn btn-ghost" onclick="openModal('gift-modal')">I Cannot Make It</button>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-caret"></div></div>
+</section>
+
+<div class="aso-border"></div>
+
+<!-- ══ COUNTDOWN ══ -->
+<section class="countdown">
+  <p class="countdown-label">Counting Down to the Big Day</p>
+  <div class="countdown-grid">
+    <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-word">Days</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-word">Hours</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-word">Minutes</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-word">Seconds</span></div>
+  </div>
+</section>
+
+<!-- ══ ABOUT / OUR STORY ══ -->
+<div class="section">
+  <p class="section-eyebrow">The Couple</p>
+  <h2 class="section-title">Our Story</h2>
+  <div class="rule"><span></span></div>
+
+  <!-- Story photo -->
+  <div class="story-photo-wrap" id="story-photo-wrap">
+    <img id="story-img" src="" alt="Adaeze and Emeka" />
+  </div>
+
+  <!-- Story text -->
+  <p class="story-text" id="couple-story"></p>
+
+  <!-- Individual profiles -->
+  <div class="couple-cards" id="couple-cards">
+    <div class="person-card" id="bride-card">
+      <div class="person-photo-wrap">
+        <img id="bride-img" src="" alt="" />
+      </div>
+      <p class="person-role">The Bride</p>
+      <p class="person-name" id="bride-full-name"></p>
+      <p class="person-bio" id="bride-bio"></p>
+    </div>
+    <div class="person-card" id="groom-card">
+      <div class="person-photo-wrap">
+        <img id="groom-img" src="" alt="" />
+      </div>
+      <p class="person-role">The Groom</p>
+      <p class="person-name" id="groom-full-name"></p>
+      <p class="person-bio" id="groom-bio"></p>
+    </div>
+  </div>
+</div>
+
+<div class="aso-border"></div>
+
+<!-- ══ EVENT DETAILS ══ -->
+<div class="section">
+  <p class="section-eyebrow">Programme of Events</p>
+  <h2 class="section-title">Join Us To Celebrate</h2>
+  <div class="rule"><span></span></div>
+  <div class="events-grid">
+    <div class="event-card">
+      <span class="event-icon">⛪</span>
+      <p class="event-type">The Ceremony</p>
+      <p class="event-name">Holy Matrimony</p>
+      <p class="event-detail" id="d-ctime"></p>
+      <p class="event-venue" id="d-cvenue"></p>
+    </div>
+    <div class="event-card">
+      <span class="event-icon">🥂</span>
+      <p class="event-type">The Reception</p>
+      <p class="event-name">Celebration</p>
+      <p class="event-detail" id="d-rtime"></p>
+      <p class="event-venue" id="d-rvenue"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRESS CODE ══ -->
+<div class="aso-border"></div>
+<section class="dresscode">
+  <p class="dresscode-eyebrow">Dress Code</p>
+  <p class="dresscode-value" id="d-dresscode"></p>
+</section>
+<div class="aso-border"></div>
+
+<!-- ══ RSVP ══ -->
+<section class="rsvp-section" id="rsvp">
+  <div class="rsvp-inner">
+    <p class="section-eyebrow">Kindly Respond</p>
+    <h2 class="section-title">Will You Be Joining Us?</h2>
+    <div class="rule"><span></span></div>
+    <p class="rsvp-note" id="rsvp-note"></p>
+    <div class="rsvp-buttons">
+      <button class="btn btn-wine" onclick="openModal('rsvp-modal')">Yes, I Will Attend</button>
+      <button class="btn btn-outline-wine" onclick="openModal('gift-modal')">I Cannot Make It</button>
+    </div>
+    <p class="rsvp-deadline" id="rsvp-deadline-text"></p>
+  </div>
+</section>
+
+<!-- ══ GIFT ══ -->
+<div class="section" id="gift">
+  <p class="section-eyebrow">Gifts &amp; Wishes</p>
+  <h2 class="section-title">Show Them Some Love</h2>
+  <div class="rule"><span></span></div>
+  <div class="gift-box">
+    <p class="gift-intro" id="gift-intro"></p>
+    <div class="bank-block">
+      <div class="bank-cell">
+        <p class="bank-label">Bank</p>
+        <p class="bank-value" id="g-bank"></p>
+      </div>
+      <div class="bank-cell">
+        <p class="bank-label">Account Name</p>
+        <p class="bank-value" id="g-name"></p>
+      </div>
+      <div class="bank-cell">
+        <p class="bank-label">Account Number</p>
+        <p class="bank-value" id="g-number"></p>
+        <button class="copy-btn" onclick="copyAcct()">Copy Number</button>
+      </div>
+    </div>
+    <p class="gift-footer">Your presence is the greatest gift of all.</p>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="aso-border"></div>
+<footer>
+  <p class="footer-names" id="f-names"></p>
+  <p class="footer-date" id="f-date"></p>
+  <p class="footer-powered">Invitation by <a href="https://deeday.ng" target="_blank">deeday.ng</a></p>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     MODAL: ATTENDING — RSVP FORM
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="rsvp-modal" onclick="overlayClick(event,'rsvp-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">RSVP</p>
+        <h2 class="modal-title">Count Me In!</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('rsvp-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="rsvp-form" onsubmit="submitRsvp(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input class="form-input" type="text" id="f-name" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input class="form-input" type="tel" id="f-phone" placeholder="080xxxxxxxx" required />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" id="f-email" placeholder="you@example.com" />
+            <span class="form-hint">For reminders closer to the day</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Number of Guests</label>
+            <select class="form-select" id="f-guests">
+              <option value="1">Just me</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5+">5 or more</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dietary Needs</label>
+            <input class="form-input" type="text" id="f-diet" placeholder="e.g. No pork, vegetarian" />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Message to the Couple</label>
+            <textarea class="form-textarea" id="f-message" placeholder="Share your excitement or a kind word..."></textarea>
+          </div>
+        </div>
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-wine btn-full">Confirm My Attendance</button>
+          <p class="form-note">We will send you reminders as the day gets closer.</p>
+        </div>
+      </form>
+      <div class="success-state" id="rsvp-success">
+        <div class="success-icon">🎉</div>
+        <h3 class="success-title" id="rsvp-success-title"></h3>
+        <p class="success-msg" id="rsvp-success-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     MODAL: CANNOT ATTEND — GIFT / SUPPORT
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="gift-modal" onclick="overlayClick(event,'gift-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">We Understand</p>
+        <h2 class="modal-title">Support the Couple</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('gift-modal')">✕</button>
+    </div>
+    <div class="gift-modal-body">
+      <p class="gift-modal-intro" id="gm-intro"></p>
+      <div class="gift-modal-bank">
+        <div class="gift-modal-bank-row">
+          <span class="gift-row-label">Bank</span>
+          <span class="gift-row-value" id="gm-bank"></span>
+        </div>
+        <div class="gift-modal-bank-row">
+          <span class="gift-row-label">Account Name</span>
+          <span class="gift-row-value" id="gm-acct-name"></span>
+        </div>
+        <div class="gift-modal-bank-row">
+          <span class="gift-row-label">Account Number</span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="gift-row-value" id="gm-acct-num"></span>
+            <button class="gift-copy-inline" onclick="copyAcct()">Copy</button>
+          </div>
+        </div>
+      </div>
+      <p class="gift-modal-note" id="gm-note"></p>
+      <p class="gift-modal-wa">
+        Or send your wishes via
+        <a id="gm-wa-link" href="#" target="_blank">WhatsApp</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Account number copied!</div>
+
+
+<script>
+  // ── Hero image ─────────────────────────────────────────────
+  if (config.hero_image) {
+    document.getElementById('hero').style.backgroundImage =
+      `linear-gradient(to bottom, rgba(14,5,9,0.15) 0%, rgba(14,5,9,0.25) 30%, rgba(14,5,9,0.80) 65%, rgba(14,5,9,0.98) 100%), url('${config.hero_image}')`;
+    document.getElementById('hero').style.backgroundSize     = 'cover';
+    document.getElementById('hero').style.backgroundPosition = 'center top';
+    // remove ::after since gradient is now on the element itself
+    document.getElementById('hero').style.cssText +=
+      '; --hero-overlay: none;';
+  }
+
+  // ── Story image ────────────────────────────────────────────
+  if (config.story_image) {
+    document.getElementById('story-img').src = config.story_image;
+  } else {
+    document.getElementById('story-photo-wrap').style.display = 'none';
+  }
+
+  // ── Bride / Groom photos ───────────────────────────────────
+  if (config.bride_photo) {
+    document.getElementById('bride-img').src = config.bride_photo;
+    document.getElementById('bride-img').alt = config.bride_full;
+  } else {
+    document.getElementById('bride-card').style.display = 'none';
+  }
+  if (config.groom_photo) {
+    document.getElementById('groom-img').src = config.groom_photo;
+    document.getElementById('groom-img').alt = config.groom_full;
+  } else {
+    document.getElementById('groom-card').style.display = 'none';
+  }
+  // If both photos are missing, hide the couple-cards grid
+  if (!config.bride_photo && !config.groom_photo) {
+    document.getElementById('couple-cards').style.display = 'none';
+  }
+
+  // ── Populate text ──────────────────────────────────────────
+  document.getElementById('h-bride').textContent    = config.bride;
+  document.getElementById('h-groom').textContent    = config.groom;
+  document.getElementById('h-date').textContent     = config.date_display;
+  document.getElementById('h-venue').textContent    = config.reception_venue;
+
+  document.getElementById('couple-story').textContent   = config.couple_story;
+  document.getElementById('bride-full-name').textContent = config.bride_full;
+  document.getElementById('groom-full-name').textContent = config.groom_full;
+  document.getElementById('bride-bio').textContent       = config.bride_bio;
+  document.getElementById('groom-bio').textContent       = config.groom_bio;
+
+  document.getElementById('d-ctime').textContent   = config.ceremony_time;
+  document.getElementById('d-cvenue').textContent  = config.ceremony_venue;
+  document.getElementById('d-rtime').textContent   = config.reception_time;
+  document.getElementById('d-rvenue').textContent  = config.reception_venue;
+  document.getElementById('d-dresscode').textContent = config.dresscode;
+
+  document.getElementById('rsvp-note').textContent =
+    `Kindly let us know if you will be joining us before ${config.rsvp_deadline}. We would love to have you there.`;
+  document.getElementById('rsvp-deadline-text').textContent =
+    `RSVP Deadline · ${config.rsvp_deadline}`;
+
+  document.getElementById('gift-intro').textContent =
+    `Your presence means everything to ${config.bride} and ${config.groom}. ` +
+    `If you would like to bless them with a gift, send directly to their account below.`;
+  document.getElementById('g-bank').textContent   = config.bank_name;
+  document.getElementById('g-name').textContent   = config.account_name;
+  document.getElementById('g-number').textContent = config.account_number;
+
+  document.getElementById('f-names').textContent  = `${config.bride} & ${config.groom}`;
+  document.getElementById('f-date').textContent   = config.date_display;
+
+  document.getElementById('rsvp-success-title').textContent = `You're confirmed! 🎊`;
+  document.getElementById('rsvp-success-msg').textContent   =
+    `Thank you! ${config.bride} and ${config.groom} are so excited to have you there. ` +
+    `We will send you reminders as the big day approaches.`;
+
+  document.getElementById('gm-intro').textContent =
+    `We will miss having you there. If you would like to show ${config.bride} and ${config.groom} ` +
+    `some love from afar, you can send a gift directly to their account.`;
+  document.getElementById('gm-bank').textContent      = config.bank_name;
+  document.getElementById('gm-acct-name').textContent = config.account_name;
+  document.getElementById('gm-acct-num').textContent  = config.account_number;
+  document.getElementById('gm-note').textContent      =
+    `No amount is too small. Your love and warm wishes mean everything.`;
+
+  const waMsg = encodeURIComponent(
+    `Hello! I am unable to attend the wedding of ${config.bride} & ${config.groom} on ${config.date_display}, but I am sending my love and best wishes.`
+  );
+  document.getElementById('gm-wa-link').href = `https://wa.me/${config.rsvp_whatsapp}?text=${waMsg}`;
+
+  // ── Modal logic ────────────────────────────────────────────
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function overlayClick(e, id) {
+    if (e.target === document.getElementById(id)) closeModal(id);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape')
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  });
+
+  // ── RSVP submit ────────────────────────────────────────────
+  function submitRsvp(e) {
+    e.preventDefault();
+    document.getElementById('rsvp-form').style.display    = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+
+  // ── Countdown ──────────────────────────────────────────────
+  function tick() {
+    const target = new Date(`${config.wedding_date}T10:00:00`);
+    const diff   = target - new Date();
+    if (diff <= 0) {
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+        document.getElementById(id).textContent = '0';
+      });
+      return;
+    }
+    document.getElementById('cd-days').textContent  = Math.floor(diff / 86400000);
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Copy account number ────────────────────────────────────
+  function copyAcct() {
+    navigator.clipboard.writeText(config.account_number).then(() => {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    });
+  }
+</script>
+
+</body>
+</html>
