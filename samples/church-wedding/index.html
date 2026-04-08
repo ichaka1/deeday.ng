@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Wedding Invitation</title>
+  <meta id="og-title" property="og:title" content="You're Invited" />
+  <meta id="og-desc" property="og:description" content="Join us to celebrate our union" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1B2D5B;
+      --navy-mid:   #2A4480;
+      --gold:       #B8943F;
+      --gold-light: #D4AF5A;
+      --gold-pale:  #F0E4C0;
+      --cream:      #FBF8F3;
+      --cream-mid:  #F4EEE2;
+      --white:      #FFFFFF;
+      --text:       #1A1A2E;
+      --muted:      #707090;
+      --border:     #E0D6C4;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      background: var(--navy);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo {
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+    .top-bar-verse {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── THIN GOLD RULE ── */
+    .gold-rule { height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .navy-rule { height: 3px; background: var(--navy); }
+
+    /* ══════════════════════════════════════════
+       HERO — THE INVITATION CARD
+    ══════════════════════════════════════════ */
+    .invite-card-section {
+      background: var(--cream);
+      padding: 56px 24px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .invite-card {
+      max-width: 540px;
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 52px 40px;
+      text-align: center;
+      position: relative;
+      /* inner gold border */
+      box-shadow: inset 0 0 0 8px var(--cream), inset 0 0 0 10px var(--gold-pale);
+    }
+    @media (max-width: 480px) {
+      .invite-card { padding: 40px 24px; box-shadow: inset 0 0 0 5px var(--cream), inset 0 0 0 7px var(--gold-pale); }
+    }
+
+    /* Corner ornaments */
+    .invite-card::before,
+    .invite-card::after {
+      content: '✦';
+      position: absolute;
+      font-size: 14px;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+    .invite-card::before { top: 18px; left: 20px; }
+    .invite-card::after  { bottom: 18px; right: 20px; }
+
+    .card-cross {
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 20px;
+      opacity: 0.5;
+      display: block;
+    }
+    .card-preamble {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .card-names {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(42px, 11vw, 80px);
+      color: var(--navy);
+      line-height: 0.92;
+    }
+    .card-names .amp {
+      display: block;
+      font-size: 0.42em;
+      color: var(--gold);
+      font-weight: 400;
+      font-style: italic;
+      margin: 10px 0;
+      letter-spacing: 2px;
+    }
+    .card-divider {
+      width: 64px;
+      height: 1px;
+      background: var(--gold);
+      margin: 28px auto;
+    }
+    .card-detail {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .card-venue {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .card-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 14px 28px;
+      transition: all 0.2s ease;
+    }
+    .btn-navy        { background: var(--navy); color: var(--white); }
+    .btn-navy:hover  { background: var(--navy-mid); transform: translateY(-2px); }
+    .btn-outline     { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-outline:hover { background: rgba(27,45,91,0.06); }
+    .btn-gold        { background: var(--gold); color: var(--white); }
+    .btn-gold:hover  { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-full { width: 100%; text-align: center; }
+
+    /* ── PHOTO SECTION ── */
+    .photo-section {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--cream-mid);
+    }
+    @media (max-width: 600px) { .photo-section { aspect-ratio: 4 / 5; } }
+    .photo-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    /* soft cream wash — light, not dark */
+    .photo-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(251,248,243,0.15) 0%,
+        rgba(251,248,243,0.05) 40%,
+        rgba(27,45,91,0.55)    100%
+      );
+    }
+    .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 1;
+      padding: 24px 28px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .photo-caption-names {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(18px, 4vw, 28px);
+      color: var(--white);
+    }
+    .photo-caption-date {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown {
+      background: var(--navy);
+      padding: 52px 24px;
+      text-align: center;
+    }
+    .countdown-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 32px;
+    }
+    .countdown-grid { display: flex; justify-content: center; gap: clamp(16px, 5vw, 56px); }
+    .cd-unit { text-align: center; }
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(40px, 9vw, 64px);
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+    .cd-word {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--white); padding: 72px 24px; }
+    .about-inner { max-width: 780px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(28px, 5vw, 42px);
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 36px;
+      line-height: 1.15;
+    }
+    /* thin gold rule divider */
+    .ornament-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .ornament-rule::before,
+    .ornament-rule::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .ornament-rule span {
+      font-size: 14px;
+      color: var(--gold);
+    }
+
+    .story-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.9;
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 56px;
+    }
+
+    /* couple portraits — stacked with a horizontal divider between them */
+    .portrait-pair { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .portrait-item {
+      display: flex;
+      gap: 0;
+      background: var(--white);
+      align-items: stretch;
+    }
+    .portrait-item:nth-child(2) { flex-direction: row-reverse; }
+    .portrait-img {
+      width: 180px;
+      flex-shrink: 0;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--cream-mid);
+    }
+    @media (max-width: 480px) { .portrait-img { width: 120px; } }
+    .portrait-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .portrait-text {
+      flex: 1;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 3px solid var(--gold-pale);
+    }
+    .portrait-item:nth-child(2) .portrait-text { border-left: none; border-right: 3px solid var(--gold-pale); }
+    .portrait-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .portrait-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .portrait-bio {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── EVENTS ── */
+    .events-section { background: var(--cream); padding: 72px 24px; }
+    .events-inner { max-width: 780px; margin: 0 auto; }
+
+    /* Cross timeline */
+    .timeline { position: relative; padding-left: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 40px 1fr;
+      gap: 0;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .tl-time {
+      text-align: right;
+      padding-right: 16px;
+      padding-top: 4px;
+    }
+    .tl-time-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+      line-height: 1;
+    }
+    .tl-time-ampm {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .tl-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tl-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--white);
+      flex-shrink: 0;
+      margin-top: 3px;
+      position: relative;
+      z-index: 1;
+    }
+    .tl-line {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      margin-top: 4px;
+    }
+    .timeline-item:last-child .tl-line { display: none; }
+    .tl-content { padding-left: 16px; padding-bottom: 40px; }
+    .tl-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .tl-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .tl-venue {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── SCRIPTURE BANNER ── */
+    .scripture-banner {
+      background: var(--gold-pale);
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .scripture-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(16px, 3.5vw, 22px);
+      color: var(--navy);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 12px;
+    }
+    .scripture-ref {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── DRESS CODE ── */
+    .dresscode-section { background: var(--navy); padding: 48px 24px; text-align: center; }
+    .dresscode-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+    .dresscode-value { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(24px, 5vw, 40px); color: var(--white); }
+
+    /* ── RSVP ── */
+    .rsvp-section { background: var(--white); padding: 72px 24px; text-align: center; }
+    .rsvp-inner { max-width: 500px; margin: 0 auto; }
+    .rsvp-note {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .rsvp-deadline { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #bbb; }
+
+    /* ── GIFT ── */
+    .gift-section { background: var(--cream); padding: 72px 24px; }
+    .gift-inner { max-width: 640px; margin: 0 auto; }
+    .gift-intro {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.8;
+      text-align: center;
+    }
+    .bank-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+    .bank-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+    .bank-value { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .copy-btn {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--navy); cursor: pointer; background: none; border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif; padding: 6px 0;
+    }
+    .copy-btn:hover { text-decoration: underline; }
+    .gift-footer { font-size: 14px; color: var(--muted); font-style: italic; text-align: center; margin-top: 20px; font-family: 'Playfair Display', serif; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); padding: 52px 24px; text-align: center; }
+    .footer-cross { font-size: 20px; color: var(--gold); opacity: 0.5; margin-bottom: 16px; }
+    .footer-names { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 28px; color: var(--white); margin-bottom: 8px; }
+    .footer-date { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 28px; }
+    .footer-powered { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+    .footer-powered a { color: var(--gold-light); text-decoration: none; }
+
+    /* ══════════════════════════════════════════
+       MODALS
+    ══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(27,45,91,0.7);
+      z-index: 900;
+      display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    @media (min-width: 600px) { .modal-overlay { align-items: center; } }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white);
+      width: 100%; max-width: 520px; max-height: 92svh; overflow-y: auto;
+      transform: translateY(40px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-header {
+      background: var(--navy);
+      padding: 26px 28px;
+      position: sticky; top: 0; z-index: 1;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    }
+    .modal-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 5px; }
+    .modal-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 24px; color: var(--white); }
+    .modal-close {
+      background: rgba(255,255,255,0.1); border: none; color: var(--white);
+      width: 36px; height: 36px; flex-shrink: 0; cursor: pointer; font-size: 18px;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.2); }
+    .modal-body { padding: 28px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 420px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .form-input, .form-select, .form-textarea {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 500;
+      color: var(--text); background: var(--cream); border: 1.5px solid var(--border);
+      padding: 12px 14px; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--navy); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-hint { font-size: 12px; color: var(--muted); }
+    .form-submit-row { margin-top: 24px; }
+    .form-note { font-size: 13px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+    .success-state { text-align: center; padding: 20px 0 8px; display: none; }
+    .success-icon { font-size: 48px; margin-bottom: 16px; }
+    .success-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 26px; color: var(--navy); margin-bottom: 10px; }
+    .success-msg { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    .gift-modal-intro { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; font-style: italic; font-family: 'Playfair Display', serif; }
+    .gift-modal-note { text-align: center; font-size: 13px; color: var(--muted); font-style: italic; margin-top: 20px; font-family: 'Playfair Display', serif; }
+    .gift-modal-wa { margin-top: 16px; text-align: center; font-size: 13px; color: var(--muted); }
+    .gift-modal-wa a { color: var(--navy); font-weight: 700; text-decoration: none; }
+
+    .toast {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--navy); color: var(--gold-light);
+      padding: 12px 28px; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      transition: transform 0.3s ease; z-index: 9999; pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<script>
+  // ============================================================
+  //  EDIT THIS SECTION TO CUSTOMISE FOR EACH CLIENT
+  // ============================================================
+  const config = {
+    bride:           "Ngozi",
+    groom:           "Samuel",
+    bride_full:      "Ngozi Blessing Okafor",
+    groom_full:      "Samuel Oluwaseun Adeleke",
+
+    wedding_date:    "2026-11-07",
+    date_display:    "Saturday, 7th November 2026",
+
+    ceremony_time:   "10:00",
+    ceremony_ampm:   "AM",
+    ceremony_venue:  "Daystar Christian Centre, Lekki, Lagos",
+
+    reception_time:  "1:30",
+    reception_ampm:  "PM",
+    reception_venue: "Oriental Hotel, Lekki Phase 1, Lagos",
+
+    dresscode:       "Navy Blue & Gold",
+
+    scripture:       "\"Therefore what God has joined together, let no one separate.\"",
+    scripture_ref:   "Mark 10 : 9",
+
+    rsvp_whatsapp:   "2348012345678",
+    rsvp_deadline:   "25th October 2026",
+    bank_name:       "First Bank",
+    account_name:    "Samuel Oluwaseun Adeleke",
+    account_number:  "3045678901",
+
+    // ── IMAGES ──────────────────────────────────────────────
+    // hero_image is shown in the photo strip below the invitation card
+    hero_image:   "https://raw.githubusercontent.com/ichaka1/deeday.ng/main/assets/wedding-hero.jpg",
+    bride_photo:  "",   // leave empty to hide
+    groom_photo:  "",   // leave empty to hide
+    // ────────────────────────────────────────────────────────
+
+    couple_story:
+      "Ngozi and Samuel first crossed paths at a church retreat in Ijebu-Ode in August 2022. " +
+      "He was on the worship team. She was there to rest and hear from God. " +
+      "Neither of them expected to find each other. " +
+      "Three years of friendship, prayer, and patience later, " +
+      "Samuel knew without doubt that she was the woman God had written into his story. " +
+      "On a Sunday morning in February 2026, after service, he asked. She wept. Then she said yes.",
+
+    bride_bio:   "Ngozi is a pharmacist, worship leader, and daughter of Mr and Mrs Okafor of Enugu State.",
+    groom_bio:   "Samuel is an architect and men's fellowship coordinator, son of Deacon and Deaconess Adeleke of Osun State.",
+  };
+  // ============================================================
+
+  document.getElementById('page-title').textContent =
+    `${config.bride} & ${config.groom} — Wedding Invitation`;
+  document.getElementById('og-title').content =
+    `You're Invited: ${config.bride} & ${config.groom}`;
+  document.getElementById('og-desc').content =
+    `${config.date_display} · ${config.ceremony_venue}`;
+</script>
+
+<!-- TOP BAR -->
+<header class="top-bar">
+  <a class="site-logo" href="#">deeday.ng</a>
+  <span class="top-bar-verse">What God has joined together</span>
+</header>
+
+<!-- INVITATION CARD -->
+<section class="invite-card-section">
+  <div class="invite-card">
+    <span class="card-cross">✝</span>
+    <p class="card-preamble">
+      Together with their families,<br />
+      joyfully invite you to witness<br />
+      the holy matrimony of
+    </p>
+    <h1 class="card-names">
+      <span id="h-bride"></span>
+      <span class="amp">and</span>
+      <span id="h-groom"></span>
+    </h1>
+    <div class="card-divider"></div>
+    <p class="card-detail" id="h-date"></p>
+    <p class="card-venue" id="h-venue"></p>
+    <div class="card-buttons">
+      <button class="btn btn-navy" onclick="openModal('rsvp-modal')">I Am Attending</button>
+      <button class="btn btn-outline" onclick="openModal('gift-modal')">I Cannot Make It</button>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- PHOTO STRIP -->
+<div class="photo-section">
+  <img id="hero-img" src="" alt="" />
+  <div class="photo-caption">
+    <span class="photo-caption-names" id="photo-names"></span>
+    <span class="photo-caption-date" id="photo-date"></span>
+  </div>
+</div>
+
+<div class="navy-rule"></div>
+
+<!-- COUNTDOWN -->
+<section class="countdown">
+  <p class="countdown-label">Time Remaining Until the Wedding</p>
+  <div class="countdown-grid">
+    <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-word">Days</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-word">Hours</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-word">Minutes</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-word">Seconds</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about-inner">
+    <p class="eyebrow">The Couple</p>
+    <h2 class="section-heading">Their Story</h2>
+    <div class="ornament-rule"><span>✦</span></div>
+    <p class="story-text" id="couple-story"></p>
+
+    <div class="portrait-pair" id="portrait-pair">
+      <div class="portrait-item" id="bride-row">
+        <div class="portrait-img"><img id="bride-img" src="" alt="" /></div>
+        <div class="portrait-text">
+          <p class="portrait-role">The Bride</p>
+          <p class="portrait-name" id="bride-full"></p>
+          <p class="portrait-bio" id="bride-bio"></p>
+        </div>
+      </div>
+      <div class="portrait-item" id="groom-row">
+        <div class="portrait-img"><img id="groom-img" src="" alt="" /></div>
+        <div class="portrait-text">
+          <p class="portrait-role">The Groom</p>
+          <p class="portrait-name" id="groom-full"></p>
+          <p class="portrait-bio" id="groom-bio"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS TIMELINE -->
+<section class="events-section">
+  <div class="events-inner">
+    <p class="eyebrow">Programme of Events</p>
+    <h2 class="section-heading">The Order of Service</h2>
+    <div class="ornament-rule"><span>✦</span></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-time">
+          <span class="tl-time-val" id="tl-ctime"></span>
+          <span class="tl-time-ampm" id="tl-campm"></span>
+        </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <p class="tl-type">The Ceremony</p>
+          <p class="tl-name">Holy Matrimony</p>
+          <p class="tl-venue" id="tl-cvenue"></p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-time">
+          <span class="tl-time-val" id="tl-rtime"></span>
+          <span class="tl-time-ampm" id="tl-rampm"></span>
+        </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content">
+          <p class="tl-type">The Reception</p>
+          <p class="tl-name">Celebration & Dinner</p>
+          <p class="tl-venue" id="tl-rvenue"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPTURE -->
+<div class="scripture-banner">
+  <p class="scripture-text" id="scripture-text"></p>
+  <p class="scripture-ref" id="scripture-ref"></p>
+</div>
+
+<!-- DRESS CODE -->
+<section class="dresscode-section">
+  <p class="dresscode-eyebrow">Dress Code</p>
+  <p class="dresscode-value" id="d-dresscode"></p>
+</section>
+
+<!-- RSVP -->
+<section class="rsvp-section" id="rsvp">
+  <div class="rsvp-inner">
+    <p class="eyebrow">Kindly Respond</p>
+    <h2 class="section-heading">Will You Be Joining Us?</h2>
+    <div class="ornament-rule"><span>✦</span></div>
+    <p class="rsvp-note" id="rsvp-note"></p>
+    <div class="rsvp-buttons">
+      <button class="btn btn-navy" onclick="openModal('rsvp-modal')">Yes, I Will Attend</button>
+      <button class="btn btn-outline" onclick="openModal('gift-modal')">I Cannot Make It</button>
+    </div>
+    <p class="rsvp-deadline" id="rsvp-deadline"></p>
+  </div>
+</section>
+
+<!-- GIFT -->
+<section class="gift-section" id="gift">
+  <div class="gift-inner">
+    <p class="eyebrow">Gifts &amp; Offerings</p>
+    <h2 class="section-heading">Bless the Couple</h2>
+    <div class="ornament-rule"><span>✦</span></div>
+    <p class="gift-intro" id="gift-intro"></p>
+    <div class="bank-block">
+      <div class="bank-row">
+        <span class="bank-label">Bank</span>
+        <span class="bank-value" id="g-bank"></span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">Account Name</span>
+        <span class="bank-value" id="g-name"></span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-label">Account Number</span>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span class="bank-value" id="g-number"></span>
+          <button class="copy-btn" onclick="copyAcct()">Copy</button>
+        </div>
+      </div>
+    </div>
+    <p class="gift-footer" id="gift-footer"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="gold-rule"></div>
+<footer>
+  <div class="footer-cross">✝</div>
+  <p class="footer-names" id="f-names"></p>
+  <p class="footer-date" id="f-date"></p>
+  <p class="footer-powered">Invitation by <a href="https://deeday.ng" target="_blank">deeday.ng</a></p>
+</footer>
+
+
+<!-- MODAL: ATTENDING -->
+<div class="modal-overlay" id="rsvp-modal" onclick="overlayClick(event,'rsvp-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">RSVP</p>
+        <h2 class="modal-title">Count Me In!</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('rsvp-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="rsvp-form" onsubmit="submitRsvp(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input class="form-input" type="text" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input class="form-input" type="tel" placeholder="080xxxxxxxx" required />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" placeholder="you@example.com" />
+            <span class="form-hint">For reminders closer to the day</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Number of Guests</label>
+            <select class="form-select">
+              <option>Just me</option>
+              <option>2 people</option>
+              <option>3 people</option>
+              <option>4 people</option>
+              <option>5 or more</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dietary Needs</label>
+            <input class="form-input" type="text" placeholder="e.g. No pork, vegetarian" />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Message to the Couple</label>
+            <textarea class="form-textarea" placeholder="Share your blessings..."></textarea>
+          </div>
+        </div>
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-navy btn-full">Confirm My Attendance</button>
+          <p class="form-note">We will send you reminders as the day gets closer.</p>
+        </div>
+      </form>
+      <div class="success-state" id="rsvp-success">
+        <div class="success-icon">🙏</div>
+        <h3 class="success-title" id="rsvp-success-title"></h3>
+        <p class="success-msg" id="rsvp-success-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CANNOT ATTEND -->
+<div class="modal-overlay" id="gift-modal" onclick="overlayClick(event,'gift-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">We Understand</p>
+        <h2 class="modal-title">Bless the Couple</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('gift-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="gift-modal-intro" id="gm-intro"></p>
+      <div class="bank-block">
+        <div class="bank-row">
+          <span class="bank-label">Bank</span>
+          <span class="bank-value" id="gm-bank"></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Name</span>
+          <span class="bank-value" id="gm-acct-name"></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Number</span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="bank-value" id="gm-acct-num"></span>
+            <button class="copy-btn" onclick="copyAcct()">Copy</button>
+          </div>
+        </div>
+      </div>
+      <p class="gift-modal-note" id="gm-note"></p>
+      <p class="gift-modal-wa">Or send your blessings via <a id="gm-wa-link" href="#" target="_blank">WhatsApp</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Account number copied!</div>
+
+<script>
+  // ── Images ─────────────────────────────────────────────────
+  if (config.hero_image) {
+    document.getElementById('hero-img').src = config.hero_image;
+    document.getElementById('hero-img').alt = `${config.bride} and ${config.groom}`;
+  }
+  if (config.bride_photo) {
+    document.getElementById('bride-img').src = config.bride_photo;
+  } else {
+    document.getElementById('bride-row').style.display = 'none';
+  }
+  if (config.groom_photo) {
+    document.getElementById('groom-img').src = config.groom_photo;
+  } else {
+    document.getElementById('groom-row').style.display = 'none';
+  }
+  if (!config.bride_photo && !config.groom_photo) {
+    document.getElementById('portrait-pair').style.display = 'none';
+  }
+
+  // ── Text ───────────────────────────────────────────────────
+  document.getElementById('h-bride').textContent       = config.bride;
+  document.getElementById('h-groom').textContent       = config.groom;
+  document.getElementById('h-date').textContent        = config.date_display;
+  document.getElementById('h-venue').textContent       = config.ceremony_venue;
+  document.getElementById('photo-names').textContent   = `${config.bride} & ${config.groom}`;
+  document.getElementById('photo-date').textContent    = config.date_display;
+
+  document.getElementById('couple-story').textContent  = config.couple_story;
+  document.getElementById('bride-full').textContent    = config.bride_full;
+  document.getElementById('groom-full').textContent    = config.groom_full;
+  document.getElementById('bride-bio').textContent     = config.bride_bio;
+  document.getElementById('groom-bio').textContent     = config.groom_bio;
+
+  document.getElementById('tl-ctime').textContent   = config.ceremony_time;
+  document.getElementById('tl-campm').textContent   = config.ceremony_ampm;
+  document.getElementById('tl-cvenue').textContent  = config.ceremony_venue;
+  document.getElementById('tl-rtime').textContent   = config.reception_time;
+  document.getElementById('tl-rampm').textContent   = config.reception_ampm;
+  document.getElementById('tl-rvenue').textContent  = config.reception_venue;
+
+  document.getElementById('scripture-text').textContent = config.scripture;
+  document.getElementById('scripture-ref').textContent  = config.scripture_ref;
+  document.getElementById('d-dresscode').textContent    = config.dresscode;
+
+  document.getElementById('rsvp-note').textContent =
+    `Kindly let us know before ${config.rsvp_deadline}. It would be a blessing to celebrate with you.`;
+  document.getElementById('rsvp-deadline').textContent =
+    `RSVP Deadline · ${config.rsvp_deadline}`;
+
+  document.getElementById('gift-intro').textContent =
+    `Your presence is the greatest blessing. If you would like to sow a seed into the new home of ` +
+    `${config.bride} and ${config.groom}, you may give directly to their account below.`;
+  document.getElementById('g-bank').textContent    = config.bank_name;
+  document.getElementById('g-name').textContent    = config.account_name;
+  document.getElementById('g-number').textContent  = config.account_number;
+  document.getElementById('gift-footer').textContent =
+    `"Give, and it will be given to you." — Luke 6:38`;
+
+  document.getElementById('f-names').textContent  = `${config.bride} & ${config.groom}`;
+  document.getElementById('f-date').textContent   = config.date_display;
+
+  document.getElementById('rsvp-success-title').textContent = `God bless you! 🙏`;
+  document.getElementById('rsvp-success-msg').textContent   =
+    `Thank you! ${config.bride} and ${config.groom} are so grateful you will be there. ` +
+    `We will send you reminders as the big day approaches.`;
+
+  document.getElementById('gm-intro').textContent =
+    `We will miss having you there. If you feel led to bless ${config.bride} and ${config.groom} ` +
+    `from afar, you may give directly to their account.`;
+  document.getElementById('gm-bank').textContent      = config.bank_name;
+  document.getElementById('gm-acct-name').textContent = config.account_name;
+  document.getElementById('gm-acct-num').textContent  = config.account_number;
+  document.getElementById('gm-note').textContent      = `Every blessing counts. Thank you for your love and prayers.`;
+
+  const waMsg = encodeURIComponent(
+    `Hello! I am unable to attend the wedding of ${config.bride} & ${config.groom} on ${config.date_display}. I am keeping you in my prayers and sending my love.`
+  );
+  document.getElementById('gm-wa-link').href = `https://wa.me/${config.rsvp_whatsapp}?text=${waMsg}`;
+
+  // ── Countdown ──────────────────────────────────────────────
+  function tick() {
+    const target = new Date(`${config.wedding_date}T10:00:00`);
+    const diff   = target - new Date();
+    if (diff <= 0) {
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '0');
+      return;
+    }
+    document.getElementById('cd-days').textContent  = Math.floor(diff / 86400000);
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Modals ─────────────────────────────────────────────────
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  function overlayClick(e, id) { if (e.target === document.getElementById(id)) closeModal(id); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  });
+
+  function submitRsvp(e) {
+    e.preventDefault();
+    document.getElementById('rsvp-form').style.display    = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+
+  function copyAcct() {
+    navigator.clipboard.writeText(config.account_number).then(() => {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    });
+  }
+</script>
+
+</body>
+</html>
