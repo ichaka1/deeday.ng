@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Wedding Invitation</title>
+  <meta id="og-title" property="og:title" content="You're Invited" />
+  <meta id="og-desc" property="og:description" content="Join us to celebrate our union" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #080608;
+      --dark:       #110E0F;
+      --gold:       #D4AF37;
+      --gold2:      #C9A84C;
+      --gold-light: #F0D060;
+      --gold-dim:   #A07828;
+      --gold-pale:  rgba(212,175,55,0.15);
+      --white:      #FFFFFF;
+      --cream:      #F5F0E8;
+      --muted:      rgba(255,255,255,0.55);
+      --border:     rgba(212,175,55,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO — THE FLYER
+    ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    /* Couple photo */
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    /* Multi-layer overlay to darken edges, keep center visible */
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(8,6,8,0.15) 0%, rgba(8,6,8,0.75) 100%),
+        linear-gradient(to bottom, rgba(8,6,8,0.6) 0%, rgba(8,6,8,0.0) 30%, rgba(8,6,8,0.0) 55%, rgba(8,6,8,0.85) 100%);
+    }
+
+    /* Gold frame lines — the picture-frame effect from Nigerian flyers */
+    .hero-frame {
+      position: absolute;
+      inset: 16px;
+      z-index: 1;
+      pointer-events: none;
+      border: 1px solid rgba(212,175,55,0.35);
+    }
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border: 1px solid rgba(212,175,55,0.18);
+    }
+    /* Corner ornaments */
+    .hero-frame::after {
+      content: '✦';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: var(--gold);
+      background: transparent;
+    }
+    .corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      z-index: 2;
+    }
+    .corner-tl { top: 8px;  left: 8px;  border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .corner-tr { top: 8px;  right: 8px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+    .corner-bl { bottom: 8px; left: 8px;  border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+    /* All hero content sits above photo + overlay */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 32px 100px;
+      text-align: center;
+    }
+
+    /* "You are cordially invited" top label */
+    .hero-top-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+      opacity: 0.85;
+    }
+    .hero-top-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .hero-top-line::before,
+    .hero-top-line::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* THE NAMES — script font, this is the centrepiece */
+    .hero-bride {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(58px, 16vw, 110px);
+      color: var(--gold-light);
+      line-height: 1.0;
+      text-shadow: 0 2px 20px rgba(212,175,55,0.4);
+      display: block;
+    }
+    .hero-connector {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(20px, 5vw, 32px);
+      color: var(--white);
+      opacity: 0.7;
+      margin: 4px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .hero-connector::before,
+    .hero-connector::after {
+      content: '♥';
+      font-size: 0.7em;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+    .hero-groom {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(58px, 16vw, 110px);
+      color: var(--gold-light);
+      line-height: 1.0;
+      text-shadow: 0 2px 20px rgba(212,175,55,0.4);
+      display: block;
+    }
+
+    /* Gold date banner */
+    .hero-date-banner {
+      margin-top: 36px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), rgba(212,175,55,0.35), rgba(212,175,55,0.2), transparent);
+      border-top: 1px solid rgba(212,175,55,0.4);
+      border-bottom: 1px solid rgba(212,175,55,0.4);
+      padding: 10px 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .hero-date-text {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    /* Venue line */
+    .hero-venue-text {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      max-width: 320px;
+    }
+
+    /* Buttons */
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 14px 32px;
+      transition: all 0.2s ease;
+    }
+    .btn-gold       { background: var(--gold); color: var(--black); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost      { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+    .btn-ghost:hover { background: var(--gold-pale); }
+    .btn-full { width: 100%; text-align: center; }
+
+    /* deeday.ng watermark bottom of hero */
+    .hero-watermark {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(212,175,55,0.4);
+    }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-strip {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ══════════════════════════════════════════
+       COUNTDOWN
+    ══════════════════════════════════════════ */
+    .countdown {
+      padding: 56px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .countdown-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 32px;
+    }
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: clamp(16px, 6vw, 56px);
+    }
+    .cd-unit { text-align: center; }
+    .cd-num {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: clamp(48px, 11vw, 80px);
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .cd-word {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ══════════════════════════════════════════
+       OUR STORY
+    ══════════════════════════════════════════ */
+    .story-section {
+      padding: 64px 24px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 12px;
+    }
+    .script-heading {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(40px, 9vw, 64px);
+      color: var(--gold);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .gold-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0 28px;
+      color: var(--gold-dim);
+      font-size: 12px;
+      letter-spacing: 6px;
+    }
+    .gold-ornament::before,
+    .gold-ornament::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--border);
+    }
+    .story-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    /* Profile cards — portrait style */
+    .profile-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 480px) { .profile-duo { grid-template-columns: 1fr; } }
+    .profile-card { text-align: center; }
+    .profile-photo-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: #1a1a1a;
+    }
+    .profile-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .profile-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(8,6,8,0.7) 100%);
+    }
+    /* Gold corner on photo */
+    .profile-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(212,175,55,0.25);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .profile-role {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 4px;
+    }
+    .profile-name {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .profile-bio {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════
+       EVENTS
+    ══════════════════════════════════════════ */
+    .events-section {
+      padding: 64px 24px;
+      max-width: 680px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    @media (max-width: 480px) { .events-grid { grid-template-columns: 1fr; } }
+    .event-block {
+      background: var(--dark);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .event-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 20%; right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .event-icon {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .event-type {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 8px;
+    }
+    .event-name {
+      font-family: 'Dancing Script', cursive;
+      font-size: 26px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .event-time {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .event-venue {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════
+       DRESS CODE
+    ══════════════════════════════════════════ */
+    .dresscode-section {
+      padding: 48px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, transparent 50%, rgba(212,175,55,0.08) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .dresscode-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 12px;
+    }
+    .dresscode-value {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(36px, 9vw, 64px);
+      color: var(--gold);
+      text-shadow: 0 2px 16px rgba(212,175,55,0.3);
+    }
+
+    /* ══════════════════════════════════════════
+       RSVP
+    ══════════════════════════════════════════ */
+    .rsvp-section {
+      padding: 64px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .rsvp-inner { max-width: 460px; margin: 0 auto; }
+    .rsvp-note {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+    .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .rsvp-deadline {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* ══════════════════════════════════════════
+       GIFT
+    ══════════════════════════════════════════ */
+    .gift-section {
+      padding: 64px 24px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .gift-intro { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.8; text-align: center; }
+    .bank-block { border: 1px solid var(--border); }
+    .bank-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim); }
+    .bank-value { font-size: 14px; font-weight: 600; color: var(--white); }
+    .copy-btn {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--gold); cursor: pointer; background: none; border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px 0;
+    }
+    .copy-btn:hover { text-decoration: underline; }
+    .gift-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 22px;
+      color: var(--gold-dim);
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      padding: 48px 24px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(36px, 9vw, 60px);
+      color: var(--gold);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .footer-heart { color: var(--gold-dim); font-size: 16px; margin: 0 8px; }
+    .footer-date {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .footer-powered {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
+    }
+    .footer-powered a { color: var(--gold-dim); text-decoration: none; }
+
+    /* ══════════════════════════════════════════
+       MODALS
+    ══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 900;
+      display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    @media (min-width: 600px) { .modal-overlay { align-items: center; } }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: #111;
+      border: 1px solid var(--border);
+      width: 100%; max-width: 520px; max-height: 92svh; overflow-y: auto;
+      transform: translateY(40px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-header {
+      padding: 24px 28px;
+      position: sticky; top: 0; z-index: 1;
+      background: #0E0B0C;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    }
+    .modal-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 4px; }
+    .modal-title { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 28px; color: var(--gold); }
+    .modal-close {
+      background: rgba(212,175,55,0.1); border: none; color: var(--gold);
+      width: 36px; height: 36px; flex-shrink: 0; cursor: pointer; font-size: 18px;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(212,175,55,0.2); }
+    .modal-body { padding: 28px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 420px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dim); }
+    .form-input, .form-select, .form-textarea {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 500;
+      color: var(--white); background: #1a1a1a; border: 1px solid #333;
+      padding: 12px 14px; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-input::placeholder, .form-textarea::placeholder { color: #444; }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-hint { font-size: 11px; color: #555; }
+    .form-submit-row { margin-top: 24px; }
+    .form-note { font-size: 12px; color: #555; margin-top: 12px; text-align: center; }
+
+    .success-state { text-align: center; padding: 20px 0 8px; display: none; }
+    .success-icon { font-size: 48px; margin-bottom: 16px; }
+    .success-title { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 32px; color: var(--gold); margin-bottom: 10px; }
+    .success-msg { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    .gift-modal-intro { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+    .gift-modal-note { text-align: center; font-size: 13px; color: #555; font-style: italic; margin-top: 20px; }
+    .gift-modal-wa { margin-top: 16px; text-align: center; font-size: 13px; color: #555; }
+    .gift-modal-wa a { color: var(--gold); font-weight: 700; text-decoration: none; }
+
+    option { background: #1a1a1a; color: var(--white); }
+
+    .toast {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--gold); color: var(--black);
+      padding: 12px 28px; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      transition: transform 0.3s ease; z-index: 9999; pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<script>
+  // ============================================================
+  //  EDIT THIS SECTION TO CUSTOMISE FOR EACH CLIENT
+  // ============================================================
+  const config = {
+    bride:           "Danielle",
+    groom:           "Fidelis",
+    bride_full:      "Danielle Adaeze Obi",
+    groom_full:      "Fidelis Chukwuemeka Eze",
+
+    wedding_date:    "2026-05-24",
+    date_display:    "Saturday, 24th May 2026",
+
+    ceremony_time:   "11:00 AM",
+    ceremony_venue:  "The Grandeur Event Centre, Oregun, Ikeja, Lagos",
+
+    reception_time:  "2:00 PM",
+    reception_venue: "The Grandeur Event Centre, Oregun, Ikeja, Lagos",
+
+    dresscode:       "Gold & Black",
+
+    rsvp_whatsapp:   "2348012345678",
+    rsvp_deadline:   "10th May 2026",
+    bank_name:       "UBA",
+    account_name:    "Fidelis Chukwuemeka Eze",
+    account_number:  "2087654321",
+
+    // ── IMAGES ──────────────────────────────────────────────
+    hero_image:   "https://raw.githubusercontent.com/ichaka1/deeday.ng/main/assets/wedding-hero.jpg",
+    bride_photo:  "",
+    groom_photo:  "",
+    // ────────────────────────────────────────────────────────
+
+    couple_story:
+      "Danielle and Fidelis met at a mutual friend's birthday dinner in Lagos in 2022. " +
+      "She was the last to arrive. He was the first to notice. " +
+      "Two years of laughter, long drives on the Third Mainland Bridge, and midnight phone calls later, " +
+      "he showed up at her family home on a Tuesday morning with her favourite flowers, her father's blessing, " +
+      "and a ring she had admired once in a jewellery store six months earlier. " +
+      "She had no idea he remembered. He had never forgotten.",
+
+    bride_bio:   "Danielle is a fashion designer and the joy of her family. Daughter of Mr and Mrs Obi of Delta State.",
+    groom_bio:   "Fidelis is a banker and a man of quiet strength. Son of Chief and Mrs Eze of Anambra State.",
+  };
+  // ============================================================
+
+  document.getElementById('page-title').textContent =
+    `${config.bride} & ${config.groom} — Wedding Invitation`;
+  document.getElementById('og-title').content =
+    `You're Invited: ${config.bride} & ${config.groom}`;
+  document.getElementById('og-desc').content =
+    `${config.date_display} · ${config.ceremony_venue}`;
+</script>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-photo">
+    <img id="hero-img" src="" alt="" />
+  </div>
+
+  <!-- Gold frame -->
+  <div class="hero-frame"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="hero-content">
+    <div class="hero-top-line">
+      <span class="hero-top-label">You Are Cordially Invited</span>
+    </div>
+
+    <span class="hero-bride" id="h-bride"></span>
+    <div class="hero-connector">and</div>
+    <span class="hero-groom" id="h-groom"></span>
+
+    <div class="hero-date-banner">
+      <p class="hero-date-text" id="h-date"></p>
+    </div>
+    <p class="hero-venue-text" id="h-venue"></p>
+
+    <div class="hero-buttons">
+      <button class="btn btn-gold" onclick="openModal('rsvp-modal')">I Am Attending</button>
+      <button class="btn btn-ghost" onclick="openModal('gift-modal')">I Cannot Make It</button>
+    </div>
+  </div>
+
+  <div class="hero-watermark">deeday.ng</div>
+</section>
+
+<div class="gold-strip"></div>
+
+<!-- ══ COUNTDOWN ══ -->
+<section class="countdown">
+  <p class="countdown-label">Counting Down to the Big Day</p>
+  <div class="countdown-grid">
+    <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-word">Days</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-word">Hours</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-word">Mins</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-word">Secs</span></div>
+  </div>
+</section>
+
+<!-- ══ STORY ══ -->
+<section class="story-section">
+  <p class="section-label">The Couple</p>
+  <h2 class="script-heading">Our Story</h2>
+  <div class="gold-ornament">♥ ♥ ♥</div>
+  <p class="story-text" id="couple-story"></p>
+
+  <div class="profile-duo" id="profile-duo">
+    <div class="profile-card" id="bride-card">
+      <div class="profile-photo-wrap"><img id="bride-img" src="" alt="" /></div>
+      <p class="profile-role">The Bride</p>
+      <p class="profile-name" id="bride-full"></p>
+      <p class="profile-bio" id="bride-bio"></p>
+    </div>
+    <div class="profile-card" id="groom-card">
+      <div class="profile-photo-wrap"><img id="groom-img" src="" alt="" /></div>
+      <p class="profile-role">The Groom</p>
+      <p class="profile-name" id="groom-full"></p>
+      <p class="profile-bio" id="groom-bio"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EVENTS ══ -->
+<section class="events-section">
+  <p class="section-label" style="text-align:center">Programme</p>
+  <h2 class="script-heading" style="text-align:center;margin-bottom:8px">The Big Day</h2>
+  <div class="gold-ornament">♥ ♥ ♥</div>
+  <div class="events-grid">
+    <div class="event-block">
+      <span class="event-icon">⛪</span>
+      <p class="event-type">Ceremony</p>
+      <p class="event-name">Holy Matrimony</p>
+      <p class="event-time" id="e-ctime"></p>
+      <p class="event-venue" id="e-cvenue"></p>
+    </div>
+    <div class="event-block">
+      <span class="event-icon">🥂</span>
+      <p class="event-type">Reception</p>
+      <p class="event-name">Celebration</p>
+      <p class="event-time" id="e-rtime"></p>
+      <p class="event-venue" id="e-rvenue"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DRESS CODE ══ -->
+<section class="dresscode-section">
+  <p class="dresscode-label">Dress Code</p>
+  <p class="dresscode-value" id="d-dresscode"></p>
+</section>
+
+<!-- ══ RSVP ══ -->
+<section class="rsvp-section" id="rsvp">
+  <div class="rsvp-inner">
+    <p class="section-label">Kindly Respond</p>
+    <h2 class="script-heading" style="margin-bottom:8px">Will You Join Us?</h2>
+    <div class="gold-ornament">♥ ♥ ♥</div>
+    <p class="rsvp-note" id="rsvp-note"></p>
+    <div class="rsvp-buttons">
+      <button class="btn btn-gold" onclick="openModal('rsvp-modal')">Yes, I Will Attend</button>
+      <button class="btn btn-ghost" onclick="openModal('gift-modal')">I Cannot Make It</button>
+    </div>
+    <p class="rsvp-deadline" id="rsvp-deadline"></p>
+  </div>
+</section>
+
+<!-- ══ GIFT ══ -->
+<section class="gift-section" id="gift">
+  <p class="section-label" style="text-align:center">Gifts &amp; Wishes</p>
+  <h2 class="script-heading" style="text-align:center;margin-bottom:8px">Bless the Couple</h2>
+  <div class="gold-ornament">♥ ♥ ♥</div>
+  <p class="gift-intro" id="gift-intro"></p>
+  <div class="bank-block">
+    <div class="bank-row">
+      <span class="bank-label">Bank</span>
+      <span class="bank-value" id="g-bank"></span>
+    </div>
+    <div class="bank-row">
+      <span class="bank-label">Account Name</span>
+      <span class="bank-value" id="g-name"></span>
+    </div>
+    <div class="bank-row">
+      <span class="bank-label">Account Number</span>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span class="bank-value" id="g-number"></span>
+        <button class="copy-btn" onclick="copyAcct()">Copy</button>
+      </div>
+    </div>
+  </div>
+  <p class="gift-footer" id="gift-footer"></p>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<div class="gold-strip"></div>
+<footer>
+  <p class="footer-names" id="f-names"></p>
+  <p class="footer-date" id="f-date"></p>
+  <p class="footer-powered">Invitation by <a href="https://deeday.ng" target="_blank">deeday.ng</a></p>
+</footer>
+
+
+<!-- MODAL: ATTENDING -->
+<div class="modal-overlay" id="rsvp-modal" onclick="overlayClick(event,'rsvp-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">RSVP</p>
+        <h2 class="modal-title">Count Me In!</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('rsvp-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="rsvp-form" onsubmit="submitRsvp(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input class="form-input" type="text" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input class="form-input" type="tel" placeholder="080xxxxxxxx" required />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" placeholder="you@example.com" />
+            <span class="form-hint">For reminders closer to the day</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Number of Guests</label>
+            <select class="form-select">
+              <option>Just me</option>
+              <option>2 people</option>
+              <option>3 people</option>
+              <option>4 people</option>
+              <option>5 or more</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dietary Needs</label>
+            <input class="form-input" type="text" placeholder="e.g. No pork, vegetarian" />
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Message to the Couple</label>
+            <textarea class="form-textarea" placeholder="Share your love and excitement..."></textarea>
+          </div>
+        </div>
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-gold btn-full">Confirm My Attendance</button>
+          <p class="form-note">We will send you reminders as the day gets closer.</p>
+        </div>
+      </form>
+      <div class="success-state" id="rsvp-success">
+        <div class="success-icon">🎉</div>
+        <h3 class="success-title" id="rsvp-success-title"></h3>
+        <p class="success-msg" id="rsvp-success-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CANNOT ATTEND -->
+<div class="modal-overlay" id="gift-modal" onclick="overlayClick(event,'gift-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">We Understand</p>
+        <h2 class="modal-title">Bless the Couple</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('gift-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="gift-modal-intro" id="gm-intro"></p>
+      <div class="bank-block">
+        <div class="bank-row">
+          <span class="bank-label">Bank</span>
+          <span class="bank-value" id="gm-bank"></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Name</span>
+          <span class="bank-value" id="gm-acct-name"></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Account Number</span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="bank-value" id="gm-acct-num"></span>
+            <button class="copy-btn" onclick="copyAcct()">Copy</button>
+          </div>
+        </div>
+      </div>
+      <p class="gift-modal-note" id="gm-note"></p>
+      <p class="gift-modal-wa">Or send your wishes via <a id="gm-wa-link" href="#" target="_blank">WhatsApp</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+  // ── Images ─────────────────────────────────────────────────
+  if (config.hero_image) {
+    const img = document.getElementById('hero-img');
+    img.src = config.hero_image;
+    img.alt = `${config.bride} and ${config.groom}`;
+  }
+  if (config.bride_photo) {
+    document.getElementById('bride-img').src = config.bride_photo;
+  } else {
+    document.getElementById('bride-card').style.display = 'none';
+  }
+  if (config.groom_photo) {
+    document.getElementById('groom-img').src = config.groom_photo;
+  } else {
+    document.getElementById('groom-card').style.display = 'none';
+  }
+  if (!config.bride_photo && !config.groom_photo) {
+    document.getElementById('profile-duo').style.display = 'none';
+  }
+
+  // ── Text ───────────────────────────────────────────────────
+  document.getElementById('h-bride').textContent      = config.bride;
+  document.getElementById('h-groom').textContent      = config.groom;
+  document.getElementById('h-date').textContent       = config.date_display;
+  document.getElementById('h-venue').textContent      = config.ceremony_venue;
+
+  document.getElementById('couple-story').textContent = config.couple_story;
+  document.getElementById('bride-full').textContent   = config.bride_full;
+  document.getElementById('groom-full').textContent   = config.groom_full;
+  document.getElementById('bride-bio').textContent    = config.bride_bio;
+  document.getElementById('groom-bio').textContent    = config.groom_bio;
+
+  document.getElementById('e-ctime').textContent  = config.ceremony_time;
+  document.getElementById('e-cvenue').textContent = config.ceremony_venue;
+  document.getElementById('e-rtime').textContent  = config.reception_time;
+  document.getElementById('e-rvenue').textContent = config.reception_venue;
+
+  document.getElementById('d-dresscode').textContent = config.dresscode;
+
+  document.getElementById('rsvp-note').textContent =
+    `Kindly let us know before ${config.rsvp_deadline}. We would love to celebrate with you.`;
+  document.getElementById('rsvp-deadline').textContent =
+    `RSVP Deadline · ${config.rsvp_deadline}`;
+
+  document.getElementById('gift-intro').textContent =
+    `Your presence means everything to ${config.bride} and ${config.groom}. ` +
+    `If you would like to bless them with a gift, send directly to their account below.`;
+  document.getElementById('g-bank').textContent    = config.bank_name;
+  document.getElementById('g-name').textContent    = config.account_name;
+  document.getElementById('g-number').textContent  = config.account_number;
+  document.getElementById('gift-footer').textContent = `With love, ${config.bride} & ${config.groom}`;
+
+  document.getElementById('f-names').textContent  = `${config.bride} & ${config.groom}`;
+  document.getElementById('f-date').textContent   = config.date_display;
+
+  document.getElementById('rsvp-success-title').textContent = `We can't wait to see you!`;
+  document.getElementById('rsvp-success-msg').textContent   =
+    `Thank you so much! ${config.bride} and ${config.groom} are so excited you will be there. ` +
+    `Reminders will be sent as the big day gets closer.`;
+
+  document.getElementById('gm-intro').textContent =
+    `We will miss having you there. If you would like to show ${config.bride} and ${config.groom} ` +
+    `some love from afar, send a gift directly to their account.`;
+  document.getElementById('gm-bank').textContent      = config.bank_name;
+  document.getElementById('gm-acct-name').textContent = config.account_name;
+  document.getElementById('gm-acct-num').textContent  = config.account_number;
+  document.getElementById('gm-note').textContent      = `No amount is too small. Your love means everything.`;
+
+  const waMsg = encodeURIComponent(
+    `Hello! I am unable to attend the wedding of ${config.bride} & ${config.groom} on ${config.date_display}, but I am sending my love and best wishes.`
+  );
+  document.getElementById('gm-wa-link').href = `https://wa.me/${config.rsvp_whatsapp}?text=${waMsg}`;
+
+  // ── Countdown ──────────────────────────────────────────────
+  function tick() {
+    const target = new Date(`${config.wedding_date}T10:00:00`);
+    const diff   = target - new Date();
+    if (diff <= 0) {
+      ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '0');
+      return;
+    }
+    document.getElementById('cd-days').textContent  = Math.floor(diff / 86400000);
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Modals ─────────────────────────────────────────────────
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  function overlayClick(e, id) { if (e.target === document.getElementById(id)) closeModal(id); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  });
+
+  function submitRsvp(e) {
+    e.preventDefault();
+    document.getElementById('rsvp-form').style.display    = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  }
+
+  function copyAcct() {
+    navigator.clipboard.writeText(config.account_number).then(() => {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    });
+  }
+</script>
+
+</body>
+</html>
