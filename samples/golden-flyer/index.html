@@ -34,49 +34,61 @@
       line-height: 1.6;
     }
 
-    /* ══════════════════════════════════════════
-       HERO — THE FLYER
-    ══════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      width: 100%;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: var(--black);
-    }
-
-    /* Couple photo */
-    .hero-photo {
-      position: absolute;
+    /* ── Fixed background photo — stays put while everything scrolls ── */
+    #hero-bg {
+      position: fixed;
       inset: 0;
       z-index: 0;
     }
-    .hero-photo img {
+    #hero-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
       display: block;
     }
-    /* Multi-layer overlay to darken edges, keep center visible */
-    .hero-photo::after {
+    /* Static radial vignette always on the photo */
+    #hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at center, rgba(8,6,8,0.15) 0%, rgba(8,6,8,0.75) 100%),
-        linear-gradient(to bottom, rgba(8,6,8,0.6) 0%, rgba(8,6,8,0.0) 30%, rgba(8,6,8,0.0) 55%, rgba(8,6,8,0.85) 100%);
+      background: radial-gradient(ellipse at center, rgba(8,6,8,0.10) 0%, rgba(8,6,8,0.65) 100%);
     }
+
+    /* Scroll-driven darkening overlay — opacity driven by JS */
+    #scroll-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: #080608;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.05s linear;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO — THE FLYER
+    ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: transparent;   /* photo shows through */
+    }
+
+    /* hero-photo kept as placeholder — actual photo is in #hero-bg */
+    .hero-photo { display: none; }
 
     /* Gold frame lines — the picture-frame effect from Nigerian flyers */
     .hero-frame {
       position: absolute;
       inset: 16px;
-      z-index: 1;
+      z-index: 3;
       pointer-events: none;
       border: 1px solid rgba(212,175,55,0.35);
     }
@@ -101,7 +113,7 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      z-index: 2;
+      z-index: 4;
     }
     .corner-tl { top: 8px;  left: 8px;  border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
     .corner-tr { top: 8px;  right: 8px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
@@ -111,7 +123,7 @@
     /* All hero content sits above photo + overlay */
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 5;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -243,7 +255,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 2;
+      z-index: 5;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 4px;
@@ -255,6 +267,13 @@
     .gold-strip {
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* All sections after the hero must be above the fixed layers */
+    .countdown, .story-section, .events-section,
+    .dresscode-section, .rsvp-section, .gift-section, footer {
+      position: relative;
+      z-index: 2;
     }
 
     /* ══════════════════════════════════════════
@@ -714,11 +733,15 @@
     `${config.date_display} · ${config.ceremony_venue}`;
 </script>
 
+<!-- Fixed background photo -->
+<div id="hero-bg"><img id="hero-img" src="" alt="" /></div>
+
+<!-- Scroll-driven dark overlay -->
+<div id="scroll-overlay"></div>
+
 <!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-photo">
-    <img id="hero-img" src="" alt="" />
-  </div>
+  <div class="hero-photo"></div>
 
   <!-- Gold frame -->
   <div class="hero-frame"></div>
@@ -750,7 +773,7 @@
   <div class="hero-watermark">deeday.ng</div>
 </section>
 
-<div class="gold-strip"></div>
+<div class="gold-strip" style="position:relative;z-index:2;"></div>
 
 <!-- ══ COUNTDOWN ══ -->
 <section class="countdown">
@@ -1072,6 +1095,18 @@
       setTimeout(() => t.classList.remove('show'), 2500);
     });
   }
+
+  // ── Scroll darkening ───────────────────────────────────────
+  // As the user scrolls past the hero, the fixed photo gets progressively
+  // darker until the content sections fully cover it.
+  const overlay = document.getElementById('scroll-overlay');
+  window.addEventListener('scroll', () => {
+    const vh      = window.innerHeight;
+    const scrollY = window.scrollY;
+    // Starts darkening after 15% scroll, fully dark at 90% of viewport height
+    const progress = Math.min(Math.max((scrollY - vh * 0.15) / (vh * 0.75), 0), 1);
+    overlay.style.opacity = progress * 0.92;
+  }, { passive: true });
 </script>
 
 </body>
