@@ -131,15 +131,29 @@ img{display:block}
 .sig .by{font-family:'Caveat',cursive;color:#888;font-size:1rem;margin-top:14px}
 .sig .by b{color:var(--text-sand);font-family:'Montserrat';font-weight:900;letter-spacing:1px;font-size:.8rem;display:block}
 
-/* intro overlay */
-#intro{position:fixed;inset:0;z-index:100;background:var(--bg-black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;transition:opacity .8s ease,visibility .8s ease}
+/* intro — modern mail opening */
+#intro{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#171310,#0B0B0B 72%);display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .9s ease,visibility .9s ease,background .7s ease}
 #intro.gone{opacity:0;visibility:hidden}
-#intro .i-script{font-family:'Caveat',cursive;color:var(--red-accent);font-size:3rem;line-height:.9}
-#intro .i-names{font-weight:900;font-size:3rem;color:var(--text-sand);letter-spacing:2px;text-transform:uppercase;line-height:.95;margin:6px 0}
-#intro .i-and{font-family:'Caveat',cursive;color:var(--orange-accent);font-size:2.2rem;display:block;line-height:.4}
-#intro .i-date{font-size:.72rem;letter-spacing:2px;color:#9a8f81;font-weight:700;margin:14px 0 34px}
-#intro .i-btn{padding:15px 38px;border-radius:30px;border:1px solid var(--gold);background:var(--gold);color:#fff;font-weight:800;letter-spacing:1.5px;font-size:.8rem;cursor:pointer;text-transform:uppercase;transition:.25s}
-#intro .i-btn:hover{background:#8f6c3a}
+#intro.lit{background:radial-gradient(circle at 50% 40%,#5a4523,#0B0B0B 74%)}
+.env-wrap{display:flex;flex-direction:column;align-items:center;perspective:1300px}
+.envelope{position:relative;width:min(330px,86vw);height:min(214px,56vw);transition:transform .7s ease}
+.envelope.open{transform:scale(1.03)}
+.letter{position:absolute;left:7%;bottom:7px;width:86%;background:var(--bg-sand);border-radius:6px;padding:24px 14px 20px;text-align:center;z-index:2;box-shadow:0 12px 26px rgba(0,0,0,.45);transition:transform 1s cubic-bezier(.2,.75,.2,1) .4s}
+.envelope.open .letter{transform:translateY(-74%);z-index:7}
+.letter .l-script{font-family:'Caveat',cursive;color:var(--red-accent);font-size:1.7rem;display:block;line-height:.9;margin-bottom:2px}
+.letter .l-names{font-weight:900;font-size:1.85rem;color:#0B0B0B;letter-spacing:1px;text-transform:uppercase;line-height:.98}
+.letter .l-and{font-family:'Caveat',cursive;color:var(--orange-accent);font-size:1.4rem;display:block;line-height:.3}
+.letter .l-rule{width:48px;height:2px;background:var(--gold);margin:9px auto 7px}
+.letter .l-date{font-size:.58rem;letter-spacing:1.4px;color:#554A42;font-weight:800}
+.pocket-base{position:absolute;inset:0;z-index:3;border-radius:10px;background:linear-gradient(150deg,#b8955a,#9c783e)}
+.pocket{position:absolute;inset:0;z-index:4;border-radius:10px;background:linear-gradient(150deg,#caa96a,#ad8647);clip-path:polygon(0 42%,50% 90%,100% 42%,100% 100%,0 100%)}
+.flap{position:absolute;top:0;left:0;width:100%;height:64%;transform-origin:top center;background:linear-gradient(150deg,#dcbc7b,#c39c53);clip-path:polygon(0 0,100% 0,50% 100%);z-index:5;transition:transform .7s ease,z-index 0s .35s;border-radius:10px 10px 0 0;backface-visibility:hidden}
+.envelope.open .flap{transform:rotateX(175deg);z-index:1}
+.seal{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);z-index:6;width:60px;height:60px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.3);background:radial-gradient(circle at 38% 34%,#ecd591,var(--gold) 55%,#7c5f2e);color:#0B0B0B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;box-shadow:0 8px 18px rgba(0,0,0,.5);animation:sealpulse 2.4s ease-in-out infinite}
+.envelope.open .seal{opacity:0;pointer-events:none;transition:opacity .3s}
+.open-hint{margin-top:38px;font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;transition:opacity .4s}
+.envelope.open + .open-hint{opacity:0}
+@keyframes sealpulse{0%,100%{box-shadow:0 8px 18px rgba(0,0,0,.5),0 0 0 0 rgba(212,175,55,.5)}50%{box-shadow:0 8px 18px rgba(0,0,0,.5),0 0 0 15px rgba(212,175,55,0)}}
 
 /* music button */
 .music-btn{position:fixed;bottom:18px;right:18px;z-index:80;width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);background:var(--bg-black);color:var(--text-sand);cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.35)}
@@ -168,14 +182,25 @@ img{display:block}
 </head>
 <body>
 
-<!-- INTRO OVERLAY -->
+<!-- INTRO — modern mail opening -->
 <div id="intro">
-  <span class="i-script">The Wedding of</span>
-  <div class="i-names" id="i-groom">ANITA</div>
-  <span class="i-and">And</span>
-  <div class="i-names" id="i-bride">UCHE</div>
-  <p class="i-date" id="i-date">SATURDAY, 14TH JUNE 2026</p>
-  <button class="i-btn" id="intro-open">Open Invitation</button>
+  <div class="env-wrap">
+    <div class="envelope" id="envelope">
+      <div class="letter">
+        <span class="l-script">You're Invited</span>
+        <div class="l-names" id="i-groom">ANITA</div>
+        <span class="l-and">And</span>
+        <div class="l-names" id="i-bride">UCHE</div>
+        <div class="l-rule"></div>
+        <p class="l-date" id="i-date">SATURDAY, 12TH JUNE 2027</p>
+      </div>
+      <div class="pocket-base"></div>
+      <div class="pocket"></div>
+      <div class="flap"></div>
+      <button class="seal" id="intro-open" aria-label="Open invitation"><span id="seal-mono">A&amp;U</span></button>
+    </div>
+    <p class="open-hint">Tap the seal to open</p>
+  </div>
 </div>
 
 <div class="mobile-container">
@@ -404,6 +429,7 @@ $("og-desc").content = `${C.date_display} · ${C.venue_line}`;
 $("i-groom").textContent = C.groom.toUpperCase();
 $("i-bride").textContent = C.bride.toUpperCase();
 $("i-date").textContent = C.date_display;
+$("seal-mono").textContent = (C.groom[0]||"A").toUpperCase()+"&"+(C.bride[0]||"U").toUpperCase();
 
 /* header / names */
 $("name-a").textContent = C.groom.toUpperCase();
@@ -445,7 +471,14 @@ musicBtn.addEventListener("click", ()=>{
   if(playing){ audio.pause(); musicBtn.classList.remove("playing"); playing=false; }
   else { playMusic(); }
 });
-$("intro-open").addEventListener("click", ()=>{ $("intro").classList.add("gone"); playMusic(); });
+$("intro-open").addEventListener("click", ()=>{
+  const env = $("envelope");
+  if (env.classList.contains("open")) return;
+  env.classList.add("open");
+  $("intro").classList.add("lit");
+  playMusic();
+  setTimeout(()=>{ $("intro").classList.add("gone"); }, 1700);
+});
 
 /* ---------- scroll reveal ---------- */
 const io = new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
