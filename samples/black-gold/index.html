@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="page-title">The Wedding of Anita & Uche</title>
+<meta name="description" id="meta-desc" content="You are cordially invited." />
+<meta property="og:type" content="website" />
+<meta property="og:title" id="og-title" content="Wedding Invitation" />
+<meta property="og:description" id="og-desc" content="" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DEEDAY.NG · "BLACK & GOLD" · Editorial aso-ebi invitation
+   Design matches the Anita & Uche Photoshop sample.
+   Edit only the CONFIG block in the script near the bottom.
+   ============================================================ */
+:root{
+  --bg-sand:#DFCAAD;
+  --card-sand:#E6D5C3;
+  --bg-black:#0B0B0B;
+  --text-sand:#E2CEB7;
+  --red-accent:#E50914;
+  --orange-accent:#E67E22;
+  --text-dark:#2C2520;
+  --gold:#A37F48;
+  --white:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Montserrat',sans-serif}
+body{background-color:#CDB593;color:var(--text-dark);display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:20px 10px}
+img{display:block}
+
+.mobile-container{width:100%;max-width:480px;background-color:var(--bg-sand);box-shadow:0 10px 30px rgba(0,0,0,.25);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;gap:20px;padding-bottom:30px}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* header */
+.header-section{background-color:var(--bg-sand);padding:40px 20px 10px;text-align:center}
+.script-red{font-family:'Caveat',cursive;color:var(--red-accent);font-size:3.8rem;line-height:.8;font-weight:700;display:block}
+.names-banner{background-color:var(--bg-black);padding:25px 10px;text-align:center;margin-top:10px}
+.names-title{font-weight:900;font-size:3.2rem;color:var(--text-sand);line-height:.85;letter-spacing:2px;text-transform:uppercase}
+.script-and{font-family:'Caveat',cursive;color:var(--orange-accent);font-size:3.5rem;line-height:0;position:relative;top:-5px;display:block;z-index:2}
+.invitation-text{text-align:center;padding:20px 20px 10px;font-size:.75rem;font-weight:800;letter-spacing:1.5px;color:#38302A;line-height:1.6}
+.date-venue{text-align:center;padding:10px 20px}
+.date-text{font-weight:900;font-size:1.1rem;color:#1A1A1A;letter-spacing:.5px;margin-bottom:6px}
+.venue-text{font-weight:800;font-size:.8rem;color:#332B25;letter-spacing:.5px}
+
+/* countdown */
+.timer-container{display:flex;justify-content:center;gap:15px;padding:15px 20px 30px;border-bottom:2px dashed rgba(0,0,0,.1)}
+.timer-box{text-align:center;min-width:56px}
+.timer-num{font-weight:900;font-size:2rem;color:#111;line-height:1}
+.timer-label{font-size:.6rem;font-weight:800;color:#554A42;letter-spacing:1px;margin-top:4px}
+
+/* photo */
+.photo-section{padding:10px 20px}
+.photo-card{width:100%;height:380px;border-radius:35px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.photo-card img{width:100%;height:100%;object-fit:cover}
+
+/* story + programme */
+.story-section{padding:15px 25px}
+.section-title-black{font-weight:900;font-size:1.6rem;color:#000;letter-spacing:1px;margin-bottom:12px}
+.story-text{font-size:.9rem;line-height:1.5;color:#2D2621;font-weight:500}
+.programme-section{padding:10px 25px}
+.event-card{margin-bottom:20px}
+.event-type{font-size:.75rem;font-weight:800;letter-spacing:1px;color:#554A42}
+.event-name{font-weight:900;font-size:1.3rem;color:#000;margin-bottom:6px}
+.event-details{display:flex;gap:15px;align-items:flex-start}
+.event-time{font-weight:900;font-size:1rem;color:#000;min-width:75px}
+.event-location{font-size:.85rem;font-weight:600;color:#332B25;line-height:1.3}
+.event-location a{color:#000;text-decoration:underline;font-weight:700}
+
+/* dress code + aso-ebi */
+.dresscode-section{padding:10px 25px}
+.asoebi-box{margin-top:5px;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.asoebi-title{font-weight:900;font-size:1.1rem;color:#000}
+.dealer-btn{background:none;border:none;font-weight:700;font-size:.8rem;color:#222;text-decoration:underline;cursor:pointer}
+.asoebi-cta{margin-top:14px;width:100%;padding:13px;border-radius:30px;border:none;background:var(--bg-black);color:var(--text-sand);font-weight:800;font-size:.8rem;letter-spacing:1px;cursor:pointer;transition:.2s}
+.asoebi-cta:hover{background:#000}
+
+/* rsvp */
+.rsvp-prompt-section{padding:20px 25px;text-align:center;background-color:rgba(0,0,0,.03);margin:10px 20px;border-radius:25px}
+.rsvp-title{font-weight:900;font-size:1.3rem;color:#000;margin-bottom:8px}
+.rsvp-sub{font-size:.8rem;color:#443B34;margin-bottom:20px;line-height:1.4;font-weight:600}
+.btn-stack{display:flex;flex-direction:column;gap:10px}
+.btn-rsvp{width:100%;padding:14px;border-radius:30px;border:2px solid #000;background:#000;color:#FFF;font-weight:800;font-size:.85rem;letter-spacing:1px;cursor:pointer;transition:all .2s}
+.btn-rsvp:hover{transform:translateY(-1px)}
+.btn-rsvp-outline{background:transparent;color:#000}
+
+/* forms */
+.form-container{padding:25px;background-color:var(--card-sand);margin:10px 20px;border-radius:25px;display:none}
+.form-container.active{display:block}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;font-size:.65rem;font-weight:800;letter-spacing:1px;color:#333;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,.15);background-color:rgba(255,255,255,.6);font-size:.85rem;font-family:'Montserrat',sans-serif}
+
+/* success / keepsake receipt */
+.success-card{background-color:var(--gold);color:#FFF;padding:28px 22px;border-radius:25px;text-align:center;margin:10px 20px;display:none}
+.success-card.active{display:block}
+.checkmark-circle{width:60px;height:60px;background-color:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px}
+.checkmark-circle svg{width:35px;height:35px;fill:#27AE60}
+.success-title{font-weight:900;font-size:1.3rem;margin-bottom:10px;letter-spacing:1px}
+.success-msg{font-size:.85rem;line-height:1.5;color:#F6EEE2}
+.receipt-dl{margin:18px 0 6px;text-align:left;background:rgba(0,0,0,.14);border-radius:14px;padding:14px 16px}
+.receipt-dl .row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.25);font-size:.8rem}
+.receipt-dl .row:last-child{border-bottom:none}
+.receipt-dl .k{font-weight:800;letter-spacing:.5px;color:#F0E2CC;text-transform:uppercase;font-size:.62rem}
+.receipt-dl .v{font-weight:800;color:#fff;text-align:right}
+.receipt-actions{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.ra-btn{width:100%;padding:12px;border-radius:30px;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;font-weight:800;font-size:.78rem;letter-spacing:1px;cursor:pointer;text-decoration:none;display:inline-block}
+.ra-btn.solid{background:#0B0B0B;border-color:#0B0B0B}
+
+/* gifts */
+.gifts-section{padding:25px;background-color:var(--bg-black);color:var(--text-sand);margin:10px 0}
+.gifts-title{font-weight:900;font-size:1.5rem;color:#FFF}
+.gifts-sub{font-family:'Caveat',cursive;color:var(--orange-accent);font-size:2rem;line-height:1;margin-bottom:12px;display:block}
+.gifts-desc{font-size:.8rem;color:#CCC;line-height:1.5;margin-bottom:20px}
+.bank-card{background-color:#161616;border:1px solid #333;border-radius:15px;padding:15px;margin-bottom:15px}
+.bank-row{display:flex;justify-content:space-between;margin-bottom:8px}
+.bank-label{font-size:.65rem;font-weight:800;color:#888;letter-spacing:1px}
+.bank-val{font-size:.85rem;font-weight:800;color:#FFF}
+.copy-btn{background-color:var(--text-sand);color:#000;border:none;padding:6px 14px;border-radius:12px;font-weight:900;font-size:.7rem;cursor:pointer}
+.footer-note{text-align:center;font-size:.75rem;color:#AAA;margin-top:10px}
+.sig{text-align:center;margin-top:22px}
+.sig .n{font-weight:900;font-size:1.6rem;color:#fff;letter-spacing:1px;line-height:.9}
+.sig .amp{font-family:'Caveat',cursive;color:var(--orange-accent);font-size:1.6rem;display:block;line-height:.8}
+.sig .d{font-size:.72rem;color:#BBB;margin-top:8px;letter-spacing:.5px}
+.sig .by{font-family:'Caveat',cursive;color:#888;font-size:1rem;margin-top:14px}
+.sig .by b{color:var(--text-sand);font-family:'Montserrat';font-weight:900;letter-spacing:1px;font-size:.8rem;display:block}
+
+/* intro overlay */
+#intro{position:fixed;inset:0;z-index:100;background:var(--bg-black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;transition:opacity .8s ease,visibility .8s ease}
+#intro.gone{opacity:0;visibility:hidden}
+#intro .i-script{font-family:'Caveat',cursive;color:var(--red-accent);font-size:3rem;line-height:.9}
+#intro .i-names{font-weight:900;font-size:3rem;color:var(--text-sand);letter-spacing:2px;text-transform:uppercase;line-height:.95;margin:6px 0}
+#intro .i-and{font-family:'Caveat',cursive;color:var(--orange-accent);font-size:2.2rem;display:block;line-height:.4}
+#intro .i-date{font-size:.72rem;letter-spacing:2px;color:#9a8f81;font-weight:700;margin:14px 0 34px}
+#intro .i-btn{padding:15px 38px;border-radius:30px;border:1px solid var(--gold);background:var(--gold);color:#fff;font-weight:800;letter-spacing:1.5px;font-size:.8rem;cursor:pointer;text-transform:uppercase;transition:.25s}
+#intro .i-btn:hover{background:#8f6c3a}
+
+/* music button */
+.music-btn{position:fixed;bottom:18px;right:18px;z-index:80;width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);background:var(--bg-black);color:var(--text-sand);cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.music-btn.show{display:flex}
+.music-btn.playing{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.6)}
+.modal.open{display:flex}
+.modal-box{background:var(--card-sand);width:100%;max-width:420px;max-height:92vh;overflow:auto;border-radius:20px;padding:26px 22px;position:relative}
+.modal-x{position:absolute;top:10px;right:14px;border:none;background:none;font-size:26px;cursor:pointer;color:#5a4f46;line-height:1}
+.modal-title{font-weight:900;font-size:1.3rem;color:#000;margin-bottom:4px}
+.modal-sub{font-size:.78rem;color:#5a4f46;font-weight:600;margin-bottom:16px}
+.opt-price{font-weight:900;color:var(--gold)}
+
+#confetti{position:fixed;inset:0;z-index:95;pointer-events:none;display:none}
+
+@media print{
+  body *{visibility:hidden}
+  #success-card,#success-card *{visibility:visible}
+  #success-card{position:absolute;left:0;top:0;margin:0;width:100%}
+  .receipt-actions{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO OVERLAY -->
+<div id="intro">
+  <span class="i-script">The Wedding of</span>
+  <div class="i-names" id="i-groom">ANITA</div>
+  <span class="i-and">And</span>
+  <div class="i-names" id="i-bride">UCHE</div>
+  <p class="i-date" id="i-date">SATURDAY, 14TH JUNE 2026</p>
+  <button class="i-btn" id="intro-open">Open Invitation</button>
+</div>
+
+<div class="mobile-container">
+
+  <!-- HEADER -->
+  <div class="header-section reveal">
+    <span class="script-red">The Wedding of</span>
+  </div>
+
+  <!-- NAMES BANNER -->
+  <div class="names-banner reveal">
+    <div class="names-title" id="name-a">ANITA</div>
+    <span class="script-and">And</span>
+    <div class="names-title" id="name-b">UCHE</div>
+  </div>
+
+  <!-- INVITATION TEXT -->
+  <div class="invitation-text reveal">
+    TOGETHER WITH THEIR FAMILIES,<br>
+    YOU ARE CORDIALLY INVITED TO
+  </div>
+
+  <!-- DATE & VENUE -->
+  <div class="date-venue reveal">
+    <div class="date-text" id="date-text">SATURDAY, 14TH JUNE 2026</div>
+    <div class="venue-text" id="venue-text">EKO HOTEL & SUITES, VICTORIA ISLAND, LAGOS</div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="timer-container reveal">
+    <div class="timer-box"><div class="timer-num" id="days">00</div><div class="timer-label">DAYS</div></div>
+    <div class="timer-box"><div class="timer-num" id="hours">00</div><div class="timer-label">HOURS</div></div>
+    <div class="timer-box"><div class="timer-num" id="minutes">00</div><div class="timer-label">MINUTES</div></div>
+    <div class="timer-box"><div class="timer-num" id="seconds">00</div><div class="timer-label">SECONDS</div></div>
+  </div>
+
+  <!-- PHOTO -->
+  <div class="photo-section reveal">
+    <div class="photo-card"><img id="couple-photo" src="assets/couple.jpg" alt="The couple"></div>
+  </div>
+
+  <!-- OUR STORY -->
+  <div class="story-section reveal">
+    <div class="section-title-black">OUR STORY</div>
+    <p class="story-text" id="story-text"></p>
+  </div>
+
+  <!-- PROGRAMME -->
+  <div class="programme-section reveal">
+    <div class="section-title-black">PROGRAMME OF EVENTS</div>
+    <div class="event-card">
+      <div class="event-type">THE CEREMONY</div>
+      <div class="event-name" id="ceremony-name">HOLY MATRIMONY</div>
+      <div class="event-details">
+        <div class="event-time" id="ceremony-time">11:00 AM</div>
+        <div class="event-location"><a id="ceremony-loc" target="_blank" rel="noopener"></a></div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-type">THE RECEPTION</div>
+      <div class="event-name" id="reception-name">CELEBRATION</div>
+      <div class="event-details">
+        <div class="event-time" id="reception-time">2:00 PM</div>
+        <div class="event-location"><a id="reception-loc" target="_blank" rel="noopener"></a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRESS CODE + ASO-EBI -->
+  <div class="dresscode-section reveal">
+    <div class="section-title-black">DRESS CODE</div>
+    <div class="asoebi-box">
+      <div class="asoebi-title" id="asoebi-title">ASO-EBI: GOLD & IVORY</div>
+      <button class="dealer-btn" id="dealer-link">Contact Dealer</button>
+    </div>
+    <button class="asoebi-cta" id="asoebi-order">ORDER ASO-EBI FABRIC</button>
+  </div>
+
+  <!-- RSVP PROMPT -->
+  <div class="rsvp-prompt-section reveal" id="rsvp-prompt">
+    <div class="rsvp-title">WILL YOU BE JOINING US?</div>
+    <div class="rsvp-sub" id="rsvp-sub"></div>
+    <div class="btn-stack">
+      <button class="btn-rsvp" onclick="openRSVP('YES')">YES, I WILL ATTEND</button>
+      <button class="btn-rsvp btn-rsvp-outline" onclick="openRSVP('MAYBE')">MAYBE, NOT DECIDED</button>
+      <button class="btn-rsvp btn-rsvp-outline" onclick="openRSVP('NO')">NO, I'M NOT AVAILABLE</button>
+    </div>
+  </div>
+
+  <!-- RSVP FORM -->
+  <div class="form-container" id="rsvp-form">
+    <div class="section-title-black" style="font-size:1.2rem">COUNT ME IN!</div>
+    <form id="attendance-form">
+      <div class="form-group"><label>YOUR NAME *</label><input type="text" id="f-name" required placeholder="Enter full name"></div>
+      <div class="form-group"><label>PHONE NUMBER *</label><input type="tel" id="f-phone" required placeholder="08000000000"></div>
+      <div class="form-group"><label>EMAIL ADDRESS *</label><input type="email" id="f-email" required placeholder="name@example.com"></div>
+      <div class="form-group"><label>NUMBER OF GUESTS</label>
+        <select id="f-guests"><option>Just Me</option><option>2 Persons</option><option>3 Persons</option><option>4 Persons</option></select>
+      </div>
+      <div class="form-group"><label>MESSAGE TO THE COUPLE</label><textarea id="f-message" rows="3" placeholder="Write a note..."></textarea></div>
+      <button type="submit" class="btn-rsvp">CONFIRM MY ATTENDANCE</button>
+    </form>
+  </div>
+
+  <!-- SUCCESS / KEEPSAKE RECEIPT -->
+  <div class="success-card" id="success-card">
+    <div class="checkmark-circle"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+    <div class="success-title" id="success-title">YOU'RE CONFIRMED!</div>
+    <p class="success-msg" id="success-msg"></p>
+    <div class="receipt-dl" id="receipt-dl"></div>
+    <div class="receipt-actions">
+      <a class="ra-btn solid" id="rc-wa" target="_blank" rel="noopener">SHARE ON WHATSAPP</a>
+      <button class="ra-btn" onclick="window.print()">PRINT / SAVE RECEIPT</button>
+      <button class="ra-btn" id="rc-edit">EDIT RESPONSE</button>
+    </div>
+  </div>
+
+  <!-- GIFTS -->
+  <div class="gifts-section reveal">
+    <div class="gifts-title">GIFTS &amp; WISHES</div>
+    <span class="gifts-sub">Show them some love</span>
+    <p class="gifts-desc" id="gifts-desc"></p>
+    <div class="bank-card">
+      <div class="bank-row"><span class="bank-label">BANK</span><span class="bank-val" id="bank-name">GTBANK</span></div>
+      <div class="bank-row"><span class="bank-label">ACCOUNT NAME</span><span class="bank-val" id="acc-name">UCHE CHUKWUDI OKAFOR</span></div>
+      <div class="bank-row" style="align-items:center;margin-bottom:0">
+        <div><div class="bank-label">ACCOUNT NUMBER</div><div class="bank-val" id="acc-num">0123456789</div></div>
+        <button class="copy-btn" id="copy-btn">COPY</button>
+      </div>
+    </div>
+    <div class="footer-note">Your presence is the greatest gift of all.</div>
+    <div class="sig">
+      <div class="n" id="sig-a">ANITA</div><span class="amp">And</span><div class="n" id="sig-b">UCHE</div>
+      <div class="d" id="sig-date">Saturday, 14th June 2026</div>
+      <div class="by">Invitation by <b>DEEDAY.NG</b></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ASO-EBI ORDER MODAL -->
+<div class="modal" id="asoebi-modal">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeModal('asoebi-modal')">&times;</button>
+    <div class="modal-title">Order Aso-Ebi</div>
+    <div class="modal-sub" id="asoebi-modal-sub"></div>
+    <form id="asoebi-form">
+      <div class="form-group"><label>FABRIC</label><select id="ao-fabric"></select></div>
+      <div class="form-group"><label>QUANTITY (YARDS)</label>
+        <select id="ao-qty"><option>2 yards</option><option>4 yards</option><option>6 yards</option><option>8 yards</option></select>
+      </div>
+      <div class="form-group"><label>YOUR NAME *</label><input type="text" id="ao-name" required placeholder="Enter full name"></div>
+      <div class="form-group"><label>PHONE NUMBER *</label><input type="tel" id="ao-phone" required placeholder="08000000000"></div>
+      <button type="submit" class="btn-rsvp">ORDER VIA WHATSAPP</button>
+    </form>
+  </div>
+</div>
+
+<audio id="bg-music" loop preload="auto"></audio>
+<button class="music-btn" id="music-btn" aria-label="Play music">&#9835;</button>
+<canvas id="confetti"></canvas>
+
+<script>
+/* ============================================================
+   CONFIG — edit everything here for a new client
+   ============================================================ */
+const config = {
+  groom: "Anita",            // left name (as shown in banner)
+  bride: "Uche",             // right name
+  groom_full: "Anita Eze",
+  bride_full: "Uche Chukwudi Okafor",
+
+  wedding_date_iso: "2027-06-12T11:00:00",
+  date_display: "SATURDAY, 12TH JUNE 2027",
+  date_display_soft: "Saturday, 12th June 2027",
+  venue_line: "EKO HOTEL & SUITES, VICTORIA ISLAND, LAGOS",
+
+  ceremony_name: "HOLY MATRIMONY",
+  ceremony_time: "11:00 AM",
+  ceremony_location: "At Our Lady of Apostles Catholic Church, Ikoyi, Lagos",
+  ceremony_map: "https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Apostles+Catholic+Church+Ikoyi+Lagos",
+
+  reception_name: "CELEBRATION",
+  reception_time: "2:00 PM",
+  reception_location: "Eko Hotel & Suites, Victoria Island, Lagos",
+  reception_map: "https://www.google.com/maps/search/?api=1&query=Eko+Hotel+Suites+Victoria+Island+Lagos",
+
+  story: "Anita and Uche met during their final year at the University of Lagos in 2019. What started as late-night study sessions in the Faculty of Sciences quickly grew into something neither of them expected. Five years later, a quiet evening walk along Lagos Lagoon ended with a ring and a yes that changed everything. On the 12th of June, they invite you to witness as they begin the next chapter.",
+
+  // ── Aso-ebi (sale via WhatsApp order) ──────────────────────
+  asoebi_title: "ASO-EBI: GOLD & IVORY",
+  asoebi_dealer_whatsapp: "2348012345678",   // dealer's WhatsApp, intl format, no +
+  asoebi_options: [
+    { name: "Gold Lace",      price: "₦25,000 / 2yds" },
+    { name: "Ivory George",   price: "₦40,000 / set" },
+    { name: "Gold Aso-Oke",   price: "₦60,000 / set" }
+  ],
+
+  // ── RSVP ──────────────────────────────────────────────────
+  rsvp_whatsapp: "2348012345678",            // couple's WhatsApp
+  rsvp_deadline: "1st December 2026",
+  contact_phone: "08012345678",
+
+  // ── Gifts ─────────────────────────────────────────────────
+  gifts_desc: "Your presence means everything to Anita and Uche. If you would like to bless them with a gift, send directly to their account below.",
+  bank_name: "GTBANK",
+  account_name: "UCHE CHUKWUDI OKAFOR",
+  account_number: "0123456789",
+
+  couple_photo: "assets/couple.jpg",
+  music_url: "assets/ordinary.mp3"           // drop your mp3 here; "" hides the music button
+};
+/* ============================================================ */
+
+const $ = id => document.getElementById(id);
+const C = config;
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* meta */
+$("page-title").textContent = `The Wedding of ${C.groom} & ${C.bride}`;
+$("meta-desc").content = `${C.date_display} · ${C.venue_line}`;
+$("og-title").content = `You're Invited: ${C.groom} & ${C.bride}`;
+$("og-desc").content = `${C.date_display} · ${C.venue_line}`;
+
+/* intro */
+$("i-groom").textContent = C.groom.toUpperCase();
+$("i-bride").textContent = C.bride.toUpperCase();
+$("i-date").textContent = C.date_display;
+
+/* header / names */
+$("name-a").textContent = C.groom.toUpperCase();
+$("name-b").textContent = C.bride.toUpperCase();
+$("date-text").textContent = C.date_display;
+$("venue-text").textContent = C.venue_line;
+$("couple-photo").src = C.couple_photo;
+$("couple-photo").alt = `${C.groom} and ${C.bride}`;
+$("story-text").textContent = C.story;
+
+/* programme */
+$("ceremony-name").textContent = C.ceremony_name;
+$("ceremony-time").textContent = C.ceremony_time;
+$("ceremony-loc").textContent = C.ceremony_location; $("ceremony-loc").href = C.ceremony_map;
+$("reception-name").textContent = C.reception_name;
+$("reception-time").textContent = C.reception_time;
+$("reception-loc").textContent = C.reception_location; $("reception-loc").href = C.reception_map;
+
+/* dress code */
+$("asoebi-title").textContent = C.asoebi_title;
+$("rsvp-sub").textContent = `Kindly let us know if you will be joining us before ${C.rsvp_deadline}. We would love to have you there.`;
+
+/* gifts */
+$("gifts-desc").textContent = C.gifts_desc;
+$("bank-name").textContent = C.bank_name;
+$("acc-name").textContent = C.account_name;
+$("acc-num").textContent = C.account_number;
+$("sig-a").textContent = C.groom.toUpperCase();
+$("sig-b").textContent = C.bride.toUpperCase();
+$("sig-date").textContent = C.date_display_soft;
+
+/* ---------- intro + music ---------- */
+const audio = $("bg-music"), musicBtn = $("music-btn");
+let playing = false;
+if (C.music_url){ audio.src = C.music_url; musicBtn.classList.add("show"); }
+function playMusic(){ if(!C.music_url) return; audio.play().then(()=>{playing=true;musicBtn.classList.add("playing");}).catch(()=>{}); }
+musicBtn.addEventListener("click", ()=>{
+  if(!C.music_url) return;
+  if(playing){ audio.pause(); musicBtn.classList.remove("playing"); playing=false; }
+  else { playMusic(); }
+});
+$("intro-open").addEventListener("click", ()=>{ $("intro").classList.add("gone"); playMusic(); });
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+document.querySelectorAll(".reveal").forEach(s=>io.observe(s));
+
+/* ---------- countdown ---------- */
+function tick(){
+  const t = new Date(C.wedding_date_iso).getTime() - Date.now();
+  const p = (v)=>String(Math.max(0,v)).padStart(2,"0");
+  if (t<=0){ ["days","hours","minutes","seconds"].forEach(id=>$(id).textContent="00"); return; }
+  $("days").textContent = p(Math.floor(t/864e5));
+  $("hours").textContent = p(Math.floor(t%864e5/36e5));
+  $("minutes").textContent = p(Math.floor(t%36e5/6e4));
+  $("seconds").textContent = p(Math.floor(t%6e4/1e3));
+}
+tick(); setInterval(tick,1000);
+
+/* ---------- aso-ebi order (WhatsApp) ---------- */
+$("asoebi-modal-sub").textContent = `Select your fabric and we will take your order on WhatsApp.`;
+$("ao-fabric").innerHTML = C.asoebi_options.map(o=>`<option>${esc(o.name)} — ${esc(o.price)}</option>`).join("");
+function openModal(id){ $(id).classList.add("open"); }
+function closeModal(id){ $(id).classList.remove("open"); }
+$("asoebi-order").addEventListener("click", ()=>openModal("asoebi-modal"));
+$("dealer-link").addEventListener("click", ()=>{
+  const msg = `Hello, I would like to order Aso-Ebi for the ${C.groom} & ${C.bride} wedding (${C.asoebi_title}).`;
+  window.open(`https://wa.me/${C.asoebi_dealer_whatsapp}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+});
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id);}));
+$("asoebi-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const name=$("ao-name").value.trim(), phone=$("ao-phone").value.trim();
+  if(!name||!phone) return;
+  const lines=[
+    `*Aso-Ebi Order — ${C.groom} & ${C.bride} Wedding*`,``,
+    `*Fabric:* ${$("ao-fabric").value}`,
+    `*Quantity:* ${$("ao-qty").value}`,
+    `*Name:* ${name}`,
+    `*Phone:* ${phone}`
+  ].join("\n");
+  window.open(`https://wa.me/${C.asoebi_dealer_whatsapp}?text=${encodeURIComponent(lines)}`,"_blank","noopener");
+  closeModal("asoebi-modal");
+});
+
+/* ---------- RSVP flow ---------- */
+const RSVP_KEY = "deeday-blackgold-rsvp-v1";
+let rsvp = null;
+try { const raw=localStorage.getItem(RSVP_KEY); if(raw){const p=JSON.parse(raw); if(p&&p.name) rsvp=p;} } catch {}
+if (rsvp) showReceipt(rsvp);
+
+function openRSVP(status){
+  if(status==="NO"){
+    rsvp = { name:"", status:"NO" };
+    $("rsvp-prompt").style.display="none";
+    $("success-title").textContent = "THANK YOU";
+    $("success-msg").innerHTML = `We will miss you, but thank you for letting ${esc(C.groom)} &amp; ${esc(C.bride)} know.`;
+    $("receipt-dl").style.display="none";
+    $("rc-wa").style.display="none"; $("rc-edit").style.display="inline-block";
+    $("success-card").classList.add("active");
+    $("rc-edit").onclick = resetRSVP;
+    return;
+  }
+  $("attendance-form").dataset.status = status;
+  $("rsvp-prompt").style.display="none";
+  $("rsvp-form").classList.add("active");
+}
+
+$("attendance-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const data = {
+    code: "RSVP-"+Math.floor(1000+Math.random()*9000),
+    name: $("f-name").value.trim(),
+    phone: $("f-phone").value.trim(),
+    email: $("f-email").value.trim(),
+    guests: $("f-guests").value,
+    message: $("f-message").value.trim(),
+    status: $("attendance-form").dataset.status || "YES",
+    at: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})
+  };
+  if(!data.name) return;
+  rsvp = data;
+  try { localStorage.setItem(RSVP_KEY, JSON.stringify(data)); } catch {}
+  $("rsvp-form").classList.remove("active");
+  confetti();
+  showReceipt(data);
+  $("success-card").scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+function showReceipt(d){
+  $("rsvp-prompt").style.display="none";
+  $("rsvp-form").classList.remove("active");
+  if(d.status==="NO"){
+    $("success-title").textContent="THANK YOU";
+    $("success-msg").innerHTML=`We will miss you, but thank you for letting ${esc(C.groom)} &amp; ${esc(C.bride)} know.`;
+    $("receipt-dl").style.display="none"; $("rc-wa").style.display="none";
+    $("rc-edit").style.display="inline-block"; $("rc-edit").onclick=resetRSVP;
+    $("success-card").classList.add("active"); return;
+  }
+  const accept = d.status!=="MAYBE";
+  $("success-title").textContent = accept ? "YOU'RE CONFIRMED!" : "THANK YOU!";
+  $("success-msg").innerHTML = `Thank you, ${esc(d.name)}! ${esc(C.groom)} &amp; ${esc(C.bride)} are so excited to have you there.<br>Questions? Call <strong>${esc(C.contact_phone)}</strong>`;
+  $("receipt-dl").style.display="block";
+  $("receipt-dl").innerHTML = [
+    ["Guest", d.name],
+    ["Response", accept ? "Attending ("+d.guests+")" : "Maybe"],
+    ["Celebration", C.groom+" & "+C.bride],
+    ["Date", C.date_display_soft],
+    ["Receipt ID", d.code]
+  ].map(r=>`<div class="row"><span class="k">${esc(r[0])}</span><span class="v">${esc(r[1])}</span></div>`).join("");
+  const wa = [
+    `*Wedding RSVP — ${C.groom} & ${C.bride}*`, `*Receipt:* ${d.code}`, ``,
+    `*Name:* ${d.name}`, `*Response:* ${accept?"Attending ("+d.guests+")":"Maybe"}`,
+    d.message?`*Message:* ${d.message}`:null, ``, `_Confirmed ${d.at}_`
+  ].filter(Boolean).join("\n");
+  $("rc-wa").style.display="inline-block";
+  $("rc-wa").href = `https://wa.me/${C.rsvp_whatsapp}?text=${encodeURIComponent(wa)}`;
+  $("rc-edit").style.display="inline-block"; $("rc-edit").onclick=resetRSVP;
+  $("success-card").classList.add("active");
+}
+
+function resetRSVP(){
+  rsvp=null; try{localStorage.removeItem(RSVP_KEY);}catch{}
+  $("success-card").classList.remove("active");
+  $("rsvp-form").classList.remove("active");
+  $("attendance-form").reset();
+  $("rsvp-prompt").style.display="block";
+  $("rsvp-prompt").scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+/* ---------- copy account ---------- */
+$("copy-btn").addEventListener("click", async ()=>{
+  try{ await navigator.clipboard.writeText(C.account_number); }
+  catch{ const t=document.createElement("textarea");t.value=C.account_number;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove(); }
+  const b=$("copy-btn"); b.textContent="COPIED"; setTimeout(()=>b.textContent="COPY",1500);
+});
+
+/* ---------- confetti ---------- */
+function confetti(){
+  const cv=$("confetti"), ctx=cv.getContext("2d");
+  cv.style.display="block"; cv.width=innerWidth; cv.height=innerHeight;
+  const colors=["#A37F48","#E6D5C3","#0B0B0B","#E67E22","#E2CEB7"];
+  const parts=[];
+  for(let i=0;i<130;i++)parts.push({x:innerWidth/2+(Math.random()*160-80),y:innerHeight*0.5,vx:Math.random()*10-5,vy:Math.random()*-13-6,g:.3+Math.random()*.1,s:5+Math.random()*6,c:colors[i%colors.length],r:Math.random()*6,vr:Math.random()*.3-.15,life:0});
+  let raf;(function frame(){
+    ctx.clearRect(0,0,cv.width,cv.height); let alive=false;
+    parts.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;if(p.y<cv.height+20)alive=true;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-p.life/160);ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);ctx.restore();});
+    if(alive)raf=requestAnimationFrame(frame); else {cv.style.display="none";cancelAnimationFrame(raf);}
+  })();
+}
+</script>
+</body>
+</html>
