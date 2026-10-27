@@ -248,6 +248,11 @@ img{display:block}
     <p class="story-text" id="story-text"></p>
   </div>
 
+  <!-- SECOND PHOTO -->
+  <div class="photo-section reveal">
+    <div class="photo-card"><img id="couple-photo-2" src="assets/couple2.jpg" alt="The couple"></div>
+  </div>
+
   <!-- PROGRAMME -->
   <div class="programme-section reveal">
     <div class="section-title-black">PROGRAMME OF EVENTS</div>
@@ -300,6 +305,8 @@ img{display:block}
       <div class="form-group"><label>NUMBER OF GUESTS</label>
         <select id="f-guests"><option>Just Me</option><option>2 Persons</option><option>3 Persons</option><option>4 Persons</option></select>
       </div>
+      <div class="form-group"><label>MEAL PREFERENCE</label><select id="f-meal"></select></div>
+      <div class="form-group"><label>SONG REQUEST FOR THE DJ</label><input type="text" id="f-song" placeholder="e.g. Flavour – Ada Ada"></div>
       <div class="form-group"><label>MESSAGE TO THE COUPLE</label><textarea id="f-message" rows="3" placeholder="Write a note..."></textarea></div>
       <button type="submit" class="btn-rsvp">CONFIRM MY ATTENDANCE</button>
     </form>
@@ -316,6 +323,17 @@ img{display:block}
       <button class="ra-btn" onclick="window.print()">PRINT / SAVE RECEIPT</button>
       <button class="ra-btn" id="rc-edit">EDIT RESPONSE</button>
     </div>
+  </div>
+
+  <!-- MESSAGE TO THE COUPLE -->
+  <div class="story-section reveal" style="padding:18px 25px">
+    <div class="section-title-black">SEND A MESSAGE</div>
+    <p class="story-text" style="margin-bottom:14px">Share your prayers, advice and warm wishes directly with the couple.</p>
+    <form id="message-form">
+      <div class="form-group"><label>YOUR NAME *</label><input type="text" id="m-name" required placeholder="Enter your name"></div>
+      <div class="form-group"><label>YOUR MESSAGE *</label><textarea id="m-body" rows="3" required placeholder="Write your blessing..."></textarea></div>
+      <button type="submit" class="btn-rsvp">SEND VIA WHATSAPP</button>
+    </form>
   </div>
 
   <!-- GIFTS -->
@@ -410,7 +428,10 @@ const config = {
   account_name: "UCHE CHUKWUDI OKAFOR",
   account_number: "0123456789",
 
-  couple_photo: "assets/couple.jpg",
+  meal_options: ["Assorted Meat & Delicacies","Fish & Seafood","Peppered Chicken","Vegetarian / Plant-Based"],
+
+  couple_photo:  "assets/couple1.jpg",
+  couple_photo2: "assets/couple2.jpg",
   music_url: "assets/ordinary.mp3"           // drop your mp3 here; "" hides the music button
 };
 /* ============================================================ */
@@ -438,7 +459,10 @@ $("date-text").textContent = C.date_display;
 $("venue-text").textContent = C.venue_line;
 $("couple-photo").src = C.couple_photo;
 $("couple-photo").alt = `${C.groom} and ${C.bride}`;
+$("couple-photo-2").src = C.couple_photo2;
+$("couple-photo-2").alt = `${C.groom} and ${C.bride}`;
 $("story-text").textContent = C.story;
+$("f-meal").innerHTML = C.meal_options.map(m=>`<option>${esc(m)}</option>`).join("");
 
 /* programme */
 $("ceremony-name").textContent = C.ceremony_name;
@@ -553,6 +577,8 @@ $("attendance-form").addEventListener("submit", e=>{
     phone: $("f-phone").value.trim(),
     email: $("f-email").value.trim(),
     guests: $("f-guests").value,
+    meal: $("f-meal").value,
+    song: $("f-song").value.trim(),
     message: $("f-message").value.trim(),
     status: $("attendance-form").dataset.status || "YES",
     at: new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})
@@ -583,13 +609,16 @@ function showReceipt(d){
   $("receipt-dl").innerHTML = [
     ["Guest", d.name],
     ["Response", accept ? "Attending ("+d.guests+")" : "Maybe"],
+    accept && d.meal ? ["Meal", d.meal] : null,
     ["Celebration", C.groom+" & "+C.bride],
     ["Date", C.date_display_soft],
     ["Receipt ID", d.code]
-  ].map(r=>`<div class="row"><span class="k">${esc(r[0])}</span><span class="v">${esc(r[1])}</span></div>`).join("");
+  ].filter(Boolean).map(r=>`<div class="row"><span class="k">${esc(r[0])}</span><span class="v">${esc(r[1])}</span></div>`).join("");
   const wa = [
     `*Wedding RSVP — ${C.groom} & ${C.bride}*`, `*Receipt:* ${d.code}`, ``,
     `*Name:* ${d.name}`, `*Response:* ${accept?"Attending ("+d.guests+")":"Maybe"}`,
+    accept && d.meal ? `*Meal:* ${d.meal}` : null,
+    d.song ? `*Song Request:* ${d.song}` : null,
     d.message?`*Message:* ${d.message}`:null, ``, `_Confirmed ${d.at}_`
   ].filter(Boolean).join("\n");
   $("rc-wa").style.display="inline-block";
@@ -612,6 +641,17 @@ $("copy-btn").addEventListener("click", async ()=>{
   try{ await navigator.clipboard.writeText(C.account_number); }
   catch{ const t=document.createElement("textarea");t.value=C.account_number;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove(); }
   const b=$("copy-btn"); b.textContent="COPIED"; setTimeout(()=>b.textContent="COPY",1500);
+});
+
+/* ---------- message to the couple ---------- */
+$("message-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const n=$("m-name").value.trim(), m=$("m-body").value.trim();
+  if(!n||!m) return;
+  const text=[`*A message for ${C.groom} & ${C.bride}*`,``,`*From:* ${n}`,``,`*Message:*`,m].join("\n");
+  window.open(`https://wa.me/${C.rsvp_whatsapp}?text=${encodeURIComponent(text)}`,"_blank","noopener");
+  const btn=$("message-form").querySelector("button");
+  const old=btn.textContent; btn.textContent="SENT — THANK YOU!"; setTimeout(()=>{btn.textContent=old;$("message-form").reset();},1800);
 });
 
 /* ---------- confetti ---------- */
