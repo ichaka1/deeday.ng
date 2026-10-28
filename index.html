@@ -156,14 +156,24 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
 .bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--bar);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px 10px}
 .navitem{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:.64rem;font-weight:700;cursor:pointer;padding:6px 2px;border-radius:14px;transition:color .2s,filter .35s ease,opacity .35s ease}
 .navitem[data-action="more"] svg circle{transition:cx .4s cubic-bezier(.2,.8,.2,1)}
-.navitem[data-action="order"] svg path{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .bottomnav.more-open .navitem:not([data-action="more"]),
-.bottomnav.order-open .navitem:not([data-action="order"]){filter:blur(2.5px);opacity:.4}
+.bottomnav.account-open .navitem:not([data-action="account"]){filter:blur(2.5px);opacity:.4}
 .bottomnav.more-open .navitem[data-action="more"],
-.bottomnav.order-open .navitem[data-action="order"]{color:var(--gold)}
+.bottomnav.account-open .navitem[data-action="account"]{color:var(--gold)}
 .bottomnav.more-open .navitem[data-action="more"] svg circle{cx:12}
-.bottomnav.order-open .navitem[data-action="order"] svg path:nth-child(1){transform:translateY(5px)}
-.bottomnav.order-open .navitem[data-action="order"] svg path:nth-child(3){transform:translateY(-5px)}
+.auth-msg{font-size:.85rem;color:var(--muted);margin-top:12px;min-height:1em;text-align:center}
+.auth-msg.ok{color:var(--gold)}
+.auth-who{text-align:center;color:var(--ink);margin:6px 0 18px;font-size:.95rem;line-height:1.5}
+.linklike{display:block;margin:14px auto 0;background:none;border:none;color:var(--muted);font-family:inherit;font-size:.82rem;font-weight:600;text-decoration:underline;cursor:pointer}
+#header-cta.loggedin{display:inline-flex;align-items:center;gap:7px;background:var(--gold-tint);color:var(--gold);border:1px solid rgba(184,134,47,.35)}
+#header-cta.loggedin svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.auth-tabs{margin-top:0;margin-bottom:18px}
+.auth-cta{margin-top:18px}
+.welcome-big{font-size:1.45rem;font-weight:800;margin:2px 0 10px;letter-spacing:-.01em}
+.welcome-lead{color:var(--muted);font-size:.9rem;margin-bottom:16px;line-height:1.55}
+.welcome-steps{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-direction:column;gap:13px}
+.welcome-steps li{position:relative;padding-left:28px;font-size:.92rem;color:var(--ink);line-height:1.5}
+.welcome-steps li::before{content:"";position:absolute;left:3px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--gold-tint);border:2px solid var(--gold)}
 .navitem svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .navitem.active{color:var(--gold)}
 .navitem.active .lbl{background:var(--gold-tint);padding:2px 12px;border-radius:20px}
@@ -174,6 +184,7 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
 .modal.open{opacity:1;background:rgba(10,8,4,.55);backdrop-filter:blur(3px)}
 .modal-card{background:var(--surface);width:100%;max-width:460px;max-height:86vh;overflow:hidden;border-radius:22px;position:relative;display:flex;flex-direction:column;transform:translateY(24px) scale(.96);opacity:0;transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .4s ease}
 .modal.open .modal-card{transform:none;opacity:1}
+.modal.instant,.modal.instant .modal-card{transition:none}
 .modal-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:24px 20px}
 .scroll-cue{position:absolute;left:8px;right:8px;bottom:0;height:52px;pointer-events:none;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;background:linear-gradient(to top,var(--surface) 32%,transparent);border-radius:0 0 22px 22px;opacity:1;transition:opacity .3s ease}
 .scroll-cue svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;animation:cueBounce 1.6s ease-in-out infinite}
@@ -224,7 +235,7 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
 <header class="topbar">
   <div class="wrap">
     <div class="brand">dee<b>day</b><span class="dot">.</span>ng</div>
-    <button class="pill" onclick="openOrder()">Order an invite</button>
+    <button class="pill" id="header-cta" onclick="headerCtaClick()">Order an invite</button>
   </div>
 </header>
 
@@ -336,7 +347,7 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
 <nav class="bottomnav">
   <div class="navitem active" data-target="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span class="lbl">Home</span></div>
   <div class="navitem" data-target="samples"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="lbl">Samples</span></div>
-  <div class="navitem" data-action="order"><svg viewBox="0 0 24 24"><path d="M5 7h14"/><path d="M5 12h14"/><path d="M5 17h9"/></svg><span class="lbl">Order</span></div>
+  <div class="navitem" data-action="account" id="nav-account"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="9.5" r="3"/><path d="M6 19a6 6 0 0 1 12 0"/></svg><span class="lbl">Account</span></div>
   <div class="navitem" data-target="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="lbl">About</span></div>
   <div class="navitem" data-action="more"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg><span class="lbl">More</span></div>
 </nav>
@@ -349,6 +360,10 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
     <div class="modal-h">More</div>
     <div class="modal-sub">Everything else, in one place.</div>
     <div class="more-list">
+      <button class="more-row" id="more-auth-row" onclick="moreAuthClick()">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg></span>
+        <span id="more-auth-text">Log in<span class="more-sub" id="more-auth-subtext">Access your saved orders</span></span>
+      </button>
       <div class="appearance">
         <div class="appearance-top"><span class="more-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" style="fill:currentColor;stroke:none"/></svg></span><span>Appearance</span></div>
         <div class="seg" id="theme-seg">
@@ -385,6 +400,53 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
         <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span>
         <span>Terms of Service<span class="more-sub">The basics of working with us</span></span>
       </a>
+    </div>
+    </div>
+    <div class="scroll-cue"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal" id="auth-modal">
+  <div class="modal-card" style="max-width:400px">
+    <button class="modal-x" onclick="closeModal('auth-modal')">&times;</button>
+    <div class="modal-scroll">
+    <div class="modal-h" id="auth-h">Your <span class="script">account</span></div>
+    <div class="modal-sub" id="auth-sub">No password. We email you a link and a 6-digit code.</div>
+    <div id="auth-step-email">
+      <div class="seg auth-tabs" id="auth-tabs">
+        <button type="button" data-mode="login" class="active">Log in</button>
+        <button type="button" data-mode="signup">Create account</button>
+      </div>
+      <form id="auth-form">
+        <div class="fg full" id="auth-name-fg" style="display:none"><label>Your name</label><input id="auth-name" type="text" maxlength="60" autocomplete="name" placeholder="e.g. James"></div>
+        <div class="fg full"><label>Email</label><input id="auth-email" type="email" required maxlength="120" autocomplete="email" placeholder="you@email.com"></div>
+        <button class="pill auth-cta" style="width:100%" type="submit" id="auth-send">Email me a login link</button>
+        <div class="auth-msg" id="auth-msg"></div>
+      </form>
+    </div>
+    <div id="auth-step-code" style="display:none">
+      <div class="auth-who">We sent a link and a 6-digit code to <b id="auth-sent-to"></b>. Open the link on this device, or paste the code below.</div>
+      <form id="auth-code-form">
+        <div class="fg full"><label>6-digit code</label><input id="auth-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="123456"></div>
+        <button class="pill auth-cta" style="width:100%" type="submit" id="auth-verify">Verify &amp; log in</button>
+        <div class="auth-msg" id="auth-code-msg"></div>
+      </form>
+      <button type="button" class="linklike" onclick="authBackToEmail()">Use a different email</button>
+    </div>
+    <div id="auth-welcome-screen" style="display:none">
+      <div class="welcome-big">Welcome, <span id="welcome-name"></span></div>
+      <p class="welcome-lead">You're all set. Here's what you can do with your deeday account:</p>
+      <ul class="welcome-steps">
+        <li>Browse the designs and pick a look you love.</li>
+        <li>Order your invite, we save your progress as you fill it in.</li>
+        <li>Come back any time to follow your RSVPs and messages.</li>
+      </ul>
+      <button class="pill auth-cta" style="width:100%" onclick="finishWelcome()">Let's get started</button>
+    </div>
+    <div id="auth-signedin" style="display:none">
+      <div class="auth-who" id="auth-welcome"></div>
+      <button class="pill ghost" style="width:100%" onclick="doSignOut()">Log out</button>
     </div>
     </div>
     <div class="scroll-cue"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
@@ -430,6 +492,7 @@ footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.10"></script>
 <script>
 const ORDER_WHATSAPP = "2348063941963";
 /* Supabase — history of every order (publishable key is client-safe; tables are RLS-locked to insert-only) */
@@ -482,7 +545,7 @@ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
       <div class="card-title">${t.title}</div>
       <p class="card-blurb">${t.blurb}</p>
       <div class="card-actions">
-        <button class="mini gold" onclick="openOrder(${i})">Use this look</button>
+        <button class="mini gold" onclick="openOrder(${i})">Order</button>
         <a class="mini ghost" href="${t.url}" target="_blank" rel="noopener">Preview ↗</a>
       </div>
     </div>
@@ -533,10 +596,10 @@ function toggleCard(i){
 let _scrollY=0,_locked=false;
 function lockScroll(){ if(_locked) return; _scrollY=window.scrollY||document.documentElement.scrollTop; const b=document.body.style; b.position="fixed"; b.top=`-${_scrollY}px`; b.left="0"; b.right="0"; b.width="100%"; b.overflow="hidden"; _locked=true; }
 function unlockScroll(){ if(!_locked) return; const b=document.body.style; b.position=""; b.top=""; b.left=""; b.right=""; b.width=""; b.overflow=""; window.scrollTo(0,_scrollY); _locked=false; }
-function navClass(id){ return id==="more-modal"?"more-open":id==="order-modal"?"order-open":null; }
+function navClass(id){ return id==="more-modal"?"more-open":id==="auth-modal"?"account-open":null; }
 function updateCue(card){ if(!card) return; const sc=card.querySelector(".modal-scroll"); if(!sc) return; const scrollable=sc.scrollHeight>sc.clientHeight+4; const atBottom=sc.scrollTop+sc.clientHeight>=sc.scrollHeight-6; card.classList.toggle("no-scroll",!scrollable); card.classList.toggle("at-bottom",atBottom); }
 function openModal(id){ document.querySelectorAll(".modal.show").forEach(mm=>{ if(mm.id!==id) closeModal(mm.id); }); const m=$("#"+id); m.classList.add("show"); requestAnimationFrame(()=>requestAnimationFrame(()=>{ m.classList.add("open"); updateCue(m.querySelector(".modal-card")); })); lockScroll(); const nc=navClass(id); if(nc) document.querySelector(".bottomnav").classList.add(nc); }
-function closeModal(id){ const m=$("#"+id); m.classList.remove("open"); unlockScroll(); const nc=navClass(id); if(nc) document.querySelector(".bottomnav").classList.remove(nc); setTimeout(()=>{ if(!m.classList.contains("open")) m.classList.remove("show"); },460); }
+function closeModal(id){ const m=$("#"+id); m.classList.add("instant"); m.classList.remove("open"); m.classList.remove("show"); unlockScroll(); const nc=navClass(id); if(nc) document.querySelector(".bottomnav").classList.remove(nc); requestAnimationFrame(()=>m.classList.remove("instant")); }
 document.querySelectorAll(".modal-card").forEach(card=>{ const sc=card.querySelector(".modal-scroll"); if(sc) sc.addEventListener("scroll",()=>updateCue(card)); });
 document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id);}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal.open").forEach(m=>closeModal(m.id));});
@@ -622,13 +685,108 @@ const items=[...document.querySelectorAll(".navitem")];
 items.forEach(it=>it.addEventListener("click",()=>{
   const act=it.dataset.action;
   if(act==="more"){ $("#more-modal").classList.contains("show") ? closeModal("more-modal") : openModal("more-modal"); return; }
-  if(act==="order"){ $("#order-modal").classList.contains("show") ? closeModal("order-modal") : openOrder(); return; }
+  if(act==="account"){ handleAccountNav(); return; }
   document.querySelectorAll(".modal.show").forEach(mm=>closeModal(mm.id));
   document.getElementById(it.dataset.target).scrollIntoView({behavior:"smooth",block:"start"});
 }));
 const secs=["home","samples","about"].map(id=>document.getElementById(id));
 const spy=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){const id=e.target.id;items.forEach(it=>it.classList.toggle("active",it.dataset.target===id));}}),{rootMargin:"-45% 0px -50% 0px"});
 secs.forEach(s=>spy.observe(s));
+
+/* account / magic-link auth */
+const sbAuth = supabase.createClient(SB_URL, SB_KEY);
+let pendingEmail="";
+async function openAuth(){ await renderAuthUI(); openModal("auth-modal"); }
+let authMode="login";
+function showAuthStep(step){
+  $("#auth-step-email").style.display = step==="email"?"block":"none";
+  $("#auth-step-code").style.display = step==="code"?"block":"none";
+  $("#auth-welcome-screen").style.display = step==="welcome"?"block":"none";
+  $("#auth-signedin").style.display = step==="in"?"block":"none";
+}
+$("#auth-tabs").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
+  authMode=b.dataset.mode;
+  $("#auth-tabs").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x===b));
+  $("#auth-name-fg").style.display = authMode==="signup"?"block":"none";
+  $("#auth-send").textContent = authMode==="signup"?"Create my account":"Email me a login link";
+  $("#auth-msg").textContent="";
+}));
+async function showWelcomeScreen(){
+  let session=null; try{ session=(await sbAuth.auth.getSession()).data.session; }catch{}
+  if(!session) return;
+  $("#welcome-name").textContent=firstName(session.user);
+  $("#auth-sub").textContent="";
+  openModal("auth-modal"); showAuthStep("welcome");
+}
+function finishWelcome(){ closeModal("auth-modal"); }
+function firstName(u){ const n=(u&&u.user_metadata&&u.user_metadata.name)||""; if(n) return n.trim().split(/\s+/)[0]; return (u&&u.email?u.email.split("@")[0]:""); }
+const ICON_ACCOUNT='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="9.5" r="3"/><path d="M6 19a6 6 0 0 1 12 0"/></svg><span class="lbl">Account</span>';
+const ICON_ORDER='<svg viewBox="0 0 24 24"><path d="M5 7h14"/><path d="M5 12h14"/><path d="M5 17h9"/></svg><span class="lbl">Order</span>';
+async function renderAuthUI(){
+  let session=null; try{ session=(await sbAuth.auth.getSession()).data.session; }catch{}
+  const label=$("#more-auth-text"), sub=$("#more-auth-subtext"), cta=$("#header-cta"), navAcct=$("#nav-account");
+  if(session){
+    const fn=firstName(session.user);
+    showAuthStep("in");
+    $("#auth-sub").textContent="You're signed in. Tap below to log out.";
+    $("#auth-welcome").innerHTML="Welcome, <b>"+ fn +"</b>";
+    if(label) label.firstChild.textContent="Log out";
+    if(sub) sub.textContent=session.user.email||"";
+    if(cta){ cta.classList.add("loggedin"); cta.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></svg>'+ (fn||"Account"); }
+    if(navAcct) navAcct.innerHTML=ICON_ORDER;           /* footer becomes Order when signed in */
+  }else{
+    showAuthStep("email");
+    $("#auth-sub").textContent="Log in or create your account. No password, we email you a link and a code.";
+    if(label) label.firstChild.textContent="Log in";
+    if(sub) sub.textContent="Access your saved orders";
+    if(cta){ cta.classList.remove("loggedin"); cta.textContent="Order an invite"; }
+    if(navAcct) navAcct.innerHTML=ICON_ACCOUNT;         /* footer is Account when signed out */
+  }
+}
+function headerCtaClick(){ sbAuth.auth.getSession().then(({data:{session}})=>{ session ? openAuth() : openOrder(); }); }
+function handleAccountNav(){ sbAuth.auth.getSession().then(({data:{session}})=>{ if(session){ $("#order-modal").classList.contains("show")?closeModal("order-modal"):openOrder(); } else { $("#auth-modal").classList.contains("show")?closeModal("auth-modal"):openAuth(); } }); }
+$("#auth-form").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const email=$("#auth-email").value.trim().slice(0,120);
+  const name=$("#auth-name").value.trim().slice(0,60);
+  if(!email) return;
+  const btn=$("#auth-send"); btn.disabled=true; const o=btn.textContent; btn.textContent="Sending...";
+  const opts = authMode==="signup"
+    ? { data: name?{name}:undefined, emailRedirectTo: location.origin, shouldCreateUser:true }
+    : { emailRedirectTo: location.origin, shouldCreateUser:false };
+  let error=null;
+  try{ ({ error } = await sbAuth.auth.signInWithOtp({ email, options: opts })); }
+  catch(err){ error=err; }
+  btn.disabled=false; btn.textContent=o;
+  const msg=$("#auth-msg");
+  if(error){
+    let m=error.message||"Could not send. Try again.";
+    if(authMode==="login" && /not|exist|sign.?up|found|disabled/i.test(m)) m="No account with that email yet. Tap Create account above.";
+    msg.textContent=m; msg.classList.remove("ok");
+  }
+  else{ msg.textContent=""; pendingEmail=email; $("#auth-sent-to").textContent=email; showAuthStep("code"); setTimeout(()=>$("#auth-code").focus(),200); }
+});
+$("#auth-code-form").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const token=$("#auth-code").value.replace(/\D/g,"").slice(0,6);
+  const cmsg=$("#auth-code-msg");
+  if(token.length!==6){ cmsg.textContent="Enter the 6-digit code."; cmsg.classList.remove("ok"); return; }
+  const btn=$("#auth-verify"); btn.disabled=true; const o=btn.textContent; btn.textContent="Verifying...";
+  let error=null;
+  try{
+    let res = await sbAuth.auth.verifyOtp({ email: pendingEmail, token, type:"email" });
+    if(res.error) res = await sbAuth.auth.verifyOtp({ email: pendingEmail, token, type:"signup" });
+    error = res.error;
+  }catch(err){ error=err; }
+  btn.disabled=false; btn.textContent=o;
+  if(error){ cmsg.textContent=error.message||"Invalid or expired code."; cmsg.classList.remove("ok"); }
+  else{ $("#auth-code").value=""; await showWelcomeScreen(); }
+});
+function authBackToEmail(){ showAuthStep("email"); $("#auth-code-msg").textContent=""; $("#auth-msg").textContent=""; }
+async function doSignOut(){ try{ await sbAuth.auth.signOut(); }catch{} await renderAuthUI(); closeModal("auth-modal"); }
+function moreAuthClick(){ sbAuth.auth.getSession().then(({data:{session}})=>{ if(session){ doSignOut(); } else { closeModal("more-modal"); setTimeout(openAuth,220); } }); }
+sbAuth.auth.onAuthStateChange(async (event)=>{ await renderAuthUI(); if(event==="SIGNED_IN") await showWelcomeScreen(); });
+renderAuthUI();
 </script>
 </body>
 </html>
