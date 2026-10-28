@@ -1,1236 +1,635 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deeday — Digital Wedding Invitations for Nigerian Couples</title>
-  <meta name="description" content="Stunning digital wedding invitations built for Nigerian couples. Choose your template, share in seconds. More beautiful than paper." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>deeday.ng — Nigerian Wedding Invites</title>
+<meta name="description" content="Beautiful Nigerian digital wedding invitations. Pick a design, fill one form, we build it for you." />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/favicon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="deeday.ng — Nigerian Wedding Invitations" />
+<meta property="og:description" content="Invite your guests with style. Pick a design, fill one form, we build it." />
+<meta property="og:image" content="https://deeday.ng/assets/og.jpg" />
+<meta property="og:url" content="https://deeday.ng/" />
+<link rel="canonical" href="https://deeday.ng/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+<style>
+/* =========================================================
+   deeday.ng — HOMEPAGE PREVIEW (not live)
+   ========================================================= */
+:root{
+  --bg:#FFFFFF; --panel:#FAF7F1; --ink:#1A1713; --muted:#6E6557;
+  --line:#ECE6DB; --gold:#B8862F; --gold-soft:#C9A24B; --gold-tint:#F3E8CF; --dark:#15120E;
+  --surface:#FFFFFF; --bar:rgba(255,255,255,.85);
+}
+:root[data-theme="dark"]{
+  --bg:#121010; --panel:#1C1917; --ink:#F2ECE0; --muted:#A89B88;
+  --line:#2A2521; --gold:#C9A24B; --gold-soft:#D9B36A; --gold-tint:rgba(201,162,75,.16); --dark:#0B0A08;
+  --surface:#1C1917; --bar:rgba(18,16,16,.82);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:"Plus Jakarta Sans","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:84px;transition:background .3s ease,color .3s ease}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.script{font-family:"Dancing Script",cursive;font-weight:700}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 
-  <style>
-    /* ── Reset & Base ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
 
-    :root {
-      --gold:        #D4AF37;
-      --gold-light:  #E5C55A;
-      --gold-dim:    rgba(212,175,55,0.12);
-      --black:       #080808;
-      --surface:     #111111;
-      --surface-2:   #1A1A1A;
-      --border:      rgba(255,255,255,0.08);
-      --text:        #C8C0B0;
-      --text-bright: #F5F0E8;
-      --cream:       #FBF8F2;
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:var(--bar);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.brand{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.brand b{color:var(--gold)} .brand .dot{color:var(--gold-soft)}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.theme-btn:hover{background:var(--panel);transform:translateY(-1px)}
+.pill{background:var(--gold);color:#fff;font-weight:700;font-size:.82rem;padding:10px 20px;border-radius:40px;transition:transform .2s,background .2s;border:none;cursor:pointer}
+.pill:hover{background:var(--gold-soft);transform:translateY(-1px)}
 
-      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
-      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-      --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+/* hero */
+.hero{position:relative;margin:14px auto 0;max-width:1040px;padding:0 20px}
+.hero-card{position:relative;border-radius:26px;overflow:hidden;min-height:clamp(360px,56vh,470px);display:flex;align-items:flex-end;box-shadow:0 24px 60px -30px rgba(0,0,0,.5)}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%;opacity:0;transform:scale(1.0);transition:opacity 1.5s ease;will-change:opacity,transform}
+.hero-slide.active{opacity:1;transform:scale(1.07);transition:opacity 1.5s ease,transform 4.8s ease}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,4,.92) 2%,rgba(10,8,4,.45) 38%,rgba(10,8,4,.1) 70%)}
+.hero-inner{position:relative;padding:34px 30px 72px;color:#fff;max-width:620px}
+.hero-eyebrow{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px}
+.hero-h1{font-weight:800;font-size:clamp(2.1rem,6.6vw,3.4rem);line-height:1.05;letter-spacing:-.02em}
+.hero-h1 .g{color:var(--gold-soft)}
+.hero-sub{margin-top:7px;font-size:.98rem;color:#E9E2D5;font-weight:500}
+.hero-sub b{color:#fff}
 
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans:  'Inter', system-ui, sans-serif;
-    }
+.cta-card{position:relative;max-width:820px;margin:-34px auto 0;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 50px -24px rgba(0,0,0,.3);padding:18px;display:flex;align-items:center;gap:16px;z-index:5}
+.cta-ico{flex:none;width:54px;height:54px;border-radius:50%;background:var(--gold-tint);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.cta-ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cta-txt{flex:1} .cta-txt h4{font-weight:800;font-size:1.02rem} .cta-txt p{font-size:.86rem;color:var(--muted)}
+.cta-card .pill{flex:none}
 
-    html { scroll-behavior: smooth; }
+/* sections */
+.sec{padding:46px 0 10px}
+.sec-head{margin-bottom:22px}
+.sec-head .kicker{font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.sec-head h2{font-weight:800;font-size:clamp(1.5rem,4.5vw,2.1rem);letter-spacing:-.02em;margin-top:4px}
+.sec-head h2 .script{color:var(--gold);font-size:1.25em;font-weight:700}
+.sec-head p{color:var(--muted);margin-top:6px;max-width:560px}
 
-    body {
-      font-family: var(--font-sans);
-      background: var(--black);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+/* template cards — expand / collapse */
+/* samples coverflow (full-bleed) */
+.sampleswiper{position:relative;width:100%;margin:0}
+#sample-swiper{padding:18px 0 26px}
+#sample-swiper .swiper-slide{width:270px;height:502px;max-height:60vh;filter:blur(2px) brightness(.78);opacity:.5;transition:filter .5s ease,opacity .5s ease}
+#sample-swiper .swiper-slide-active{filter:none;opacity:1}
+#sample-swiper .swiper-slide:not(.swiper-slide-active){pointer-events:none}
+.sample-dots{position:static!important;display:flex;justify-content:center;gap:7px;margin-top:10px}
+.sample-dots .swiper-pagination-bullet{width:8px;height:8px;background:var(--muted);opacity:.35;transition:all .25s}
+.sample-dots .swiper-pagination-bullet-active{background:var(--gold);opacity:1;width:24px;border-radius:5px}
+.card{width:100%;height:100%;position:relative;border-radius:42px;overflow:hidden;background:#0d0b09;border:7px solid #0d0b09;box-shadow:0 0 0 1.5px rgba(184,134,47,.5),0 16px 40px -18px rgba(0,0,0,.55);display:flex;align-items:flex-end}
+.card::after{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:80px;height:20px;background:#0a0908;border-radius:14px;z-index:5}
+:root[data-theme="dark"] .card{border-color:rgba(230,210,160,.16)}
+.card-thumb{position:absolute;inset:0}
+.card-thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.card-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,4,2,.96) 14%,rgba(5,4,2,.5) 42%,rgba(5,4,2,0) 66%)}
+.card-plan{position:absolute;top:42px;right:12px;z-index:3;background:rgba(10,8,4,.6);color:var(--gold-soft);font-weight:700;font-size:.64rem;letter-spacing:.04em;padding:6px 12px;border-radius:30px;backdrop-filter:blur(4px);border:1px solid rgba(201,162,75,.4)}
+.card-info{position:relative;width:100%;padding:18px;z-index:2;color:#fff}
+.card-tag{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft)}
+.card-title{font-weight:800;font-size:1.3rem;margin-bottom:6px}
+.card-blurb{font-size:.86rem;color:#D8CDB8;line-height:1.5;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-actions{display:flex;gap:8px}
+.mini{font-weight:700;font-size:.8rem;padding:11px 14px;border-radius:30px;cursor:pointer;border:none;transition:.2s;text-align:center;flex:1;text-decoration:none}
+.mini.gold{background:var(--gold);color:#fff} .mini.gold:hover{background:var(--gold-soft)}
+.mini.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5)} .mini.ghost:hover{background:rgba(255,255,255,.22)}
+.car-arrow{position:absolute;top:44%;transform:translateY(-50%);z-index:4;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -8px rgba(0,0,0,.4);transition:background .2s}
+.car-arrow:hover{background:var(--panel)}
+.car-arrow.prev{left:2px} .car-arrow.next{right:2px}
+@media(max-width:560px){.car-arrow{display:none}}
+/* plans */
+.plans{display:flex;flex-direction:column;gap:16px;max-width:620px;margin:0 auto}
+.plan{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 22px;box-shadow:0 10px 30px -20px rgba(0,0,0,.25)}
+.plan.pop{border-color:var(--gold);box-shadow:0 18px 44px -22px rgba(184,134,47,.5)}
+.plan .pop-badge{position:absolute;top:-11px;left:22px;background:var(--gold);color:#fff;font-weight:800;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:30px}
+.plan-name{font-weight:800;font-size:1.3rem}
+.plan-sub{color:var(--muted);font-size:.85rem;margin-top:2px}
+.plan-price{font-weight:800;font-size:2rem;margin:12px 0 4px;color:var(--ink)}
+.plan-feats{list-style:none;margin:14px 0 18px;display:flex;flex-direction:column;gap:9px}
+.plan-feats li{display:flex;gap:9px;font-size:.9rem;color:var(--ink)}
+.plan-feats li b{color:var(--gold);flex:none}
+.plan .pill{width:100%;text-align:center}
+/* fiverr-style toggle */
+.plan-tabs{position:relative;display:flex;gap:4px;max-width:520px;margin:0 auto 18px;background:var(--panel);border:1px solid var(--line);border-radius:40px;padding:5px}
+.tab-ind{position:absolute;top:5px;bottom:5px;left:5px;width:0;background:var(--gold);border-radius:34px;z-index:0;box-shadow:0 6px 16px -6px rgba(184,134,47,.7);transition:left .5s cubic-bezier(.34,1.4,.5,1),width .5s cubic-bezier(.34,1.4,.5,1)}
+.plan-tabs button{position:relative;z-index:1;flex:1;padding:12px 8px;border:none;background:none;border-radius:34px;font-family:inherit;font-weight:700;font-size:.9rem;color:var(--muted);cursor:pointer;transition:color .3s}
+.plan-tabs button.active{color:#fff}
+#sample-swiper .swiper-wrapper,#plan-swiper .swiper-wrapper{transition-timing-function:cubic-bezier(.22,1,.36,1)}
+.plan-swiper{max-width:520px;margin:0 auto}
+#plan-swiper .swiper-slide{height:auto;align-self:stretch}
+.pp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.pp-badge{display:inline-block;background:var(--gold);color:#fff;font-weight:800;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:30px;margin-bottom:10px}
 
-    /* ── Scroll animations ─────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.step .n{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.step h4{font-weight:800;font-size:1.02rem;margin-bottom:4px} .step p{font-size:.88rem;color:var(--muted)}
 
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
+/* about / contact */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center}
+.about-card{background:var(--dark);color:#EDE6D8;border-radius:22px;padding:28px}
+.about-card h3{font-weight:800;font-size:1.3rem;color:#fff}
+.about-card p{color:#C4BAA8;margin-top:10px;font-size:.95rem}
+.about-photo{border-radius:22px;overflow:hidden;min-height:260px} .about-photo img{width:100%;height:100%;object-fit:cover}
+.contact-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.contact-chip{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-weight:600;font-size:.9rem}
+.contact-chip span{color:var(--gold)}
+footer.foot{margin-top:40px;border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.84rem}
+footer.foot .brand{font-size:1.3rem;margin-bottom:6px}
 
-    /* ── Nav ───────────────────────────────────────────────────────── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(8,8,8,0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: background 300ms var(--ease-out);
-    }
+/* bottom nav */
+.bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--bar);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px 10px}
+.navitem{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:.64rem;font-weight:700;cursor:pointer;padding:6px 2px;border-radius:14px;transition:color .2s,filter .35s ease,opacity .35s ease}
+.navitem[data-action="more"] svg circle{transition:cx .4s cubic-bezier(.2,.8,.2,1)}
+.navitem[data-action="order"] svg path{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.bottomnav.more-open .navitem:not([data-action="more"]),
+.bottomnav.order-open .navitem:not([data-action="order"]){filter:blur(2.5px);opacity:.4}
+.bottomnav.more-open .navitem[data-action="more"],
+.bottomnav.order-open .navitem[data-action="order"]{color:var(--gold)}
+.bottomnav.more-open .navitem[data-action="more"] svg circle{cx:12}
+.bottomnav.order-open .navitem[data-action="order"] svg path:nth-child(1){transform:translateY(5px)}
+.bottomnav.order-open .navitem[data-action="order"] svg path:nth-child(3){transform:translateY(-5px)}
+.navitem svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.navitem.active{color:var(--gold)}
+.navitem.active .lbl{background:var(--gold-tint);padding:2px 12px;border-radius:20px}
 
-    .nav-logo {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text-bright);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    .nav-logo span { color: var(--gold); }
+/* modals */
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:18px 18px 104px;background:rgba(10,8,4,0);opacity:0;transition:opacity .4s ease,background .4s ease}
+.modal.show{display:flex}
+.modal.open{opacity:1;background:rgba(10,8,4,.55);backdrop-filter:blur(3px)}
+.modal-card{background:var(--surface);width:100%;max-width:460px;max-height:86vh;overflow:hidden;border-radius:22px;position:relative;display:flex;flex-direction:column;transform:translateY(24px) scale(.96);opacity:0;transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .4s ease}
+.modal.open .modal-card{transform:none;opacity:1}
+.modal-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:24px 20px}
+.scroll-cue{position:absolute;left:8px;right:8px;bottom:0;height:52px;pointer-events:none;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;background:linear-gradient(to top,var(--surface) 32%,transparent);border-radius:0 0 22px 22px;opacity:1;transition:opacity .3s ease}
+.scroll-cue svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;animation:cueBounce 1.6s ease-in-out infinite}
+@keyframes cueBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.modal-card.at-bottom .scroll-cue,.modal-card.no-scroll .scroll-cue{opacity:0}
+#more-modal .modal-card{max-height:58vh}
+#order-modal .modal-card{max-height:80vh}
+.modal-x{position:absolute;top:14px;right:16px;border:none;background:var(--panel);width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--muted);line-height:1}
+.modal-h{font-weight:800;font-size:1.3rem}
+.modal-h .script{color:var(--gold);font-size:1.25em}
+.modal-sub{color:var(--muted);font-size:.88rem;margin:4px 0 16px}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 400;
-      transition: color 200ms var(--ease-out);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .nav-links a:hover { color: var(--text-bright); }
-    }
+/* order form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;min-width:0} .fg.full{grid-column:1 / -1}
+.fg label{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;max-width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-family:inherit;font-size:16px;color:var(--ink)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--gold-soft);box-shadow:0 0 0 3px var(--gold-tint)}
+#order-form .pill{width:100%;margin-top:18px;padding:15px;font-size:.95rem}
+.form-note{font-size:.8rem;color:var(--muted);margin-top:12px;text-align:center}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      font-family: var(--font-sans);
-      font-size: 0.875rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: transform 160ms var(--ease-out), opacity 160ms var(--ease-out), background 200ms var(--ease-out);
-      user-select: none;
-    }
-    .btn:active { transform: scale(0.97); }
+/* more menu */
+.more-list{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.more-row{display:flex;align-items:center;gap:14px;width:100%;padding:13px 10px;border:none;background:none;border-radius:14px;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:600;color:var(--ink);text-align:left;transition:background .2s}
+.more-row:hover{background:var(--panel)}
+.more-ico{width:40px;height:40px;border-radius:50%;background:var(--gold-tint);color:var(--gold);display:flex;align-items:center;justify-content:center;flex:none}
+.more-ico svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.more-sub{font-size:.75rem;color:var(--muted);font-weight:500;display:block;margin-top:1px}
+.appearance{padding:12px 10px 8px}
+.appearance-top{display:flex;align-items:center;gap:14px;font-weight:600;font-size:.95rem;color:var(--ink)}
+.seg{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:4px;margin-top:12px}
+.seg button{flex:1;padding:10px 6px;border:none;background:none;border-radius:24px;font-family:inherit;font-weight:700;font-size:.82rem;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.seg button.active{background:var(--gold);color:#fff}
 
-    .btn-gold {
-      background: var(--gold);
-      color: #000;
-      padding: 0.6rem 1.25rem;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .btn-gold:hover { background: var(--gold-light); }
-    }
+/* features list */
+.feat-price{display:inline-block;background:var(--gold-tint);color:var(--gold);font-weight:800;padding:6px 14px;border-radius:30px;margin:2px 0 14px}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.feat-list li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.feat-list li b{color:var(--gold);flex:none}
+#feat-modal .pill{width:100%;margin-top:20px;padding:14px}
 
-    .btn-outline {
-      background: transparent;
-      color: var(--text-bright);
-      padding: 0.6rem 1.25rem;
-      border: 1px solid var(--border);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .btn-outline:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
-    }
-
-    .btn-lg {
-      padding: 0.85rem 2rem;
-      font-size: 1rem;
-      border-radius: 10px;
-    }
-
-    /* ── Hero ──────────────────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem clamp(1.5rem, 6vw, 5rem) 5rem;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1600');
-      background-size: cover;
-      background-position: center 30%;
-      filter: brightness(0.25) saturate(0.8);
-      transform: scale(1.05);
-      transition: transform 8s linear;
-    }
-    .hero-bg.loaded { transform: scale(1); }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.08) 0%, transparent 60%),
-                  linear-gradient(to bottom, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0.6) 100%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 780px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--gold-dim);
-      border: 1px solid rgba(212,175,55,0.25);
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 0.35rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.75rem;
-      opacity: 0;
-      animation: fadeUp 600ms var(--ease-out) 100ms forwards;
-    }
-
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 900;
-      color: var(--text-bright);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 700ms var(--ease-out) 200ms forwards;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: var(--text);
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-      font-weight: 300;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 700ms var(--ease-out) 350ms forwards;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      opacity: 0;
-      animation: fadeUp 700ms var(--ease-out) 450ms forwards;
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      z-index: 2;
-      animation: fadeIn 1s var(--ease-out) 1s both;
-    }
-    .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollLine 1.8s ease-in-out infinite;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes scrollLine {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50%       { opacity: 0.8; transform: scaleY(1.3); }
-    }
-
-    /* ── Section Base ──────────────────────────────────────────────── */
-    section { padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem); }
-
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900;
-      color: var(--text-bright);
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.25rem;
-    }
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--text);
-      max-width: 520px;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ── Templates ─────────────────────────────────────────────────── */
-    .templates {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .templates-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .templates-header .section-sub { margin: 0 auto; }
-
-    .templates-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .template-card {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      text-decoration: none;
-      display: block;
-      transition: transform 300ms var(--ease-out), border-color 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .template-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(212,175,55,0.3);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.15);
-      }
-      .template-card:hover .template-preview {
-        transform: scale(1.04);
-      }
-      .template-card:hover .template-cta {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .template-card:active { transform: scale(0.98); }
-
-    .template-preview-wrap {
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-    }
-    .template-preview {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 500ms var(--ease-out);
-      display: block;
-    }
-
-    .template-color-preview {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-style: italic;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
-    .template-cta {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
-    }
-
-    .template-info {
-      padding: 1.25rem 1.4rem 1.4rem;
-    }
-    .template-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gold);
-      margin-bottom: 0.4rem;
-    }
-    .template-name {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-bright);
-      margin-bottom: 0.4rem;
-    }
-    .template-desc {
-      font-size: 0.82rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    /* Stagger delays for template cards */
-    .template-card:nth-child(1) { transition-delay: 0ms; }
-    .template-card:nth-child(2) { transition-delay: 60ms; }
-    .template-card:nth-child(3) { transition-delay: 120ms; }
-    .template-card:nth-child(4) { transition-delay: 180ms; }
-
-    /* ── Features ──────────────────────────────────────────────────── */
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 6rem);
-      align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 768px) {
-      .features-grid { grid-template-columns: 1fr; }
-    }
-
-    .features-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-
-    .feature-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      opacity: 0;
-      transform: translateX(-12px);
-      transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
-    }
-    .feature-item.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .feature-item:nth-child(1) { transition-delay: 0ms; }
-    .feature-item:nth-child(2) { transition-delay: 60ms; }
-    .feature-item:nth-child(3) { transition-delay: 120ms; }
-    .feature-item:nth-child(4) { transition-delay: 180ms; }
-    .feature-item:nth-child(5) { transition-delay: 240ms; }
-
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 10px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(212,175,55,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-    }
-    .feature-text h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-bright);
-      margin-bottom: 0.25rem;
-    }
-    .feature-text p {
-      font-size: 0.83rem;
-      color: var(--text);
-      line-height: 1.55;
-    }
-
-    .features-visual {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-    }
-    .features-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.85) saturate(0.9);
-    }
-    .features-visual-badge {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      background: rgba(8,8,8,0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .features-visual-badge-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .features-visual-badge-text {
-      font-size: 0.8rem;
-      color: var(--text-bright);
-      font-weight: 500;
-      line-height: 1.4;
-    }
-    .features-visual-badge-sub {
-      font-size: 0.72rem;
-      color: var(--text);
-      margin-top: 0.1rem;
-    }
-
-    /* ── How it works ──────────────────────────────────────────────── */
-    .how {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .how-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .how-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 3.5rem;
-      position: relative;
-    }
-    .how-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1rem;
-    }
-    .how-step-num {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--gold-dim);
-      border: 1px solid rgba(212,175,55,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--gold);
-    }
-    .how-step h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-bright);
-    }
-    .how-step p {
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* ── Pricing ───────────────────────────────────────────────────── */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-      max-width: 900px;
-      margin: 3.5rem auto 0;
-    }
-
-    .pricing-card {
-      border-radius: 16px;
-      padding: 2rem 1.75rem;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      position: relative;
-      transition: transform 300ms var(--ease-out), border-color 300ms var(--ease-out);
-    }
-    .pricing-card.featured {
-      background: var(--surface-2);
-      border-color: rgba(212,175,55,0.35);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .pricing-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(212,175,55,0.25);
-      }
-      .pricing-card.featured:hover {
-        border-color: rgba(212,175,55,0.5);
-      }
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #000;
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-
-    .pricing-name {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-    }
-    .pricing-price {
-      font-family: var(--font-serif);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--text-bright);
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .pricing-price span {
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--text);
-    }
-    .pricing-sub {
-      font-size: 0.78rem;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-    }
-
-    .pricing-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0.5rem 0 1.5rem;
-    }
-
-    .pricing-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      flex: 1;
-      margin-bottom: 2rem;
-    }
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-size: 0.83rem;
-      color: var(--text);
-      line-height: 1.45;
-    }
-    .pricing-features li::before {
-      content: '✦';
-      color: var(--gold);
-      font-size: 0.6rem;
-      margin-top: 0.25rem;
-      flex-shrink: 0;
-    }
-
-    /* ── Testimonial ───────────────────────────────────────────────── */
-    .testimonial {
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .testimonial-inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .testimonial-quote {
-      font-family: var(--font-serif);
-      font-size: clamp(1.3rem, 3vw, 1.9rem);
-      font-style: italic;
-      font-weight: 700;
-      color: var(--text-bright);
-      line-height: 1.4;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .testimonial-quote::before {
-      content: '\201C';
-      position: absolute;
-      top: -1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 6rem;
-      color: var(--gold-dim);
-      font-family: Georgia, serif;
-      line-height: 1;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-    .testimonial-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-dim), var(--surface-2));
-      border: 1px solid rgba(212,175,55,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-weight: 700;
-      color: var(--gold);
-      font-size: 0.9rem;
-    }
-    .testimonial-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-bright);
-    }
-    .testimonial-role {
-      font-size: 0.78rem;
-      color: var(--text);
-    }
-
-    /* ── CTA Banner ────────────────────────────────────────────────── */
-    .cta-banner {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-banner-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 620px;
-      margin: 0 auto;
-    }
-    .cta-banner .section-title { margin-bottom: 1.25rem; }
-    .cta-banner .section-sub { margin: 0 auto 2.5rem; text-align: center; }
-    .cta-banner-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-    }
-
-    /* ── Footer ────────────────────────────────────────────────────── */
-    footer {
-      padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .footer-logo {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-bright);
-      text-decoration: none;
-    }
-    .footer-logo span { color: var(--gold); }
-    .footer-copy {
-      font-size: 0.78rem;
-      color: var(--text);
-    }
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.78rem;
-      color: var(--text);
-      text-decoration: none;
-      transition: color 200ms var(--ease-out);
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .footer-links a:hover { color: var(--text-bright); }
-    }
-
-    /* ── Mobile nav ────────────────────────────────────────────────── */
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .templates-header .section-sub { padding: 0 1rem; }
-    }
-  </style>
+@media(max-width:680px){.grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}.cta-card{flex-direction:column;text-align:center}}
+.previewbar{background:var(--dark);color:var(--gold-soft);text-align:center;font-size:.76rem;font-weight:600;padding:7px}
+</style>
 </head>
-
 <body>
+<div class="previewbar">PREVIEW — not live. deeday.ng homepage redesign for sign-off.</div>
 
-  <!-- ── Nav ─────────────────────────────────────────────────────────── -->
-  <nav class="nav">
-    <a class="nav-logo" href="#">dee<span>day</span>.ng</a>
-    <ul class="nav-links">
-      <li><a href="#templates">Templates</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-    </ul>
-    <a href="mailto:nwanicyriluchenna@gmail.com" class="btn btn-gold">Get Started</a>
-  </nav>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">dee<b>day</b><span class="dot">.</span>ng</div>
+    <button class="pill" onclick="openOrder()">Order an invite</button>
+  </div>
+</header>
 
-  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge">✦ Nigerian Wedding Invitations</div>
-      <h1 class="hero-title">
-        Your wedding invite,<br>
-        <em>reimagined</em> for every screen.
-      </h1>
-      <p class="hero-sub">
-        Stunning digital invitations built for Nigerian couples. Designed to impress, shared in seconds, remembered forever.
-      </p>
-      <div class="hero-actions">
-        <a href="#templates" class="btn btn-gold btn-lg">Browse Templates</a>
-        <a href="#pricing" class="btn btn-outline btn-lg">See Pricing</a>
+<!-- HERO -->
+<section id="home" class="hero reveal">
+  <div class="hero-card">
+    <div class="hero-slides">
+      <img class="hero-slide active" src="assets/hero1.jpg" alt="Nigerian wedding moment">
+      <img class="hero-slide" src="assets/hero2.jpg" alt="">
+      <img class="hero-slide" src="assets/hero3.jpg" alt="">
+      <img class="hero-slide" src="assets/hero4.jpg" alt="">
+    </div>
+    <div class="hero-grad"></div>
+    <div class="hero-inner">
+      <h1 class="hero-h1">Invite your guests with <span class="g">style.</span></h1>
+      <p class="hero-sub"><b>Pick a design.</b> Fill one form. We build it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta-card reveal">
+    <div class="cta-ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></div>
+    <div class="cta-txt"><h4>Your big day, beautifully invited.</h4><p>Choose a design, tell us the details, and we deliver your invite in days.</p></div>
+    <button class="pill" onclick="document.getElementById('samples').scrollIntoView({behavior:'smooth',block:'start'})">Browse designs</button>
+  </div>
+</div>
+
+<!-- TEMPLATES -->
+<section id="samples" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">The Collection</p>
+      <h2>A design for every <span class="script">love story</span></h2>
+      <p>Browse the looks and preview any you like. Pricing is by plan, not by design, see the plans below.</p>
+    </div>
+  </div>
+  <div class="sampleswiper">
+    <div class="swiper" id="sample-swiper"><div class="swiper-wrapper" id="tpl-grid"></div></div>
+    <div id="sample-dots" class="sample-dots"></div>
+    <button class="car-arrow prev" id="car-prev" aria-label="Previous">&#8249;</button>
+    <button class="car-arrow next" id="car-next" aria-label="Next">&#8250;</button>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Plans &amp; Prices</p>
+      <h2>Pick your <span class="script">features</span></h2>
+      <p>Choose the look you love, then the plan that fits. The plan decides the features and the price.</p>
+    </div>
+    <div class="plan-tabs reveal" id="plan-tabs">
+      <span class="tab-ind" id="tab-ind"></span>
+      <button type="button" data-k="Essential">Essential</button>
+      <button type="button" data-k="Signature">Signature</button>
+      <button type="button" data-k="Grand">Grand</button>
+    </div>
+    <div class="swiper plan-swiper reveal" id="plan-swiper"><div class="swiper-wrapper" id="plans-grid"></div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><p class="kicker">How It Works</p><h2>From pick to <span class="script">published</span></h2></div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h4>Pick a template</h4><p>Browse the designs and choose the style that fits your day.</p></div>
+      <div class="step reveal"><div class="n">2</div><h4>Fill one form</h4><p>Your names, date, venues and colours, it all goes to us on WhatsApp.</p></div>
+      <div class="step reveal"><div class="n">3</div><h4>Get your invite</h4><p>We build your personalised invite and send you the link to share.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <h3>Made in Nigeria, for Nigerian weddings</h3>
+        <p>deeday.ng builds beautiful digital wedding invitations, designed, personalised and delivered fast. Music, countdowns, RSVP with keepsake receipts, aso-ebi ordering and gift details, all in one elegant link you share on WhatsApp. No apps, no stress.</p>
+        <p style="margin-top:14px;color:#9b917f">Trusted designs · Prices in naira · Delivered in days</p>
       </div>
+      <div class="about-photo reveal"><img src="assets/couple2.jpg" alt="Happy couple"></div>
     </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal"><p class="kicker">Contact</p><h2>Let's make something <span class="script">beautiful</span></h2></div>
+    <div class="contact-row reveal">
+      <a class="contact-chip" id="wa-chip"><span>WhatsApp</span> Chat with us</a>
+      <a class="contact-chip" href="mailto:nwanicyriluchenna@gmail.com"><span>Email</span> nwanicyriluchenna@gmail.com</a>
+      <a class="contact-chip" href="https://www.instagram.com/deeday.ng/" target="_blank" rel="noopener"><span>Instagram</span> @deeday.ng</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── Templates ─────────────────────────────────────────────────────── -->
-  <section class="templates" id="templates">
-    <div class="templates-header reveal">
-      <p class="section-label">Our Templates</p>
-      <h2 class="section-title">Four styles. One perfect fit.</h2>
-      <p class="section-sub">Each template is built around a different Nigerian wedding aesthetic. All include RSVP, countdown, and gift support.</p>
-    </div>
+<footer class="foot"><div class="wrap">
+  <div class="brand">dee<b>day</b><span class="dot">.</span>ng</div>
+  <p>Nigerian digital wedding invitations · © <span id="yr"></span> deeday.ng</p>
+  <p style="margin-top:8px"><a href="privacy.html" style="color:var(--gold);font-weight:600">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html" style="color:var(--gold);font-weight:600">Terms of Service</a></p>
+</div></footer>
 
-    <div class="templates-grid">
+<!-- BOTTOM NAV -->
+<nav class="bottomnav">
+  <div class="navitem active" data-target="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span class="lbl">Home</span></div>
+  <div class="navitem" data-target="samples"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="lbl">Samples</span></div>
+  <div class="navitem" data-action="order"><svg viewBox="0 0 24 24"><path d="M5 7h14"/><path d="M5 12h14"/><path d="M5 17h9"/></svg><span class="lbl">Order</span></div>
+  <div class="navitem" data-target="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="lbl">About</span></div>
+  <div class="navitem" data-action="more"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg><span class="lbl">More</span></div>
+</nav>
 
-      <a class="template-card reveal" href="https://deeday-yoruba-sample.vercel.app" target="_blank" rel="noopener">
-        <div class="template-preview-wrap">
-          <div class="template-color-preview" style="background: linear-gradient(135deg, #0E0509 0%, #7C1328 60%, #E5A820 100%); color: #E5A820;">
-            Adunni &amp; Seun
-          </div>
-          <div class="template-cta">
-            <span class="btn btn-gold">Preview Live ↗</span>
-          </div>
+<!-- MORE MODAL -->
+<div class="modal" id="more-modal">
+  <div class="modal-card" style="max-width:420px">
+    <button class="modal-x" onclick="closeModal('more-modal')">&times;</button>
+    <div class="modal-scroll">
+    <div class="modal-h">More</div>
+    <div class="modal-sub">Everything else, in one place.</div>
+    <div class="more-list">
+      <div class="appearance">
+        <div class="appearance-top"><span class="more-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" style="fill:currentColor;stroke:none"/></svg></span><span>Appearance</span></div>
+        <div class="seg" id="theme-seg">
+          <button type="button" data-pref="light">Light</button>
+          <button type="button" data-pref="dark">Dark</button>
+          <button type="button" data-pref="system">System</button>
         </div>
-        <div class="template-info">
-          <p class="template-tag">Yoruba Traditional</p>
-          <h3 class="template-name">Aso-Oke &amp; Gold</h3>
-          <p class="template-desc">Wine, gold, and dark tones. Aso-oke stripe border. Hero photo with deep gradient. Built for traditional Yoruba ceremonies.</p>
-        </div>
+      </div>
+      <button class="more-row" onclick="moreGo('how')">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></span>
+        <span>How it works<span class="more-sub">Pick, fill a form, get your invite</span></span>
+      </button>
+      <button class="more-row" onclick="moreGo('contact')">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span>Contact us<span class="more-sub">Reach the deeday team</span></span>
+      </button>
+      <a class="more-row" id="more-wa" target="_blank" rel="noopener">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.2-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
+        <span>Chat on WhatsApp<span class="more-sub">Fastest way to reach us</span></span>
       </a>
-
-      <a class="template-card reveal" href="https://modern-nigerian.vercel.app" target="_blank" rel="noopener">
-        <div class="template-preview-wrap">
-          <div class="template-color-preview" style="background: linear-gradient(135deg, #080808 0%, #1a1a1a 50%, #FF6500 100%); color: #FF6500;">
-            Chioma &amp; Emeka
-          </div>
-          <div class="template-cta">
-            <span class="btn btn-gold">Preview Live ↗</span>
-          </div>
-        </div>
-        <div class="template-info">
-          <p class="template-tag">Modern Nigerian</p>
-          <h3 class="template-name">Bold &amp; Editorial</h3>
-          <p class="template-desc">Black, orange, and gold. Giant names, scrolling marquee, schedule list. High-fashion editorial energy for the modern couple.</p>
-        </div>
+      <a class="more-row" href="mailto:nwanicyriluchenna@gmail.com">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
+        <span>Email us<span class="more-sub">nwanicyriluchenna@gmail.com</span></span>
       </a>
-
-      <a class="template-card reveal" href="https://deeday-church-wedding.vercel.app" target="_blank" rel="noopener">
-        <div class="template-preview-wrap">
-          <div class="template-color-preview" style="background: linear-gradient(135deg, #FBF8F3 0%, #d8d0c0 50%, #1B2D5B 100%); color: #1B2D5B;">
-            Grace &amp; David
-          </div>
-          <div class="template-cta">
-            <span class="btn btn-gold">Preview Live ↗</span>
-          </div>
-        </div>
-        <div class="template-info">
-          <p class="template-tag">Church Wedding</p>
-          <h3 class="template-name">Navy, Gold &amp; Cream</h3>
-          <p class="template-desc">Formal invitation card as hero. Gold dot timeline. Scripture banner. Italic Playfair throughout. Quiet, elegant, dignified.</p>
-        </div>
+      <a class="more-row" href="https://www.instagram.com/deeday.ng/" target="_blank" rel="noopener" onclick="event.preventDefault();window.open('https://www.instagram.com/deeday.ng/','_blank','noopener')">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></span>
+        <span>Instagram<span class="more-sub">@deeday.ng</span></span>
       </a>
-
-      <a class="template-card reveal" href="https://deeday-golden-flyer.vercel.app" target="_blank" rel="noopener">
-        <div class="template-preview-wrap">
-          <div class="template-color-preview" style="background: linear-gradient(135deg, #080808 0%, #2a2000 50%, #D4AF37 100%); color: #D4AF37; font-size: 0.95rem;">
-            Blessing &amp; Tobi
-          </div>
-          <div class="template-cta">
-            <span class="btn btn-gold">Preview Live ↗</span>
-          </div>
-        </div>
-        <div class="template-info">
-          <p class="template-tag">Golden Flyer</p>
-          <h3 class="template-name">WhatsApp Flyer Aesthetic</h3>
-          <p class="template-desc">Black and gold. Fixed hero background with scroll overlay. Gold picture-frame border. Corner ornaments. Built for virality.</p>
-        </div>
+      <a class="more-row" href="privacy.html">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>
+        <span>Privacy Policy<span class="more-sub">How we handle your details</span></span>
       </a>
-
-      <a class="template-card reveal" href="https://deeday-royal-seal.vercel.app" target="_blank" rel="noopener">
-        <div class="template-preview-wrap">
-          <div class="template-color-preview" style="background: linear-gradient(135deg, #0E3B2E 0%, #14503c 55%, #C6A353 100%); color: #E9CE8A;">
-            Tobechukwu &amp; Chidinma
-          </div>
-          <div class="template-cta">
-            <span class="btn btn-gold">Preview Live ↗</span>
-          </div>
-        </div>
-        <div class="template-info">
-          <p class="template-tag">Luxury Wax Seal</p>
-          <h3 class="template-name">Emerald &amp; Gold</h3>
-          <p class="template-desc">Break-the-seal envelope opening, floral rose-arch hero, background music, animated RSVP with a printable keepsake receipt. Pure luxury.</p>
-        </div>
+      <a class="more-row" href="terms.html">
+        <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span>
+        <span>Terms of Service<span class="more-sub">The basics of working with us</span></span>
       </a>
-
-      <a class="template-card reveal" href="https://deeday-black-gold.vercel.app" target="_blank" rel="noopener">
-        <div class="template-preview-wrap">
-          <div class="template-color-preview" style="background: linear-gradient(135deg, #0B0B0B 0%, #3E2C14 50%, #C79A4E 100%); color: #E50914;">
-            Anita &amp; Uche
-          </div>
-          <div class="template-cta">
-            <span class="btn btn-gold">Preview Live ↗</span>
-          </div>
-        </div>
-        <div class="template-info">
-          <p class="template-tag">Black &amp; Gold</p>
-          <h3 class="template-name">Editorial Aso-Ebi</h3>
-          <p class="template-desc">Full-bleed poster hero, modern mail-opening animation, background music, RSVP keepsake, and a built-in aso-ebi fabric order on WhatsApp.</p>
-        </div>
-      </a>
-
     </div>
-  </section>
-
-  <!-- ── Features ──────────────────────────────────────────────────────── -->
-  <section id="features">
-    <div class="features-grid">
-      <div>
-        <div class="reveal">
-          <p class="section-label">Why Deeday</p>
-          <h2 class="section-title">Everything your guests need, nothing they don't.</h2>
-          <p class="section-sub">Every template ships with the features Nigerian weddings actually require. No extra setup. No third-party tools.</p>
-        </div>
-        <div class="features-list">
-          <div class="feature-item">
-            <div class="feature-icon">💌</div>
-            <div class="feature-text">
-              <h4>RSVP Built In</h4>
-              <p>Guests confirm attendance, dietary needs, and plus-ones directly from the invite. Responses collected automatically.</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">⏳</div>
-            <div class="feature-text">
-              <h4>Live Countdown Timer</h4>
-              <p>Real-time countdown to the wedding day on every template. Keeps guests excited and aware of exactly how long they have.</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">💰</div>
-            <div class="feature-text">
-              <h4>Wedding Support Modal</h4>
-              <p>Bank details displayed in a clean modal with a one-tap copy button and a pre-filled WhatsApp gift message link.</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">📱</div>
-            <div class="feature-text">
-              <h4>WhatsApp Ready</h4>
-              <p>One link. Share directly on WhatsApp, Instagram, or anywhere. No app download required for guests.</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <div class="feature-text">
-              <h4>Ready in 24 Hours</h4>
-              <p>Send us your details and photos. Your personalised invite is live within one business day, ready to share.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="features-visual reveal">
-        <img src="https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nigerian couple on their wedding day" loading="lazy" />
-        <div class="features-visual-badge">
-          <div class="features-visual-badge-icon">✦</div>
-          <div>
-            <div class="features-visual-badge-text">Delivered in 24 hours</div>
-            <div class="features-visual-badge-sub">From your details to a live link</div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+    <div class="scroll-cue"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+  </div>
+</div>
 
-  <!-- ── How it works ───────────────────────────────────────────────────── -->
-  <section class="how" id="how">
-    <div class="how-inner">
-      <div class="reveal">
-        <p class="section-label">The Process</p>
-        <h2 class="section-title">Three steps to your perfect invite.</h2>
-        <p class="section-sub" style="margin: 0 auto;">No forms, no back-and-forth, no technical skills needed on your end.</p>
+<!-- ORDER MODAL -->
+<div class="modal" id="order-modal">
+  <div class="modal-card">
+    <button class="modal-x" onclick="closeModal('order-modal')">&times;</button>
+    <div class="modal-scroll">
+    <div class="modal-h">Tell us about your <span class="script">big day</span></div>
+    <div class="modal-sub">Not sure about a plan or design? Leave them and just tell us your style, we'll guide you. Submits to our WhatsApp.</div>
+    <form id="order-form">
+      <input type="text" id="o-company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none">
+      <div class="form-grid">
+        <div class="fg full"><label>Plan</label><select id="o-plan"></select></div>
+        <div class="fg full"><label>Design</label><select id="o-template"></select></div>
+        <div class="fg full"><label>What style are you going for?</label><textarea id="o-style" rows="2" maxlength="300" placeholder="e.g. soft & romantic, bold & modern, traditional Igbo, gold & burgundy, elegant & minimal... tell us your vibe"></textarea></div>
+        <div class="fg"><label>Your name *</label><input id="o-cname" required maxlength="80" autocomplete="name" placeholder="Who are we speaking with?"></div>
+        <div class="fg"><label>Your WhatsApp *</label><input id="o-cphone" required type="tel" inputmode="tel" maxlength="20" placeholder="08000000000"></div>
+        <div class="fg"><label>Groom's name *</label><input id="o-groom" required maxlength="60" placeholder="e.g. Uche"></div>
+        <div class="fg"><label>Bride's name *</label><input id="o-bride" required maxlength="60" placeholder="e.g. Anita"></div>
+        <div class="fg"><label>Wedding date</label><input id="o-date" type="date" min="2024-01-01" max="2035-12-31"></div>
+        <div class="fg"><label>Wedding hashtag</label><input id="o-hashtag" maxlength="40" placeholder="#AnitaAndUche2027"></div>
+        <div class="fg"><label>Ceremony venue</label><input id="o-cer-venue" maxlength="140" placeholder="Church / venue, area, city"></div>
+        <div class="fg"><label>Ceremony time</label><input id="o-cer-time" maxlength="20" placeholder="11:00 AM"></div>
+        <div class="fg"><label>Reception venue</label><input id="o-rec-venue" maxlength="140" placeholder="Hall, area, city"></div>
+        <div class="fg"><label>Reception time</label><input id="o-rec-time" maxlength="20" placeholder="2:00 PM"></div>
+        <div class="fg"><label>Colours of the day</label><input id="o-colours" maxlength="60" placeholder="e.g. Gold & Ivory"></div>
+        <div class="fg"><label>Aso-ebi dealer WhatsApp (optional)</label><input id="o-dealer" type="tel" inputmode="tel" maxlength="20" placeholder="08000000000"></div>
+        <div class="fg"><label>Bank name (gift, optional)</label><input id="o-bank" maxlength="60" placeholder="e.g. GTBank"></div>
+        <div class="fg"><label>Account number (optional)</label><input id="o-acct" inputmode="numeric" maxlength="20" placeholder="0123456789"></div>
+        <div class="fg full"><label>Your love story (optional)</label><textarea id="o-story" rows="3" maxlength="600" placeholder="A few lines about how you met..."></textarea></div>
+        <div class="fg full"><label>Anything else?</label><textarea id="o-notes" rows="2" maxlength="400" placeholder="Photos, special requests, delivery date..."></textarea></div>
       </div>
-      <div class="how-steps">
-        <div class="how-step reveal">
-          <div class="how-step-num">1</div>
-          <h3>Choose Your Template</h3>
-          <p>Browse the four live templates. Pick the one that fits your wedding's vibe, colours, and energy.</p>
-        </div>
-        <div class="how-step reveal">
-          <div class="how-step-num">2</div>
-          <h3>Send Us Your Details</h3>
-          <p>Share your names, date, venue, photos, and bank details. We handle everything from there.</p>
-        </div>
-        <div class="how-step reveal">
-          <div class="how-step-num">3</div>
-          <h3>Share Your Link</h3>
-          <p>Within 24 hours you receive a live link ready to send on WhatsApp, Instagram, and email.</p>
-        </div>
+      <button class="pill" type="submit">Send my order on WhatsApp</button>
+      <p class="form-note">We will reply on WhatsApp to confirm and request your photos.</p>
+    </form>
+    </div>
+    <div class="scroll-cue"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+<script>
+const ORDER_WHATSAPP = "2348063941963";
+/* Supabase — history of every order (publishable key is client-safe; tables are RLS-locked to insert-only) */
+const SB_URL = "https://otohaeukgewcnehllnsm.supabase.co";
+const SB_KEY = "sb_publishable_S4HgZAhnx0Or6C60O2CvmQ_haGzggKU";
+function saveOrder(row){
+  try{
+    return fetch(SB_URL+"/rest/v1/orders",{
+      method:"POST", keepalive:true,
+      headers:{ "apikey":SB_KEY, "Authorization":"Bearer "+SB_KEY, "Content-Type":"application/json", "Prefer":"return=minimal" },
+      body: JSON.stringify(row)
+    }).catch(err=>console.warn("order save failed",err));
+  }catch(err){ console.warn("order save error",err); }
+}
+/* samples = looks only (newest first); price lives in PLANS */
+const TEMPLATES = [
+  {tag:"Black & Gold", title:"Editorial Aso-Ebi", url:"https://deeday-black-gold.vercel.app", thumb:"assets/thumb-5.jpg", plan:"Signature", blurb:"Editorial black-and-gold with a full-bleed photo hero, a modern mail-opening and real aso-ebi energy."},
+  {tag:"Luxury Wax Seal", title:"Emerald & Gold", url:"https://deeday-royal-seal.vercel.app", thumb:"assets/thumb-4.jpg", plan:"Signature", blurb:"Emerald-and-gold luxury: a break-the-seal opening and a floral arch hero."},
+  {tag:"Golden Flyer", title:"WhatsApp Flyer", url:"https://deeday-golden-flyer.vercel.app", thumb:"assets/thumb-3.jpg", plan:"Signature", blurb:"The viral WhatsApp-flyer look, gold frame, bold and built to be shared."},
+  {tag:"Church Wedding", title:"Navy, Gold & Cream", url:"https://deeday-church-wedding.vercel.app", thumb:"assets/thumb-2.jpg", plan:"Essential", blurb:"Navy, gold and cream. Formal, scriptural and quietly elegant."},
+  {tag:"Yoruba Traditional", title:"Aso-Oke & Gold", url:"https://deeday-yoruba-sample.vercel.app", thumb:"assets/thumb-0.jpg", plan:"Essential", blurb:"Wine, gold and aso-oke stripes, rich traditional Yoruba styling."}
+];
+const PLANS = [
+  {key:"Essential", price:"₦30,000", sub:"Clean static designs", feats:["Any Essential (static) design","Personalized details, story & programme","RSVP via WhatsApp","Gift / bank details","Hosted for 12 months","2 revisions"]},
+  {key:"Signature", price:"₦60,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening animation + music + countdown","RSVP keepsake + messages to couple","Aso-ebi order on WhatsApp","2 revisions"]},
+  {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","Email invitations + reminders","RSVP dashboard for the couple","Custom link (couplename.deeday.ng)","Priority delivery","3 revisions"]}
+];
+const $ = s => document.querySelector(s);
+$("#yr").textContent = new Date().getFullYear();
+
+/* theme: Light / Dark / System — default Light */
+const root=document.documentElement;
+const mq=matchMedia("(prefers-color-scheme: dark)");
+function currentPref(){ let p=null; try{p=localStorage.getItem("deeday-theme");}catch{} return (p==="light"||p==="dark"||p==="system")?p:"light"; }
+function paintSeg(pref){ document.querySelectorAll("#theme-seg button").forEach(b=>b.classList.toggle("active",b.dataset.pref===pref)); }
+function applyTheme(pref){ const eff = pref==="system" ? (mq.matches?"dark":"light") : pref; root.setAttribute("data-theme",eff); paintSeg(pref); }
+function setThemePref(pref){ try{localStorage.setItem("deeday-theme",pref);}catch{} applyTheme(pref); }
+document.querySelectorAll("#theme-seg button").forEach(b=>b.addEventListener("click",()=>setThemePref(b.dataset.pref)));
+mq.addEventListener("change",()=>{ if(currentPref()==="system") applyTheme("system"); });
+applyTheme(currentPref());
+
+/* render cards */
+$("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
+  <div class="swiper-slide card" data-i="${i}">
+    <div class="card-thumb"><img src="${t.thumb}" alt="${t.title} preview" loading="lazy"></div>
+    <div class="card-fade"></div>
+    <span class="card-plan">${t.plan==="Essential"?"All plans":"Signature & up"}</span>
+    <div class="card-info">
+      <div class="card-tag">${t.tag}</div>
+      <div class="card-title">${t.title}</div>
+      <p class="card-blurb">${t.blurb}</p>
+      <div class="card-actions">
+        <button class="mini gold" onclick="openOrder(${i})">Use this look</button>
+        <a class="mini ghost" href="${t.url}" target="_blank" rel="noopener">Preview ↗</a>
       </div>
     </div>
-  </section>
+  </div>`).join("");
+$("#plans-grid").innerHTML = PLANS.map(p=>`
+  <div class="swiper-slide plan ${p.pop?'pop':''}">
+    ${p.pop?'<span class="pp-badge">Most popular</span>':''}
+    <div class="pp-top"><div><div class="plan-name">${p.key}</div><div class="plan-sub">${p.sub}</div></div><div class="plan-price">${p.price}</div></div>
+    <ul class="plan-feats">${p.feats.map(f=>`<li><b>✓</b><span>${f}</span></li>`).join("")}</ul>
+    <button class="pill" style="width:100%" onclick="openOrder(null,'${p.key}')">Choose ${p.key}</button>
+  </div>`).join("");
+function moveIndicator(k){ const b=$("#plan-tabs").querySelector(`button[data-k="${k}"]`); const ind=$("#tab-ind"); if(b&&ind){ ind.style.left=b.offsetLeft+"px"; ind.style.width=b.offsetWidth+"px"; } }
+function setActiveTab(k){ $("#plan-tabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.k===k)); moveIndicator(k); }
+const planSwiper=new Swiper("#plan-swiper",{slidesPerView:1,spaceBetween:16,grabCursor:true,autoHeight:true,speed:650,
+  on:{slideChange(){ setActiveTab(PLANS[planSwiper.activeIndex].key); }, init(){ setActiveTab(PLANS[0].key); }}});
+$("#plan-tabs").querySelectorAll("button").forEach((b,idx)=>b.addEventListener("click",()=>planSwiper.slideTo(idx)));
+window.addEventListener("resize",()=>{ const a=$("#plan-tabs button.active"); if(a) moveIndicator(a.dataset.k); });
 
-  <!-- ── Testimonial ────────────────────────────────────────────────────── -->
-  <section class="testimonial">
-    <div class="testimonial-inner reveal">
-      <p class="testimonial-quote">
-        Our guests kept saying the invite was the most beautiful thing they had ever received for a wedding. We shared it on Saturday morning and by Sunday night over 400 people had opened it.
-      </p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">AB</div>
-        <div>
-          <div class="testimonial-name">Adaeze &amp; Babatunde</div>
-          <div class="testimonial-role">Lagos, April 2026</div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* samples coverflow */
+const sampleSwiper = new Swiper("#sample-swiper",{
+  effect:"coverflow", grabCursor:true, centeredSlides:true, slidesPerView:"auto", loop:true, keyboard:{enabled:true}, speed:650,
+  pagination:{el:"#sample-dots", clickable:true},
+  coverflowEffect:{rotate:0, stretch:0, depth:80, modifier:1, scale:.84, slideShadows:false}
+});
+$("#car-prev").addEventListener("click",()=>sampleSwiper.slidePrev());
+$("#car-next").addEventListener("click",()=>sampleSwiper.slideNext());
 
-  <!-- ── Pricing ────────────────────────────────────────────────────────── -->
-  <section id="pricing">
-    <div style="text-align:center; margin-bottom: 3.5rem;" class="reveal">
-      <p class="section-label">Pricing</p>
-      <h2 class="section-title">Simple, transparent pricing.</h2>
-      <p class="section-sub" style="margin: 0 auto;">No hidden fees. No upsells. Pay once, share forever.</p>
-    </div>
+/* plan + design selects (design list follows the chosen plan) */
+$("#o-plan").innerHTML = '<option value="" disabled selected>Choose a plan</option>' + PLANS.map(p=>`<option value="${p.key}">${p.key} — ${p.price}</option>`).join("");
+function renderDesigns(keep){
+  const plan=$("#o-plan").value;
+  const list=TEMPLATES.map((t,i)=>({t,i})).filter(({t})=> plan!=="Essential" || t.plan==="Essential");
+  $("#o-template").innerHTML='<option value="" disabled selected>Choose a design</option>'+list.map(({t,i})=>`<option value="${i}">${t.tag} — ${t.title}</option>`).join("");
+  if(keep!=null && list.some(x=>x.i===keep)) $("#o-template").value=String(keep);
+}
+$("#o-plan").addEventListener("change",()=>renderDesigns());
+renderDesigns();
 
-    <div class="pricing-grid">
+function toggleCard(i){
+  const cards=[...document.querySelectorAll(".card")];
+  const c=cards.find(x=>x.dataset.i==i);
+  const willOpen=!c.classList.contains("open");
+  cards.forEach(x=>x.classList.remove("open"));   // accordion: one open at a time
+  if(willOpen){ c.classList.add("open"); setTimeout(()=>c.scrollIntoView({behavior:"smooth",block:"nearest"}),300); }
+}
 
-      <div class="pricing-card reveal">
-        <p class="pricing-name">Classic</p>
-        <p class="pricing-price">&#8358;15,000 <span>one-time</span></p>
-        <p class="pricing-sub">Standard template, live for 90 days</p>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li>Your choice of template</li>
-          <li>Names, date, and venue configured</li>
-          <li>RSVP form included</li>
-          <li>Countdown timer</li>
-          <li>Wedding support modal</li>
-          <li>WhatsApp share link</li>
-          <li>Delivered in 24 hours</li>
-        </ul>
-        <a href="mailto:nwanicyriluchenna@gmail.com?subject=Deeday Classic Package" class="btn btn-outline" style="width:100%; padding: 0.8rem;">Get Started</a>
-      </div>
+/* modals */
+let _scrollY=0,_locked=false;
+function lockScroll(){ if(_locked) return; _scrollY=window.scrollY||document.documentElement.scrollTop; const b=document.body.style; b.position="fixed"; b.top=`-${_scrollY}px`; b.left="0"; b.right="0"; b.width="100%"; b.overflow="hidden"; _locked=true; }
+function unlockScroll(){ if(!_locked) return; const b=document.body.style; b.position=""; b.top=""; b.left=""; b.right=""; b.width=""; b.overflow=""; window.scrollTo(0,_scrollY); _locked=false; }
+function navClass(id){ return id==="more-modal"?"more-open":id==="order-modal"?"order-open":null; }
+function updateCue(card){ if(!card) return; const sc=card.querySelector(".modal-scroll"); if(!sc) return; const scrollable=sc.scrollHeight>sc.clientHeight+4; const atBottom=sc.scrollTop+sc.clientHeight>=sc.scrollHeight-6; card.classList.toggle("no-scroll",!scrollable); card.classList.toggle("at-bottom",atBottom); }
+function openModal(id){ document.querySelectorAll(".modal.show").forEach(mm=>{ if(mm.id!==id) closeModal(mm.id); }); const m=$("#"+id); m.classList.add("show"); requestAnimationFrame(()=>requestAnimationFrame(()=>{ m.classList.add("open"); updateCue(m.querySelector(".modal-card")); })); lockScroll(); const nc=navClass(id); if(nc) document.querySelector(".bottomnav").classList.add(nc); }
+function closeModal(id){ const m=$("#"+id); m.classList.remove("open"); unlockScroll(); const nc=navClass(id); if(nc) document.querySelector(".bottomnav").classList.remove(nc); setTimeout(()=>{ if(!m.classList.contains("open")) m.classList.remove("show"); },460); }
+document.querySelectorAll(".modal-card").forEach(card=>{ const sc=card.querySelector(".modal-scroll"); if(sc) sc.addEventListener("scroll",()=>updateCue(card)); });
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id);}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal.open").forEach(m=>closeModal(m.id));});
 
-      <div class="pricing-card featured reveal">
-        <div class="pricing-badge">Most Popular</div>
-        <p class="pricing-name">Premium</p>
-        <p class="pricing-price">&#8358;25,000 <span>one-time</span></p>
-        <p class="pricing-sub">Custom colours, live for 1 year</p>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li>Everything in Classic</li>
-          <li>Custom colours to match your Asoebi</li>
-          <li>Your photos added to the invite</li>
-          <li>Multiple venue sections</li>
-          <li>Two rounds of revisions</li>
-          <li>Priority 12-hour delivery</li>
-          <li>Shareable across unlimited guests</li>
-        </ul>
-        <a href="mailto:nwanicyriluchenna@gmail.com?subject=Deeday Premium Package" class="btn btn-gold" style="width:100%; padding: 0.8rem;">Get Started</a>
-      </div>
+function openOrder(i,plan){
+  $("#o-plan").value = plan || "";            // don't assume a plan
+  renderDesigns(typeof i==="number"?i:null);
+  $("#o-template").value = typeof i==="number" ? String(i) : "";  // don't assume a design
+  openModal("order-modal");
+}
+function moreGo(id){ closeModal("more-modal"); setTimeout(()=>document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"}),300); }
 
-      <div class="pricing-card reveal">
-        <p class="pricing-name">Deluxe</p>
-        <p class="pricing-price">&#8358;45,000 <span>one-time</span></p>
-        <p class="pricing-sub">Fully custom, live for 2 years</p>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li>Everything in Premium</li>
-          <li>Fully custom design from scratch</li>
-          <li>Video or photo slideshow section</li>
-          <li>RSVP data dashboard (Google Sheet)</li>
-          <li>Unlimited revisions</li>
-          <li>Dedicated WhatsApp support</li>
-          <li>Custom domain option (add-on)</li>
-        </ul>
-        <a href="mailto:nwanicyriluchenna@gmail.com?subject=Deeday Deluxe Package" class="btn btn-outline" style="width:100%; padding: 0.8rem;">Get Started</a>
-      </div>
+/* WhatsApp links */
+const WA=`https://wa.me/${ORDER_WHATSAPP}?text=${encodeURIComponent("Hello deeday.ng, I'd like to ask about a wedding invite.")}`;
+$("#wa-chip").href=WA; $("#wa-chip").target="_blank";
+$("#more-wa").href=WA;
 
-    </div>
-  </section>
+/* order submit */
+/* ---------- input hardening (limit what can be typed) ---------- */
+function clean(s,max){ s=String(s==null?"":s).replace(/[\u0000-\u001F\u007F-\u009F]/g,"").replace(/[<>]/g,"").replace(/\s{2,}/g," ").trim(); return max?s.slice(0,max):s; }
+function cleanPhone(s){ return String(s||"").replace(/[^\d+()\-\s]/g,"").slice(0,20).trim(); }
+$("#order-form").querySelectorAll("input, textarea").forEach(el=>{
+  if(el.type==="date") return;
+  el.addEventListener("input",()=>{
+    let nv=el.value;
+    if(el.id==="o-cphone"||el.id==="o-dealer") nv=nv.replace(/[^\d+()\-\s]/g,"");
+    else if(el.id==="o-acct") nv=nv.replace(/\D/g,"");
+    else nv=nv.replace(/[<>]/g,"").replace(/[\u0000-\u001F\u007F-\u009F]/g,"");
+    if(nv!==el.value){ const p=Math.max(0,(el.selectionStart||nv.length)-(el.value.length-nv.length)); el.value=nv; try{el.setSelectionRange(p,p);}catch{} }
+  });
+});
+$("#order-form").addEventListener("submit",e=>{
+  e.preventDefault();
+  if(document.getElementById("o-company").value) return; /* honeypot: bot filled a hidden field */
+  const v=(id,max)=>clean(document.getElementById(id).value,max||120);
+  const vp=id=>cleanPhone(document.getElementById(id).value);
+  if(!v("o-cname")||!vp("o-cphone")||!v("o-groom")||!v("o-bride")) return;
+  const tsel=$("#o-template"); const tlabel=tsel.value ? tsel.options[tsel.selectedIndex].text : "Not specified";
+  const plan=$("#o-plan").value||"Not specified";
+  const L=["*New deeday.ng Invite Order*","",
+    `*Plan:* ${plan}`,
+    `*Design:* ${tlabel}`,
+    v("o-style",300)?`*Style wanted:* ${v("o-style",300)}`:null,
+    `*Client:* ${v("o-cname")} (${vp("o-cphone")})`,
+    `*Couple:* ${v("o-groom")} & ${v("o-bride")}`,
+    v("o-date")?`*Date:* ${v("o-date")}`:null,
+    v("o-hashtag")?`*Hashtag:* ${v("o-hashtag")}`:null,
+    (v("o-cer-venue")||v("o-cer-time"))?`*Ceremony:* ${v("o-cer-venue")} ${v("o-cer-time")}`:null,
+    (v("o-rec-venue")||v("o-rec-time"))?`*Reception:* ${v("o-rec-venue")} ${v("o-rec-time")}`:null,
+    v("o-colours")?`*Colours:* ${v("o-colours")}`:null,
+    vp("o-dealer")?`*Aso-ebi dealer:* ${vp("o-dealer")}`:null,
+    (v("o-bank")||v("o-acct"))?`*Gift acct:* ${v("o-bank")} ${v("o-acct")}`:null,
+    v("o-story",600)?`*Story:* ${v("o-story",600)}`:null,
+    v("o-notes",400)?`*Notes:* ${v("o-notes",400)}`:null
+  ].filter(Boolean).join("\n");
+  /* save to Supabase first (history is kept even if they never send the WhatsApp message) */
+  saveOrder({
+    plan, design:tlabel, style:v("o-style",300),
+    client_name:v("o-cname"), client_phone:vp("o-cphone"),
+    groom:v("o-groom"), bride:v("o-bride"),
+    wedding_date:v("o-date"), notes:v("o-notes",400),
+    details:{
+      hashtag:v("o-hashtag"), ceremony_venue:v("o-cer-venue"), ceremony_time:v("o-cer-time"),
+      reception_venue:v("o-rec-venue"), reception_time:v("o-rec-time"), colours:v("o-colours"),
+      asoebi_dealer:vp("o-dealer"), gift_bank:v("o-bank"), gift_acct:v("o-acct"), story:v("o-story",600),
+      whatsapp_message:L
+    }
+  });
+  window.open(`https://wa.me/${ORDER_WHATSAPP}?text=${encodeURIComponent(L)}`,"_blank","noopener");
+  const b=$("#order-form button[type=submit]"); const o=b.textContent; b.textContent="Opening WhatsApp..."; setTimeout(()=>b.textContent=o,2200);
+});
 
-  <!-- ── CTA Banner ─────────────────────────────────────────────────────── -->
-  <section class="cta-banner">
-    <div class="cta-banner-inner reveal">
-      <p class="section-label">Ready?</p>
-      <h2 class="section-title">Your wedding deserves more than a JPEG flyer.</h2>
-      <p class="section-sub">Send us a message and we will have your invite live within 24 hours. Your guests will not forget it.</p>
-      <div class="cta-banner-actions">
-        <a href="mailto:nwanicyriluchenna@gmail.com?subject=Deeday Wedding Invite" class="btn btn-gold btn-lg">Send Us a Message</a>
-        <a href="https://wa.me/2348037326582?text=Hi%2C%20I%20want%20to%20order%20a%20Deeday%20wedding%20invite" target="_blank" rel="noopener" class="btn btn-outline btn-lg">WhatsApp Us</a>
-      </div>
-    </div>
-  </section>
+/* hero slideshow */
+const slides=[...document.querySelectorAll(".hero-slide")]; let si=0;
+if(slides.length>1){ setInterval(()=>{ slides[si].classList.remove("active"); si=(si+1)%slides.length; slides[si].classList.add("active"); },5000); }
 
-  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
-  <footer>
-    <a class="footer-logo" href="#">dee<span>day</span>.ng</a>
-    <p class="footer-copy">&#169; 2026 Deeday. Digital wedding invitations for Nigerian couples.</p>
-    <ul class="footer-links">
-      <li><a href="#templates">Templates</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="mailto:nwanicyriluchenna@gmail.com">Contact</a></li>
-    </ul>
-  </footer>
+/* reveal */
+const io=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.1,rootMargin:"0px 0px -5% 0px"});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-  <script>
-    // ── Hero background subtle parallax load ─────────────────────────
-    const heroBg = document.getElementById('heroBg');
-    const heroImg = new Image();
-    heroImg.onload = () => heroBg.classList.add('loaded');
-    heroImg.src = 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1600';
-
-    // ── Scroll reveal via IntersectionObserver ────────────────────────
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Feature items use a different class
-            if (entry.target.classList.contains('feature-item')) {
-              entry.target.classList.add('visible');
-            }
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
-    );
-
-    document.querySelectorAll('.reveal, .feature-item').forEach(el => observer.observe(el));
-
-    // ── Stagger template cards on viewport entry ──────────────────────
-    const cardObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.template-card');
-            cards.forEach((card, i) => {
-              setTimeout(() => card.classList.add('visible'), i * 80);
-            });
-            cardObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const grid = document.querySelector('.templates-grid');
-    if (grid) cardObserver.observe(grid);
-
-    // ── Smooth active nav link highlight on scroll ────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const scrollObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navLinks.forEach(a => {
-              a.style.color = a.getAttribute('href') === `#${entry.target.id}`
-                ? 'var(--text-bright)'
-                : '';
-            });
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -40% 0px' }
-    );
-    sections.forEach(s => scrollObserver.observe(s));
-  </script>
-
+/* bottom nav */
+const items=[...document.querySelectorAll(".navitem")];
+items.forEach(it=>it.addEventListener("click",()=>{
+  const act=it.dataset.action;
+  if(act==="more"){ $("#more-modal").classList.contains("show") ? closeModal("more-modal") : openModal("more-modal"); return; }
+  if(act==="order"){ $("#order-modal").classList.contains("show") ? closeModal("order-modal") : openOrder(); return; }
+  document.querySelectorAll(".modal.show").forEach(mm=>closeModal(mm.id));
+  document.getElementById(it.dataset.target).scrollIntoView({behavior:"smooth",block:"start"});
+}));
+const secs=["home","samples","about"].map(id=>document.getElementById(id));
+const spy=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){const id=e.target.id;items.forEach(it=>it.classList.toggle("active",it.dataset.target===id));}}),{rootMargin:"-45% 0px -50% 0px"});
+secs.forEach(s=>spy.observe(s));
+</script>
 </body>
 </html>

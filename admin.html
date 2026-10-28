@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — deeday.ng</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#1A1713;--muted:#6E6557;--line:#ECE6DB;--gold:#B8862F;--gold-soft:#C9A24B;--panel:#FAF7F1;--surface:#fff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15120E;--ink:#F3ECE0;--muted:#A89B86;--line:#2E2820;--panel:#1C1812;--surface:#201B14}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;background:var(--panel);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;font-size:1.15rem}.brand b{color:var(--gold)}.brand .dot{color:var(--gold)}
+.brand .tag{font-weight:700;font-size:.7rem;color:var(--muted);margin-left:6px;letter-spacing:.08em;text-transform:uppercase}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 20px 60px}
+.btn{font-family:inherit;font-weight:700;border:none;border-radius:30px;padding:10px 18px;cursor:pointer;font-size:.86rem}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+/* login */
+.login-wrap{min-height:72vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.login{width:100%;max-width:380px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 26px;box-shadow:0 24px 60px -32px rgba(0,0,0,.3)}
+.login h1{font-size:1.4rem;font-weight:800;margin-bottom:4px}
+.login p{color:var(--muted);font-size:.88rem;margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.fg input{width:100%;font-family:inherit;font-size:.95rem;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.fg input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,134,47,.15)}
+.err{color:#D14343;font-size:.84rem;margin-top:8px;min-height:1em}
+/* dashboard */
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:18px}
+.tabs{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:4px}
+.tabs button{border:none;background:none;font-family:inherit;font-weight:700;font-size:.84rem;color:var(--muted);padding:8px 16px;border-radius:24px;cursor:pointer;transition:.2s}
+.tabs button.on{background:var(--gold);color:#fff}
+.spacer{flex:1}
+.count{font-size:.82rem;color:var(--muted);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.row{cursor:pointer}
+tr.row:hover{background:var(--panel)}
+.when{color:var(--muted);white-space:nowrap;font-size:.8rem}
+.pill{display:inline-block;background:rgba(184,134,47,.12);color:var(--gold);font-weight:700;font-size:.72rem;padding:3px 9px;border-radius:20px}
+.na{color:var(--muted);opacity:.6}
+.status-sel{font-family:inherit;font-size:.78rem;font-weight:700;padding:5px 8px;border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--ink);cursor:pointer;text-transform:capitalize}
+.status-sel:focus{outline:none;border-color:var(--gold)}
+.details-row td{background:var(--panel);font-size:.82rem}
+.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 22px}
+.details-grid div{padding:2px 0}
+.details-grid b{color:var(--muted);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;display:block}
+.empty{padding:50px 20px;text-align:center;color:var(--muted)}
+.loading{padding:40px;text-align:center;color:var(--muted)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="in">
+    <span class="brand">dee<b>day</b><span class="dot">.</span>ng<span class="tag">Admin</span></span>
+    <div id="bar-actions" class="hidden">
+      <button class="btn btn-ghost" id="refresh">Refresh</button>
+      <button class="btn btn-ghost" id="logout">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-view" class="login-wrap">
+  <form class="login" id="login-form">
+    <h1>Sign in</h1>
+    <p>Admin access to deeday.ng orders and RSVPs.</p>
+    <div class="fg"><label>Email</label><input type="email" id="email" autocomplete="username" required></div>
+    <div class="fg"><label>Password</label><input type="password" id="password" autocomplete="current-password" required></div>
+    <button class="btn btn-gold" style="width:100%" type="submit" id="login-btn">Sign in</button>
+    <div class="err" id="login-err"></div>
+  </form>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash-view" class="wrap hidden">
+  <div class="toolbar">
+    <div class="tabs">
+      <button data-tab="orders" class="on">Orders</button>
+      <button data-tab="rsvps">RSVPs</button>
+    </div>
+    <div class="spacer"></div>
+    <span class="count" id="count"></span>
+    <button class="btn btn-ghost" id="export">Export CSV</button>
+  </div>
+  <div class="card">
+    <div class="tablewrap"><table id="table"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+    <div class="loading hidden" id="loading">Loading...</div>
+    <div class="empty hidden" id="empty">Nothing here yet.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.10"></script>
+<script>
+const SB_URL="https://otohaeukgewcnehllnsm.supabase.co";
+const SB_KEY="sb_publishable_S4HgZAhnx0Or6C60O2CvmQ_haGzggKU";
+const sb = supabase.createClient(SB_URL, SB_KEY);
+const $=s=>document.querySelector(s);
+
+let tab="orders";
+let currentRows=[];
+const STATUSES=["new","contacted","quoted","won","lost"];
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=d=>{ if(!d) return ""; const t=new Date(d); return t.toLocaleString("en-GB",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}); };
+const cell=v=>v?esc(v):'<span class="na">—</span>';
+
+/* ---- auth ---- */
+async function refreshView(){
+  const {data:{session}} = await sb.auth.getSession();
+  if(session){ $("#login-view").classList.add("hidden"); $("#dash-view").classList.remove("hidden"); $("#bar-actions").classList.remove("hidden"); load(); }
+  else { $("#login-view").classList.remove("hidden"); $("#dash-view").classList.add("hidden"); $("#bar-actions").classList.add("hidden"); }
+}
+$("#login-form").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const btn=$("#login-btn"); btn.disabled=true; btn.textContent="Signing in..."; $("#login-err").textContent="";
+  const {error}=await sb.auth.signInWithPassword({ email:$("#email").value.trim(), password:$("#password").value });
+  btn.disabled=false; btn.textContent="Sign in";
+  if(error){ $("#login-err").textContent=error.message; return; }
+  refreshView();
+});
+$("#logout").addEventListener("click", async ()=>{ await sb.auth.signOut(); refreshView(); });
+$("#refresh").addEventListener("click", load);
+
+/* ---- tabs ---- */
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  tab=b.dataset.tab; load();
+}));
+
+/* ---- data ---- */
+async function load(){
+  $("#loading").classList.remove("hidden"); $("#empty").classList.add("hidden");
+  $("#thead").innerHTML=""; $("#tbody").innerHTML="";
+  const table = tab==="orders" ? "orders" : "rsvps";
+  const {data,error} = await sb.from(table).select("*").order("created_at",{ascending:false}).limit(500);
+  $("#loading").classList.add("hidden");
+  if(error){ $("#empty").textContent="Error: "+error.message; $("#empty").classList.remove("hidden"); $("#count").textContent=""; return; }
+  currentRows = data;
+  $("#count").textContent = data.length + (tab==="orders"?" order":" rsvp") + (data.length===1?"":"s");
+  if(!data.length){ $("#empty").textContent="Nothing here yet."; $("#empty").classList.remove("hidden"); return; }
+  tab==="orders" ? renderOrders(data) : renderRsvps(data);
+}
+
+async function updateStatus(id, value, el){
+  el.disabled=true;
+  const {error}=await sb.from("orders").update({status:value}).eq("id",id);
+  el.disabled=false;
+  if(error){ alert("Could not update status: "+error.message); }
+  else { const r=currentRows.find(x=>x.id===id); if(r) r.status=value; }
+}
+
+function renderOrders(rows){
+  $("#thead").innerHTML = `<tr><th>When</th><th>Status</th><th>Couple</th><th>Client</th><th>Phone</th><th>Plan</th><th>Design</th><th>Style</th></tr>`;
+  $("#tbody").innerHTML = rows.map((r,i)=>{
+    const d=r.details||{};
+    const extra = [
+      ["Wedding date",r.wedding_date],["Hashtag",d.hashtag],
+      ["Ceremony",[d.ceremony_venue,d.ceremony_time].filter(Boolean).join(" · ")],
+      ["Reception",[d.reception_venue,d.reception_time].filter(Boolean).join(" · ")],
+      ["Colours",d.colours],["Aso-ebi dealer",d.asoebi_dealer],
+      ["Gift account",[d.gift_bank,d.gift_acct].filter(Boolean).join(" · ")],
+      ["Story",d.story],["Notes",r.notes]
+    ].filter(x=>x[1]);
+    const st=r.status||"new";
+    return `<tr class="row" data-i="${i}">
+      <td class="when">${fmt(r.created_at)}</td>
+      <td><select class="status-sel" data-id="${esc(r.id)}" onclick="event.stopPropagation()">${STATUSES.map(s=>`<option value="${s}"${s===st?" selected":""}>${s}</option>`).join("")}</select></td>
+      <td>${cell([r.groom,r.bride].filter(Boolean).join(" & "))}</td>
+      <td>${cell(r.client_name)}</td>
+      <td>${cell(r.client_phone)}</td>
+      <td>${r.plan?`<span class="pill">${esc(r.plan)}</span>`:cell()}</td>
+      <td>${cell(r.design)}</td>
+      <td>${cell(r.style)}</td>
+    </tr>
+    <tr class="details-row hidden" data-d="${i}"><td colspan="8"><div class="details-grid">
+      ${extra.length?extra.map(x=>`<div><b>${esc(x[0])}</b>${esc(x[1])}</div>`).join(""):'<div class="na">No extra details.</div>'}
+    </div></td></tr>`;
+  }).join("");
+  bindRows();
+}
+
+function renderRsvps(rows){
+  $("#thead").innerHTML = `<tr><th>When</th><th>Invite</th><th>Guest</th><th>Attending</th><th>Guests</th><th>Meal</th><th>Message</th></tr>`;
+  $("#tbody").innerHTML = rows.map(r=>`<tr>
+    <td class="when">${fmt(r.created_at)}</td>
+    <td>${cell(r.invite_slug)}</td>
+    <td>${cell(r.guest_name)}</td>
+    <td>${cell(r.attending)}</td>
+    <td>${cell(r.guest_count)}</td>
+    <td>${cell(r.meal)}</td>
+    <td>${cell(r.message||r.song)}</td>
+  </tr>`).join("");
+}
+
+function bindRows(){
+  document.querySelectorAll("tr.row").forEach(tr=>tr.addEventListener("click",()=>{
+    const dr=document.querySelector(`tr[data-d="${tr.dataset.i}"]`); if(dr) dr.classList.toggle("hidden");
+  }));
+  document.querySelectorAll(".status-sel").forEach(sel=>sel.addEventListener("change",()=>updateStatus(sel.dataset.id, sel.value, sel)));
+}
+
+/* ---- CSV export (also your free manual backup) ---- */
+function toCSV(rows){
+  if(!rows.length) return "";
+  const keys=[...rows.reduce((s,r)=>{Object.keys(r).forEach(k=>s.add(k));return s;},new Set())];
+  const cell=v=>{ if(v==null) return ""; if(typeof v==="object") v=JSON.stringify(v); v=String(v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
+  return [keys.join(","), ...rows.map(r=>keys.map(k=>cell(r[k])).join(","))].join("\n");
+}
+$("#export").addEventListener("click", ()=>{
+  if(!currentRows.length){ alert("Nothing to export."); return; }
+  const blob=new Blob(["﻿"+toCSV(currentRows)],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download=`deeday-${tab}-${new Date().toISOString().slice(0,10)}.csv`; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+});
+
+refreshView();
+</script>
+</body>
+</html>
