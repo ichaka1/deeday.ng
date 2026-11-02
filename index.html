@@ -532,7 +532,7 @@ function toggleCard(i){
 /* modals */
 let _scrollY=0,_locked=false;
 function lockScroll(){ if(_locked) return; _scrollY=window.scrollY||document.documentElement.scrollTop; const b=document.body.style; b.position="fixed"; b.top=`-${_scrollY}px`; b.left="0"; b.right="0"; b.width="100%"; b.overflow="hidden"; _locked=true; }
-function unlockScroll(){ if(!_locked) return; const b=document.body.style; b.position=""; b.top=""; b.left=""; b.right=""; b.width=""; b.overflow=""; window.scrollTo(0,_scrollY); _locked=false; }
+function unlockScroll(){ if(!_locked) return; const b=document.body.style; b.position=""; b.top=""; b.left=""; b.right=""; b.width=""; b.overflow=""; window.scrollTo({top:_scrollY,behavior:"instant"}); _locked=false; }
 function navClass(id){ return id==="more-modal"?"more-open":id==="order-modal"?"order-open":null; }
 function updateCue(card){ if(!card) return; const sc=card.querySelector(".modal-scroll"); if(!sc) return; const scrollable=sc.scrollHeight>sc.clientHeight+4; const atBottom=sc.scrollTop+sc.clientHeight>=sc.scrollHeight-6; card.classList.toggle("no-scroll",!scrollable); card.classList.toggle("at-bottom",atBottom); }
 function openModal(id){ document.querySelectorAll(".modal.show").forEach(mm=>{ if(mm.id!==id) closeModal(mm.id); }); const m=$("#"+id); m.classList.add("show"); requestAnimationFrame(()=>requestAnimationFrame(()=>{ m.classList.add("open"); updateCue(m.querySelector(".modal-card")); })); lockScroll(); const nc=navClass(id); if(nc) document.querySelector(".bottomnav").classList.add(nc); }
