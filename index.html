@@ -483,8 +483,8 @@ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
       <div class="card-title">${t.title}</div>
       <p class="card-blurb">${t.blurb}</p>
       <div class="card-actions">
-        <button class="mini gold" onclick="openOrder(${i})">Use this look</button>
-        <a class="mini ghost" href="${t.url}" target="_blank" rel="noopener">Preview ↗</a>
+        <button class="mini gold" onclick="openOrder(${i})">Order this</button>
+        <a class="mini ghost" href="${t.url}" target="_blank" rel="noopener">Preview</a>
       </div>
     </div>
   </div>`).join("");
