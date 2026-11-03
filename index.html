@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>deeday.ng — Nigerian Wedding Invites</title>
+<title>deeday.ng | Nigerian Digital Wedding Invitations</title>
 <meta name="description" content="Beautiful Nigerian digital wedding invitations. Pick a design, fill one form, we build it for you." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <meta name="theme-color" content="#500310" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="deeday.ng — Nigerian Wedding Invitations" />
+<meta property="og:title" content="deeday.ng | Nigerian Digital Wedding Invitations" />
 <meta property="og:description" content="Invite your guests with style. Pick a design, fill one form, we build it." />
 <meta property="og:image" content="https://deeday.ng/assets/og.jpg" />
 <meta property="og:url" content="https://deeday.ng/" />
@@ -466,8 +466,8 @@ const TEMPLATES = [
   {tag:"Yoruba Traditional", title:"Aso-Oke & Gold", url:"https://deeday-yoruba-sample.vercel.app", thumb:"assets/thumb-0.jpg", plan:"Essential", blurb:"Wine, gold and aso-oke stripes, rich traditional Yoruba styling."}
 ];
 const PLANS = [
-  {key:"Essential", price:"₦30,000", sub:"Clean static designs", feats:["Any Essential (static) design","Personalized details, story & programme","RSVP via WhatsApp","Gift / bank details","Hosted for 12 months","2 revisions"]},
-  {key:"Signature", price:"₦60,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening animation + music + countdown","RSVP keepsake + messages to couple","Aso-ebi order on WhatsApp","2 revisions"]},
+  {key:"Essential", price:"₦30,000", sub:"Clean, simple designs", feats:["Any Essential design","Personalised details, story & programme","Live countdown to the day","RSVP via WhatsApp","Gift / bank details","Hosted for 12 months","2 revisions"]},
+  {key:"Signature", price:"₦60,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening animation + background music","Venue map, directions + add-to-calendar","Gift registry QR + bank details","RSVP keepsake + guest wishes to the couple","Aso-ebi order on WhatsApp","2 revisions"]},
   {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","Email invitations + reminders","RSVP dashboard for the couple","Custom link (couplename.deeday.ng)","Priority delivery","3 revisions"]}
 ];
 const $ = s => document.querySelector(s);
@@ -524,11 +524,11 @@ $("#car-prev").addEventListener("click",()=>sampleSwiper.slidePrev());
 $("#car-next").addEventListener("click",()=>sampleSwiper.slideNext());
 
 /* plan + design selects (design list follows the chosen plan) */
-$("#o-plan").innerHTML = '<option value="" disabled selected>Choose a plan</option>' + PLANS.map(p=>`<option value="${p.key}">${p.key} — ${p.price}</option>`).join("");
+$("#o-plan").innerHTML = '<option value="" disabled selected>Choose a plan</option>' + PLANS.map(p=>`<option value="${p.key}">${p.key} · ${p.price}</option>`).join("");
 function renderDesigns(keep){
   const plan=$("#o-plan").value;
   const list=TEMPLATES.map((t,i)=>({t,i})).filter(({t})=> plan!=="Essential" || t.plan==="Essential");
-  $("#o-template").innerHTML='<option value="" disabled selected>Choose a design</option>'+list.map(({t,i})=>`<option value="${i}">${t.tag} — ${t.title}</option>`).join("");
+  $("#o-template").innerHTML='<option value="" disabled selected>Choose a design</option>'+list.map(({t,i})=>`<option value="${i}">${t.tag} · ${t.title}</option>`).join("");
   if(keep!=null && list.some(x=>x.i===keep)) $("#o-template").value=String(keep);
 }
 $("#o-plan").addEventListener("change",()=>renderDesigns());
