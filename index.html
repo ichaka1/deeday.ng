@@ -142,6 +142,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .pp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
 .pp-badge{display:inline-block;background:var(--wine);color:#fff;font-weight:800;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:30px;margin-bottom:10px}
 
+.swipe-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin:-4px 0 14px;font-size:.8rem;font-weight:600;color:var(--muted);transition:opacity .5s ease}
+.swipe-hint svg{width:18px;height:18px;stroke:var(--wine);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:swipeNudge 1.5s ease-in-out infinite}
+@keyframes swipeNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.swipe-hint.gone{opacity:.35}
+.plan-pager{text-align:center;font-size:.78rem;font-weight:700;color:var(--muted);margin-top:12px}
+
 /* how it works */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .step{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
@@ -178,6 +184,22 @@ footer.foot a{color:var(--rose);font-weight:600}
 .navitem svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .navitem.active{color:var(--wine)}
 .navitem.active .lbl{background:var(--wine-tint);padding:2px 12px;border-radius:20px}
+
+/* desktop: the bottom bar folds into a donut menu, top right */
+.donut{display:none;flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;align-items:center;justify-content:center;box-shadow:0 8px 20px -12px rgba(0,0,0,.35);transition:transform .2s,background .2s}
+.donut:hover{transform:translateY(-1px);background:var(--panel)}
+.donut::before{content:"";width:20px;height:20px;box-sizing:border-box;border-radius:50%;border:6px solid var(--wine);transition:transform .45s cubic-bezier(.34,1.5,.5,1),border-width .3s ease}
+.donut.open::before{transform:rotate(180deg) scale(.7);border-width:10px}
+@media(min-width:900px){
+  body{padding-bottom:0}
+  .donut{display:flex}
+  .bottomnav{top:70px;bottom:auto;left:auto;right:max(20px,calc((100vw - 1040px)/2 + 20px));width:230px;flex-direction:column;gap:2px;padding:8px;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 50px -20px rgba(0,0,0,.4);transform-origin:top right;opacity:0;transform:scale(.4) translate(40px,-60px);pointer-events:none;transition:opacity .25s ease,transform .45s cubic-bezier(.2,.9,.25,1.05)}
+  .bottomnav.desk-open{opacity:1;transform:none;pointer-events:auto}
+  .navitem{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;font-size:.9rem;padding:11px 14px}
+  .navitem.active{background:var(--wine-tint)}
+  .navitem.active .lbl{background:none;padding:0}
+  .modal{padding:18px}
+}
 
 /* modals */
 .modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:18px 18px 104px;background:rgba(28,4,9,0);opacity:0;transition:opacity .4s ease,background .4s ease}
@@ -235,7 +257,10 @@ footer.foot a{color:var(--rose);font-weight:600}
 <header class="topbar">
   <div class="wrap">
     <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word">deeday.ng</span></a>
-    <button class="pill" onclick="openOrder()">Order an invite</button>
+    <div class="topbar-right">
+      <button class="pill" onclick="openOrder()">Order an invite</button>
+      <button class="donut" id="donut" aria-label="Menu" aria-expanded="false"></button>
+    </div>
   </div>
 </header>
 
@@ -295,7 +320,9 @@ footer.foot a{color:var(--rose);font-weight:600}
       <button type="button" data-k="Signature">Signature</button>
       <button type="button" data-k="Grand">Grand</button>
     </div>
+    <p class="swipe-hint reveal" id="swipe-hint">Swipe to see the other packages<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></p>
     <div class="swiper plan-swiper reveal" id="plan-swiper"><div class="swiper-wrapper" id="plans-grid"></div></div>
+    <p class="plan-pager" id="plan-pager"></p>
   </div>
 </section>
 
@@ -467,9 +494,9 @@ const TEMPLATES = [
   {tag:"Yoruba Traditional", title:"Aso-Oke", url:"https://aso-oke.deeday.ng", thumb:"assets/thumb-0.jpg", plan:"Essential", blurb:"Wine, gold and aso-oke stripes, rich traditional Yoruba styling."}
 ];
 const PLANS = [
-  {key:"Essential", price:"₦35,000", sub:"Clean, simple designs", feats:["Any Essential design","Your own link: yournames.deeday.ng","Personalised details, story & programme","Live countdown to the day","RSVP via WhatsApp","Gift / bank details","Hosted for 12 months","2 revisions"]},
-  {key:"Signature", price:"₦65,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening animation + background music","Venue map, directions + add-to-calendar","Gift registry QR + bank details","RSVP keepsake + guest wishes to the couple","Aso-ebi order on WhatsApp","2 revisions"]},
-  {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","Personal reminder messages to your guests","Shared live guest list (Google Sheet)","Priority delivery","3 revisions"]}
+  {key:"Essential", price:"₦35,000", sub:"Clean, simple designs", feats:["Any Essential design","Your own link: yournames.deeday.ng","Personalised details, story & programme","Live countdown to the day","Venue directions + add-to-calendar","RSVP via WhatsApp","Gift box with one-tap account copy","Hosted for 12 months","2 revisions"]},
+  {key:"Signature", price:"₦65,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening screen + background music","Photo slideshow + gallery (up to 10 photos)","Love story timeline","Schedule of events + dress code colours","Aso-ebi order on WhatsApp","RSVP keepsake + guest wishes to the couple","Gift registry QR code","2 revisions"]},
+  {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","PIN-protected private event (e.g. after party)","Guest photo wall for the day","Up to 25 photos in your gallery","Personal reminder messages to your guests","Shared live guest list (Google Sheet)","Priority delivery","3 revisions"]}
 ];
 const $ = s => document.querySelector(s);
 $("#yr").textContent = new Date().getFullYear();
@@ -510,8 +537,14 @@ $("#plans-grid").innerHTML = PLANS.map(p=>`
   </div>`).join("");
 function moveIndicator(k){ const b=$("#plan-tabs").querySelector(`button[data-k="${k}"]`); const ind=$("#tab-ind"); if(b&&ind){ ind.style.left=b.offsetLeft+"px"; ind.style.width=b.offsetWidth+"px"; } }
 function setActiveTab(k){ $("#plan-tabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.k===k)); moveIndicator(k); }
-const planSwiper=new Swiper("#plan-swiper",{slidesPerView:1,spaceBetween:16,grabCursor:true,autoHeight:true,speed:650,
-  on:{slideChange(){ setActiveTab(PLANS[planSwiper.activeIndex].key); }, init(){ setActiveTab(PLANS[0].key); }}});
+function setPager(i){ $("#plan-pager").textContent=`${i+1} of ${PLANS.length} · ${PLANS[i].key}`; }
+const planSwiper=new Swiper("#plan-swiper",{slidesPerView:1.1,spaceBetween:12,grabCursor:true,autoHeight:true,speed:650,
+  on:{slideChange(){ setActiveTab(PLANS[planSwiper.activeIndex].key); setPager(planSwiper.activeIndex); $("#swipe-hint").classList.add("gone"); }, init(){ setActiveTab(PLANS[0].key); setPager(0); }}});
+/* nudge the cards once when the plans come into view, so people see they slide */
+const nudgeIO=new IntersectionObserver(en=>{ if(!en[0].isIntersecting) return; nudgeIO.disconnect();
+  setTimeout(()=>{ if(planSwiper.activeIndex) return; const w=planSwiper.wrapperEl; w.style.transition="transform .45s cubic-bezier(.3,.7,.3,1)"; w.style.transform=`translate3d(${planSwiper.translate-46}px,0,0)`;
+    setTimeout(()=>{ w.style.transform=`translate3d(${planSwiper.translate}px,0,0)`; setTimeout(()=>{ w.style.transition=""; },500); },520); },700); },{threshold:.5});
+nudgeIO.observe($("#plan-swiper"));
 $("#plan-tabs").querySelectorAll("button").forEach((b,idx)=>b.addEventListener("click",()=>planSwiper.slideTo(idx)));
 window.addEventListener("resize",()=>{ const a=$("#plan-tabs button.active"); if(a) moveIndicator(a.dataset.k); });
 
@@ -643,6 +676,12 @@ items.forEach(it=>it.addEventListener("click",()=>{
 const secs=["home","samples","about"].map(id=>document.getElementById(id));
 const spy=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){const id=e.target.id;items.forEach(it=>it.classList.toggle("active",it.dataset.target===id));}}),{rootMargin:"-45% 0px -50% 0px"});
 secs.forEach(s=>spy.observe(s));
+const nav=document.querySelector(".bottomnav"), donut=$("#donut");
+function setDesk(open){ nav.classList.toggle("desk-open",open); donut.classList.toggle("open",open); donut.setAttribute("aria-expanded",open); }
+donut.addEventListener("click",e=>{ e.stopPropagation(); setDesk(!nav.classList.contains("desk-open")); });
+items.forEach(it=>it.addEventListener("click",()=>setDesk(false)));
+document.addEventListener("click",e=>{ if(nav.classList.contains("desk-open") && !nav.contains(e.target)) setDesk(false); });
+addEventListener("keydown",e=>{ if(e.key==="Escape") setDesk(false); });
 </script>
 </body>
 </html>
