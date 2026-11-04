@@ -119,6 +119,14 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .car-arrow:hover{background:var(--panel)}
 .car-arrow.prev{left:2px} .car-arrow.next{right:2px}
 @media(max-width:560px){.car-arrow{display:none}}
+@media(min-width:900px){
+  .sampleswiper{max-width:1080px;margin:0 auto;padding:0 20px}
+  #sample-swiper{overflow:visible;padding:6px 0 0}
+  #sample-swiper .swiper-wrapper{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 22px;transform:none!important}
+  #sample-swiper .swiper-slide{width:auto;height:auto;max-height:none;aspect-ratio:270/502;filter:none;opacity:1;pointer-events:auto;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+  #sample-swiper .swiper-slide:hover{transform:translateY(-8px);box-shadow:0 0 0 1.5px rgba(107,15,31,.5),0 30px 50px -24px rgba(0,0,0,.6)}
+  .sample-dots,.car-arrow{display:none!important}
+}
 /* plans */
 .plans{display:flex;flex-direction:column;gap:16px;max-width:620px;margin:0 auto}
 .plan{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 22px;box-shadow:0 10px 30px -20px rgba(0,0,0,.25)}
@@ -185,21 +193,27 @@ footer.foot a{color:var(--rose);font-weight:600}
 .navitem.active{color:var(--wine)}
 .navitem.active .lbl{background:var(--wine-tint);padding:2px 12px;border-radius:20px}
 
-/* desktop: the bottom bar folds into a donut menu, top right */
-.donut{display:none;flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;align-items:center;justify-content:center;box-shadow:0 8px 20px -12px rgba(0,0,0,.35);transition:transform .2s,background .2s}
-.donut:hover{transform:translateY(-1px);background:var(--panel)}
-.donut::before{content:"";width:20px;height:20px;box-sizing:border-box;border-radius:50%;border:6px solid var(--wine);transition:transform .45s cubic-bezier(.34,1.5,.5,1),border-width .3s ease}
-.donut.open::before{transform:rotate(180deg) scale(.7);border-width:10px}
+/* desktop: the bottom bar becomes a three-line menu, top right */
+.donut{display:none;flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 8px 20px -12px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.34,1.4,.5,1),background .2s}
+.donut i{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:width .3s ease,background .2s}
+.donut i:nth-child(2){width:13px}
+.donut:hover{background:var(--panel)}
+.donut.open{transform:rotate(90deg);background:var(--wine-tint)}
+.donut.open i{width:18px;background:var(--wine)}
+.desk-menu{position:fixed;z-index:95;top:70px;right:max(20px,calc((100vw - 1040px)/2 + 20px));width:320px;max-height:calc(100vh - 90px);overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:10px;box-shadow:0 30px 60px -24px rgba(0,0,0,.45);transform-origin:top right;opacity:0;transform:scale(.6) translate(30px,-40px);pointer-events:none;transition:opacity .25s ease,transform .45s cubic-bezier(.2,.9,.25,1.05)}
+.desk-menu.open{opacity:1;transform:none;pointer-events:auto}
+.desk-menu .dm-label{font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 12px 4px}
+.desk-menu .more-row{padding:10px}
+.desk-menu .more-ico{width:36px;height:36px}
+.desk-menu .appearance{padding:8px 10px}
+.desk-menu hr{border:none;border-top:1px solid var(--line);margin:6px 8px}
 @media(min-width:900px){
   body{padding-bottom:0}
   .donut{display:flex}
-  .bottomnav{top:70px;bottom:auto;left:auto;right:max(20px,calc((100vw - 1040px)/2 + 20px));width:230px;flex-direction:column;gap:2px;padding:8px;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 50px -20px rgba(0,0,0,.4);transform-origin:top right;opacity:0;transform:scale(.4) translate(40px,-60px);pointer-events:none;transition:opacity .25s ease,transform .45s cubic-bezier(.2,.9,.25,1.05)}
-  .bottomnav.desk-open{opacity:1;transform:none;pointer-events:auto}
-  .navitem{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;font-size:.9rem;padding:11px 14px}
-  .navitem.active{background:var(--wine-tint)}
-  .navitem.active .lbl{background:none;padding:0}
+  .bottomnav{display:none}
   .modal{padding:18px}
 }
+@media(max-width:899px){.desk-menu{display:none}}
 
 /* modals */
 .modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:18px 18px 104px;background:rgba(28,4,9,0);opacity:0;transition:opacity .4s ease,background .4s ease}
@@ -259,7 +273,7 @@ footer.foot a{color:var(--rose);font-weight:600}
     <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word">deeday.ng</span></a>
     <div class="topbar-right">
       <button class="pill" onclick="openOrder()">Order an invite</button>
-      <button class="donut" id="donut" aria-label="Menu" aria-expanded="false"></button>
+      <button class="donut" id="donut" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
     </div>
   </div>
 </header>
@@ -375,7 +389,6 @@ footer.foot a{color:var(--rose);font-weight:600}
   <div class="navitem active" data-target="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span class="lbl">Home</span></div>
   <div class="navitem" data-target="samples"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span class="lbl">Samples</span></div>
   <div class="navitem" data-action="order"><svg viewBox="0 0 24 24"><path d="M5 7h14"/><path d="M5 12h14"/><path d="M5 17h9"/></svg><span class="lbl">Order</span></div>
-  <div class="navitem" data-target="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="lbl">About</span></div>
   <div class="navitem" data-action="more"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg><span class="lbl">More</span></div>
 </nav>
 
@@ -505,7 +518,7 @@ $("#yr").textContent = new Date().getFullYear();
 const root=document.documentElement;
 const mq=matchMedia("(prefers-color-scheme: dark)");
 function currentPref(){ let p=null; try{p=localStorage.getItem("deeday-theme");}catch{} return (p==="light"||p==="dark"||p==="system")?p:"light"; }
-function paintSeg(pref){ document.querySelectorAll("#theme-seg button").forEach(b=>b.classList.toggle("active",b.dataset.pref===pref)); }
+function paintSeg(pref){ document.querySelectorAll("#theme-seg button, .theme-seg button").forEach(b=>b.classList.toggle("active",b.dataset.pref===pref)); }
 function applyTheme(pref){ const eff = pref==="system" ? (mq.matches?"dark":"light") : pref; root.setAttribute("data-theme",eff); paintSeg(pref); }
 function setThemePref(pref){ try{localStorage.setItem("deeday-theme",pref);}catch{} applyTheme(pref); }
 document.querySelectorAll("#theme-seg button").forEach(b=>b.addEventListener("click",()=>setThemePref(b.dataset.pref)));
@@ -513,7 +526,7 @@ mq.addEventListener("change",()=>{ if(currentPref()==="system") applyTheme("syst
 applyTheme(currentPref());
 
 /* render cards */
-$("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
+function renderSamples(){ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
   <div class="swiper-slide card" data-i="${i}">
     <div class="card-thumb"><img src="${t.thumb}" alt="${t.title} preview" loading="lazy"></div>
     <div class="card-fade"></div>
@@ -527,7 +540,7 @@ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
         <a class="mini ghost" href="${t.url}" target="_blank" rel="noopener">Preview</a>
       </div>
     </div>
-  </div>`).join("");
+  </div>`).join(""); }
 $("#plans-grid").innerHTML = PLANS.map(p=>`
   <div class="swiper-slide plan ${p.pop?'pop':''}">
     ${p.pop?'<span class="pp-badge">Most popular</span>':''}
@@ -538,24 +551,27 @@ $("#plans-grid").innerHTML = PLANS.map(p=>`
 function moveIndicator(k){ const b=$("#plan-tabs").querySelector(`button[data-k="${k}"]`); const ind=$("#tab-ind"); if(b&&ind){ ind.style.left=b.offsetLeft+"px"; ind.style.width=b.offsetWidth+"px"; } }
 function setActiveTab(k){ $("#plan-tabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.k===k)); moveIndicator(k); }
 function setPager(i){ $("#plan-pager").textContent=`${i+1} of ${PLANS.length} · ${PLANS[i].key}`; }
-const planSwiper=new Swiper("#plan-swiper",{slidesPerView:1.1,spaceBetween:12,grabCursor:true,autoHeight:true,speed:650,
+const planSwiper=new Swiper("#plan-swiper",{slidesPerView:1,spaceBetween:16,grabCursor:true,autoHeight:true,speed:650,
   on:{slideChange(){ setActiveTab(PLANS[planSwiper.activeIndex].key); setPager(planSwiper.activeIndex); $("#swipe-hint").classList.add("gone"); }, init(){ setActiveTab(PLANS[0].key); setPager(0); }}});
-/* nudge the cards once when the plans come into view, so people see they slide */
-const nudgeIO=new IntersectionObserver(en=>{ if(!en[0].isIntersecting) return; nudgeIO.disconnect();
-  setTimeout(()=>{ if(planSwiper.activeIndex) return; const w=planSwiper.wrapperEl; w.style.transition="transform .45s cubic-bezier(.3,.7,.3,1)"; w.style.transform=`translate3d(${planSwiper.translate-46}px,0,0)`;
-    setTimeout(()=>{ w.style.transform=`translate3d(${planSwiper.translate}px,0,0)`; setTimeout(()=>{ w.style.transition=""; },500); },520); },700); },{threshold:.5});
-nudgeIO.observe($("#plan-swiper"));
+
 $("#plan-tabs").querySelectorAll("button").forEach((b,idx)=>b.addEventListener("click",()=>planSwiper.slideTo(idx)));
 window.addEventListener("resize",()=>{ const a=$("#plan-tabs button.active"); if(a) moveIndicator(a.dataset.k); });
 
 /* samples coverflow */
-const sampleSwiper = new Swiper("#sample-swiper",{
-  effect:"coverflow", grabCursor:true, centeredSlides:true, slidesPerView:"auto", loop:true, keyboard:{enabled:true}, speed:650,
-  pagination:{el:"#sample-dots", clickable:true},
-  coverflowEffect:{rotate:0, stretch:0, depth:80, modifier:1, scale:.84, slideShadows:false}
-});
-$("#car-prev").addEventListener("click",()=>sampleSwiper.slidePrev());
-$("#car-next").addEventListener("click",()=>sampleSwiper.slideNext());
+const DESK=matchMedia("(min-width:900px)"); let sampleSwiper=null;
+function setupSamples(){
+  if(sampleSwiper){ sampleSwiper.destroy(true,true); sampleSwiper=null; }
+  renderSamples();
+  if(DESK.matches) return;   // desktop shows a plain grid
+  sampleSwiper = new Swiper("#sample-swiper",{
+    effect:"coverflow", grabCursor:true, centeredSlides:true, slidesPerView:"auto", loop:true, keyboard:{enabled:true}, speed:650,
+    pagination:{el:"#sample-dots", clickable:true},
+    coverflowEffect:{rotate:0, stretch:0, depth:80, modifier:1, scale:.84, slideShadows:false}
+  });
+}
+setupSamples(); DESK.addEventListener("change",setupSamples);
+$("#car-prev").addEventListener("click",()=>sampleSwiper&&sampleSwiper.slidePrev());
+$("#car-next").addEventListener("click",()=>sampleSwiper&&sampleSwiper.slideNext());
 
 /* plan + design selects (design list follows the chosen plan) */
 $("#o-plan").innerHTML = '<option value="" disabled selected>Choose a plan</option>' + PLANS.map(p=>`<option value="${p.key}">${p.key} · ${p.price}</option>`).join("");
@@ -676,11 +692,22 @@ items.forEach(it=>it.addEventListener("click",()=>{
 const secs=["home","samples","about"].map(id=>document.getElementById(id));
 const spy=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){const id=e.target.id;items.forEach(it=>it.classList.toggle("active",it.dataset.target===id));}}),{rootMargin:"-45% 0px -50% 0px"});
 secs.forEach(s=>spy.observe(s));
-const nav=document.querySelector(".bottomnav"), donut=$("#donut");
-function setDesk(open){ nav.classList.toggle("desk-open",open); donut.classList.toggle("open",open); donut.setAttribute("aria-expanded",open); }
-donut.addEventListener("click",e=>{ e.stopPropagation(); setDesk(!nav.classList.contains("desk-open")); });
-items.forEach(it=>it.addEventListener("click",()=>setDesk(false)));
-document.addEventListener("click",e=>{ if(nav.classList.contains("desk-open") && !nav.contains(e.target)) setDesk(false); });
+/* desktop menu = page links + everything in More */
+const donut=$("#donut"), desk=document.createElement("nav"); desk.className="desk-menu"; desk.id="desk-menu"; desk.setAttribute("aria-label","Menu");
+const NAV_ICO={home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',samples:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',plans:'<path d="M4 7h16v10H4z"/><path d="M4 11h16"/>',about:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',order:'<path d="M5 7h14"/><path d="M5 12h14"/><path d="M5 17h9"/>'};
+const NAV_LINKS=[["home","Home","Back to the top"],["samples","Samples","Browse every design"],["plans","Plans & prices","Essential, Signature, Grand"],["about","About us","Who we are"],["order","Order an invite","Fill one form, we build it"]];
+desk.innerHTML='<div class="dm-label">Menu</div>'+NAV_LINKS.map(([k,t,sub])=>`<button class="more-row" data-go="${k}"><span class="more-ico"><svg viewBox="0 0 24 24">${NAV_ICO[k]}</svg></span><span>${t}<span class="more-sub">${sub}</span></span></button>`).join("")+'<hr><div class="dm-label">More</div>';
+const moreClone=document.querySelector("#more-modal .more-list").cloneNode(true);
+moreClone.querySelectorAll("[id]").forEach(n=>{ if(n.id==="theme-seg") n.classList.add("theme-seg"); n.removeAttribute("id"); });
+moreClone.querySelectorAll('[onclick^="moreGo"]').forEach(n=>{ const id=n.getAttribute("onclick").match(/'(.+?)'/)[1]; n.removeAttribute("onclick"); n.dataset.go=id; });
+moreClone.querySelectorAll("a.more-row").forEach(n=>{ if(!n.getAttribute("href")) n.href=WA; });
+desk.appendChild(moreClone); document.body.appendChild(desk);
+moreClone.querySelectorAll(".theme-seg button").forEach(b=>b.addEventListener("click",()=>setThemePref(b.dataset.pref)));
+paintSeg(currentPref());
+function setDesk(open){ desk.classList.toggle("open",open); donut.classList.toggle("open",open); donut.setAttribute("aria-expanded",open); }
+donut.addEventListener("click",e=>{ e.stopPropagation(); setDesk(!desk.classList.contains("open")); });
+desk.addEventListener("click",e=>{ const g=e.target.closest("[data-go]"); if(g){ setDesk(false); if(g.dataset.go==="order") openOrder(); else document.getElementById(g.dataset.go).scrollIntoView({behavior:"smooth",block:"start"}); } else if(e.target.closest("a")) setDesk(false); });
+document.addEventListener("click",e=>{ if(desk.classList.contains("open") && !desk.contains(e.target)) setDesk(false); });
 addEventListener("keydown",e=>{ if(e.key==="Escape") setDesk(false); });
 </script>
 </body>
