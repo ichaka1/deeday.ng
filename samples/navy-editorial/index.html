@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Adanna & Tobi | The Archival Edition</title>
+<meta name="description" content="Adanna & Tobi are getting married on Saturday, 27th November 2027 in Lagos. You are invited." />
+<meta property="og:title" content="Adanna & Tobi | The Archival Edition" />
+<meta property="og:description" content="27 · 11 · 27 · Lagos, Nigeria. Join the celebration." />
+<meta property="og:image" content="https://navy-editorial.deeday.ng/assets/story.jpg" />
+<meta name="theme-color" content="#1B2A4A" />
+<link rel="icon" type="image/png" href="assets/deeday-crest.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --paper:#F6F7F9; --navy:#1B2A4A; --navy-2:#24365E; --ink:#1A2233; --muted:#677084; --line:#E3E6EC;
+  --gold:#B8935A; --gold-2:#9C7A45; --sky:#8FA3C2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit}
+.wrap{max-width:620px;margin:0 auto;padding:0 24px}
+.script{font-family:"Dancing Script",cursive;font-weight:700}
+.kicker{font-size:.66rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2)}
+.h2{font-family:"Dancing Script",cursive;font-weight:700;font-size:clamp(2rem,8vw,2.6rem);line-height:1.15;color:var(--navy);margin-top:6px}
+.rule{width:44px;height:1px;background:var(--gold);margin:16px auto 0}
+.section-pad{padding:80px 0}
+.center{text-align:center}
+.lead{color:var(--muted);font-size:.92rem;max-width:460px;margin:14px auto 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;font-weight:700;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:15px 26px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:var(--navy-2)}
+.btn.line{background:none;color:var(--navy)}
+.btn.line:hover{background:var(--navy);color:#fff}
+.btn.gold{background:var(--gold);border-color:var(--gold)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* nav */
+#nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;justify-content:space-between;padding:calc(16px + env(safe-area-inset-top)) 22px 14px;color:#fff;transition:background .35s,color .35s,box-shadow .35s}
+#nav.solid{background:rgba(255,255,255,.94);color:var(--navy);box-shadow:0 1px 0 var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mono{font-size:.72rem;font-weight:700;letter-spacing:.42em;text-decoration:none}
+.burger{width:40px;height:40px;border:none;background:none;color:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:5px}
+.burger i{display:block;height:1.5px;width:22px;background:currentColor;transition:transform .35s,opacity .3s,width .3s}
+.burger i:nth-child(2){width:16px}
+.menu-open .burger i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.menu-open .burger i:nth-child(2){opacity:0}
+.menu-open .burger i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:65;background:var(--navy);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:90px 34px 40px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.menu-open .menu{opacity:1;visibility:visible}
+.menu-open #nav{color:#fff;background:none;box-shadow:none}
+.menu a{display:block;font-family:"Dancing Script",cursive;font-weight:700;font-size:2rem;line-height:1.5;text-decoration:none;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.menu-open .menu a{opacity:1;transform:none}
+.menu a small{font-family:"Plus Jakarta Sans",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.3em;color:var(--gold);margin-right:14px;vertical-align:middle}
+
+/* hero */
+#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center}
+#hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform:scale(1.06);animation:slowzoom 14s ease-out forwards}
+@keyframes slowzoom{to{transform:scale(1)}}
+#hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,26,46,.45),rgba(18,26,46,.25) 40%,rgba(18,26,46,.7))}
+.hero-in{position:relative;z-index:2;padding:0 22px;margin-top:4vh}
+.hero-in .kicker{color:#E7D3AE}
+.hero-names{font-family:"Dancing Script",cursive;font-weight:700;font-size:clamp(3rem,14vw,5.2rem);line-height:1.02;margin:12px 0 18px;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+.hero-meta{font-size:.72rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase}
+.scroll{position:absolute;z-index:2;bottom:28px;left:50%;transform:translateX(-50%);font-size:.58rem;font-weight:700;letter-spacing:.34em;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.85;text-decoration:none}
+.scroll i{width:1px;height:30px;background:#fff;animation:cue 1.9s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* story */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.duo img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.duo img:last-child{margin-top:34px}
+#story .kicker{margin-top:34px;display:block}
+#story .h2{text-align:left}
+#story p{color:var(--muted);font-size:.93rem;margin-top:14px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+
+/* countdown */
+.countdown-section{background:var(--navy);color:#fff;text-align:center}
+.countdown-section .h2{color:#fff}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:26px}
+.cd b{display:block;font-size:clamp(2rem,9vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+.cd span{font-size:.58rem;font-weight:700;letter-spacing:.24em;color:#C9D3E6}
+
+/* events */
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:30px}
+.tabs button{border:none;border-right:1px solid var(--line);background:#fff;color:var(--muted);font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:18px 6px;cursor:pointer;transition:background .25s,color .25s;line-height:1.4}
+.tabs button:last-child{border-right:none}
+.tabs button.on{background:var(--navy);color:#fff}
+.ev{display:none;text-align:center;padding:38px 6px 0;animation:fade .5s ease}
+.ev.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ev h3{font-family:"Dancing Script",cursive;font-weight:700;font-size:1.9rem;color:var(--navy)}
+.ev .venue{font-weight:600;margin-top:6px}
+.ev .time{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--gold-2);margin-top:4px;text-transform:uppercase}
+.ev p{color:var(--muted);font-size:.92rem;margin:14px auto 0;max-width:420px}
+.ev .btn-row{justify-content:center}
+
+/* schedule */
+.order{margin-top:34px}
+.ord{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.ord:last-child{border-bottom:1px solid var(--line)}
+.ord .t{font-size:1.2rem;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.ord h4{font-size:1rem;font-weight:700}
+.ord p{color:var(--muted);font-size:.88rem;margin-top:3px}
+
+/* gallery: film strip */
+.strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px 24px 10px;margin:0 -24px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.frame{flex:none;width:68%;max-width:300px;scroll-snap-align:center;background:#111;padding:10px 10px 30px;position:relative;cursor:zoom-in;border:none}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.15)}
+.frame span{position:absolute;left:12px;bottom:8px;font-size:.56rem;font-weight:700;letter-spacing:.24em;color:#B9B9B9}
+.frame::before,.frame::after{content:"";position:absolute;left:8px;right:8px;height:4px;background:repeating-linear-gradient(90deg,#3a3a3a 0 8px,transparent 8px 14px)}
+.frame::before{top:3px}.frame::after{bottom:20px}
+.strip-hint{text-align:center;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--muted);margin-top:10px}
+.lightbox{position:fixed;inset:0;z-index:95;background:rgba(10,14,24,.95);display:none;align-items:center;justify-content:center}
+.lightbox.show{display:flex}
+.lightbox img{max-width:92vw;max-height:80vh}
+.lb-btn{position:absolute;border:none;background:rgba(255,255,255,.1);color:#fff;width:46px;height:46px;border-radius:50%;font-size:22px;cursor:pointer}
+.lb-x{top:18px;right:18px}.lb-prev{left:12px;top:50%;transform:translateY(-50%)}.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+.lb-count{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#C9D3E6;font-size:.7rem;letter-spacing:.24em}
+
+/* quote */
+#quote{position:relative;padding:120px 0;color:#fff;text-align:center;overflow:hidden}
+#quote img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:grayscale(1)}
+#quote::after{content:"";position:absolute;inset:0;background:rgba(27,42,74,.72)}
+#quote .wrap{position:relative;z-index:2}
+#quote .mark{font-family:"Dancing Script",cursive;font-size:4rem;line-height:.5;color:var(--gold)}
+#quote blockquote{font-family:"Dancing Script",cursive;font-weight:700;font-size:clamp(1.7rem,7vw,2.3rem);line-height:1.3;margin-top:18px}
+#quote cite{display:block;font-style:normal;font-size:.68rem;font-weight:700;letter-spacing:.3em;margin-top:18px;color:#E7D3AE}
+
+/* rsvp */
+.form{margin-top:30px;text-align:left}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.62rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.fg input,.fg select,.fg textarea{width:100%;padding:14px 2px;border:none;border-bottom:1px solid #C8CEDA;background:transparent;font-family:inherit;font-size:16px;color:var(--ink);border-radius:0}
+.fg select{appearance:none;-webkit-appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23677084' stroke-width='1.5'/%3E%3C/svg%3E") right 4px center no-repeat}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-bottom-color:var(--navy)}
+.form .btn{width:100%;margin-top:8px}
+.note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:12px}
+.thanks{display:none;margin-top:30px;border:1px solid var(--line);padding:34px 22px;text-align:center}
+.thanks h3{font-family:"Dancing Script",cursive;font-weight:700;font-size:2.1rem;color:var(--navy)}
+.thanks p{color:var(--muted);margin-top:8px;font-size:.92rem}
+.thanks .ref{display:inline-block;margin-top:14px;font-size:.66rem;font-weight:700;letter-spacing:.26em;border:1px solid var(--line);padding:7px 14px}
+
+/* cards */
+.cards{display:grid;gap:14px;margin-top:30px;text-align:left}
+.card{border:1px solid var(--line);padding:22px}
+.card h4{font-size:1.02rem;font-weight:700;color:var(--navy)}
+.card p{color:var(--muted);font-size:.88rem;margin-top:4px}
+.card a{display:inline-block;margin-top:12px;font-size:.64rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.paper{background:var(--paper)}
+
+/* people */
+.people{display:grid;grid-template-columns:1fr 1fr;gap:26px 16px;margin-top:34px}
+.person{text-align:center}
+.person i{display:flex;align-items:center;justify-content:center;width:92px;height:92px;margin:0 auto;border-radius:50%;background:var(--navy);color:#fff;font-style:normal;font-family:"Dancing Script",cursive;font-weight:700;font-size:2rem;box-shadow:0 0 0 6px #fff,0 0 0 7px var(--line)}
+.person b{display:block;margin-top:16px;font-size:.95rem}
+.person span{font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--gold-2)}
+
+/* details */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{padding:24px 6px;text-align:center;border-right:1px solid var(--line)}
+.fact:last-child{border-right:none}
+.fact svg{width:20px;height:20px;stroke:var(--gold-2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fact b{display:block;font-size:.9rem;margin-top:10px}
+.fact span{font-size:.76rem;color:var(--muted)}
+#map iframe{display:block;width:100%;height:340px;border:0;filter:grayscale(.9) contrast(1.05)}
+
+/* gifts */
+.fund{border:1px solid var(--line);padding:24px;text-align:left}
+.fund h4{font-family:"Dancing Script",cursive;font-weight:700;font-size:1.6rem;color:var(--navy)}
+.fund p{color:var(--muted);font-size:.88rem;margin-top:4px}
+.goal{display:flex;justify-content:space-between;font-size:.62rem;font-weight:700;letter-spacing:.2em;margin-top:16px;color:var(--muted)}
+.bar{height:3px;background:var(--line);margin-top:8px}
+.bar i{display:block;height:100%;background:var(--gold);width:0;transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.fund .btn{margin-top:18px;width:100%}
+.bank{margin-top:14px;background:var(--navy);color:#fff;padding:24px;text-align:left;position:relative;overflow:hidden}
+.bank::after{content:"";position:absolute;right:-50px;top:-50px;width:170px;height:170px;border-radius:50%;border:1px solid rgba(184,147,90,.4)}
+.bank small{font-size:.58rem;font-weight:700;letter-spacing:.28em;color:#E7D3AE}
+.bank .acct{font-size:1.45rem;font-weight:700;letter-spacing:.16em;margin-top:12px}
+.bank .nm{font-size:.82rem;color:#C9D3E6;margin-top:2px}
+.bank button{position:relative;z-index:2;margin-top:16px;border:1px solid rgba(255,255,255,.4);background:none;color:#fff;padding:9px 16px;font-size:.62rem;font-weight:700;letter-spacing:.22em;cursor:pointer}
+
+/* faq */
+.faq{margin-top:30px;text-align:left}
+.q{border-top:1px solid var(--line)}
+.q:last-child{border-bottom:1px solid var(--line)}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;border:none;background:none;text-align:left;padding:20px 0;font-size:.96rem;font-weight:600;color:var(--ink);cursor:pointer}
+.q button i{flex:none;width:12px;height:12px;position:relative}
+.q button i::before,.q button i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--navy);transition:transform .3s}
+.q button i::after{transform:rotate(90deg)}
+.q.open button i::after{transform:rotate(0)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.q.open .a{grid-template-rows:1fr}
+.q .a div{overflow:hidden}
+.q .a p{color:var(--muted);font-size:.9rem;padding-bottom:20px}
+
+#footer{background:var(--navy);color:#fff;text-align:center;padding:70px 24px 120px}
+#footer .names{font-family:"Dancing Script",cursive;font-weight:700;font-size:2.6rem}
+#footer .meta{font-size:.64rem;font-weight:700;letter-spacing:.3em;color:#E7D3AE;margin-top:6px}
+#footer .made{margin-top:34px;font-size:.76rem;color:#C9D3E6}
+#footer .made a{color:#fff;font-weight:700;text-decoration:none}
+#footer .credit{font-size:.66rem;color:#8FA3C2;margin-top:6px}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:10px 18px;font-size:.82rem;opacity:0;transition:.3s;z-index:120;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(min-width:760px){
+  .cards.three{grid-template-columns:repeat(3,1fr)}
+  .people{grid-template-columns:repeat(4,1fr)}
+  .frame{width:30%}
+}
+
+/* ---------- now-playing mini player: deeday.ng card + song credit ---------- */
+.np{position:fixed;z-index:60;left:50%;bottom:28px;transform:translate(-50%,20px) scale(.94);width:min(320px,calc(100% - 32px));height:60px;padding:8px;border-radius:12px;display:flex;align-items:center;gap:10px;color:#fff;opacity:0;pointer-events:none;overflow:hidden;
+  background:linear-gradient(180deg,#2E4372,#1B2A4A);box-shadow:0 16px 36px -14px rgba(0,0,0,.65);
+  transition:left .8s cubic-bezier(.65,0,.25,1),bottom .8s cubic-bezier(.65,0,.25,1),transform .8s cubic-bezier(.65,0,.25,1),width .8s cubic-bezier(.65,0,.25,1),height .8s cubic-bezier(.65,0,.25,1),padding .8s cubic-bezier(.65,0,.25,1),opacity .5s ease}
+.np.show{opacity:1;pointer-events:auto;transform:translate(-50%,0) scale(1)}
+.np.docked{left:calc(100% - 14px);bottom:18px;transform:translate(-100%,0);width:52px;height:52px;padding:5px;cursor:pointer}
+.np-art{position:relative;flex:none;width:42px;height:42px;border-radius:6px;overflow:hidden;background:#500310;box-shadow:0 4px 10px -4px rgba(0,0,0,.5)}
+.np-art img{width:100%;height:100%;display:block}
+.np-eq{position:absolute;right:3px;bottom:3px;display:flex;align-items:flex-end;gap:2px;height:12px;padding:2px 3px;border-radius:4px;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s}
+.np-eq i{width:2px;border-radius:1px;background:#fff;height:30%;animation:eq 1s ease-in-out infinite}
+.np-eq i:nth-child(2){animation-delay:-.4s}.np-eq i:nth-child(3){animation-delay:-.7s}
+@keyframes eq{0%,100%{height:25%}50%{height:100%}}
+.np.docked:not(.paused) .np-eq{opacity:1}
+.np-meta{flex:1;min-width:0;line-height:1.25;transition:opacity .3s}
+.np-title{display:block;font-size:.84rem;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np-sub{display:block;overflow:hidden;white-space:nowrap;font-size:.72rem;color:rgba(255,255,255,.75);-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.np-sub span{display:inline-block}.np-sub span.run{animation:marq 14s linear infinite}
+@keyframes marq{0%,10%{transform:none}100%{transform:translateX(-50%)}}
+.np-btn{flex:none;width:38px;height:38px;border:none;background:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .3s,transform .15s}
+.np-btn:active{transform:scale(.9)}
+.np-btn svg{width:26px;height:26px;fill:currentColor}
+.np-btn .ic-play{display:none}
+.np.paused .np-btn .ic-pause{display:none} .np.paused .np-btn .ic-play{display:block}
+.np-bar{position:absolute;left:8px;right:8px;bottom:3px;height:2px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden;transition:opacity .3s}
+.np-bar i{display:block;height:100%;width:0;background:#fff}
+.np.docked .np-meta,.np.docked .np-btn,.np.docked .np-bar{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="mono" href="#hero" id="mono"></a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i><i></i></button>
+</nav>
+<div class="menu" id="menu" aria-hidden="true">
+  <a href="#story"><small>01</small>Our Story</a>
+  <a href="#events"><small>02</small>Celebrations</a>
+  <a href="#schedule"><small>03</small>Programme</a>
+  <a href="#gallery"><small>04</small>Film Stills</a>
+  <a href="#rsvp"><small>05</small>RSVP</a>
+  <a href="#accommodation"><small>06</small>Where to Stay</a>
+  <a href="#gifts"><small>07</small>Gifts</a>
+  <a href="#faqs"><small>08</small>Questions</a>
+</div>
+
+<section id="hero" class="has-bg-image">
+  <img src="assets/story.jpg" alt="The couple walking hand in hand">
+  <div class="hero-in">
+    <div class="kicker">The Archival Edition</div>
+    <h1 class="hero-names"><span id="h-a"></span> &amp;<br><span id="h-b"></span></h1>
+    <div class="hero-meta" id="h-meta"></div>
+  </div>
+  <a class="scroll" href="#story">SCROLL<i></i></a>
+</section>
+
+<section id="story" class="section-pad">
+  <div class="wrap">
+    <div class="duo reveal"><img src="assets/g3.jpg" alt="Hands with an engagement ring" loading="lazy"><img src="assets/g1.jpg" alt="The bride holding flowers" loading="lazy"></div>
+    <span class="kicker reveal">Chapter One</span>
+    <h2 class="h2 reveal" id="story-title"></h2>
+    <div id="story-text"></div>
+    <div class="btn-row reveal"><a class="btn line" href="#schedule">The programme</a><a class="btn line" href="#gallery">The archive</a></div>
+  </div>
+</section>
+
+<section id="countdown" class="countdown-section section-pad">
+  <div class="wrap">
+    <div class="kicker" style="color:#E7D3AE">Save the date</div>
+    <h2 class="h2">The petals fall until...</h2>
+    <div class="cd" id="cd">
+      <div><b id="c-d">0</b><span>DAYS</span></div><div><b id="c-h">00</b><span>HOURS</span></div>
+      <div><b id="c-m">00</b><span>MINUTES</span></div><div><b id="c-s">00</b><span>SECONDS</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="events" class="section-pad center">
+  <div class="wrap">
+    <div class="kicker reveal">The Itinerary</div>
+    <h2 class="h2 reveal">The Celebrations</h2>
+    <div class="rule"></div>
+    <div class="tabs reveal" id="tabs" role="tablist"></div>
+    <div id="ev-panes"></div>
+  </div>
+</section>
+
+<section id="schedule" class="section-pad paper">
+  <div class="wrap">
+    <div class="center"><div class="kicker reveal">The Programme</div><h2 class="h2 reveal">The Order of the Day</h2><div class="rule"></div></div>
+    <div class="order reveal" id="order"></div>
+  </div>
+</section>
+
+<section id="gallery" class="section-pad center">
+  <div class="wrap">
+    <div class="kicker reveal">The Archive</div>
+    <h2 class="h2 reveal">Film Stills</h2>
+    <div class="strip reveal" id="strip"></div>
+    <div class="strip-hint">SWIPE THROUGH THE ROLL &rarr;</div>
+  </div>
+</section>
+
+<section id="quote" class="has-bg-image">
+  <img src="assets/hero.jpg" alt="" loading="lazy">
+  <div class="wrap reveal"><div class="mark">&ldquo;</div><blockquote id="q-text"></blockquote><cite id="q-by"></cite></div>
+</section>
+
+<section id="rsvp" class="section-pad center">
+  <div class="wrap">
+    <div class="kicker reveal">RSVP</div>
+    <h2 class="h2 reveal">Join the Celebration</h2>
+    <p class="lead reveal" id="rsvp-by" style="font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase"></p>
+    <form class="form reveal" id="rsvp-form" novalidate>
+      <div class="fg"><label for="r-name">Your full name</label><input id="r-name" maxlength="80" autocomplete="name" placeholder="As written on your invite"></div>
+      <div class="fg"><label for="r-att">Will you attend?</label>
+        <select id="r-att"><option value="" disabled selected>Select...</option><option value="yes">Yes, I will attend</option><option value="no">No, sorry I can't make it</option></select></div>
+      <div class="fg" id="guests-fg"><label for="r-guests">Number of guests</label><select id="r-guests"><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+      <div class="fg"><label for="r-msg">Message for the couple</label><textarea id="r-msg" rows="3" maxlength="300" placeholder="Wishes, prayers, a memory..."></textarea></div>
+      <button class="btn" type="submit">Confirm attendance</button>
+      <p class="note">Your reply opens WhatsApp with everything filled in.</p>
+    </form>
+    <div class="thanks" id="thanks"><h3 id="t-h"></h3><p id="t-p"></p><span class="ref" id="t-ref"></span><div style="margin-top:18px"><button class="btn line" type="button" id="again">Change my reply</button></div></div>
+  </div>
+</section>
+
+<section id="accommodation" class="section-pad paper center">
+  <div class="wrap">
+    <div class="kicker reveal">Lodging</div>
+    <h2 class="h2 reveal">Where to Rest</h2>
+    <div class="cards three reveal" id="stays"></div>
+  </div>
+</section>
+
+<section id="people" class="section-pad center">
+  <div class="wrap">
+    <div class="kicker reveal">The Ensemble</div>
+    <h2 class="h2 reveal">The Wedding Party</h2>
+    <div class="people reveal" id="party"></div>
+  </div>
+</section>
+
+<section id="transportation" class="section-pad paper center">
+  <div class="wrap">
+    <div class="kicker reveal">Getting There</div>
+    <h2 class="h2 reveal">Transportation</h2>
+    <div class="cards reveal" id="travel"></div>
+  </div>
+</section>
+
+<section id="details" class="section-pad center">
+  <div class="wrap">
+    <div class="kicker reveal">Essentials</div>
+    <h2 class="h2 reveal">Details</h2>
+    <div class="facts reveal" id="facts"></div>
+  </div>
+</section>
+
+<section id="map"><iframe id="map-frame" title="Venue map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></section>
+
+<section id="gifts" class="section-pad center">
+  <div class="wrap">
+    <div class="kicker reveal">Generosity</div>
+    <h2 class="h2 reveal">Gift Registry</h2>
+    <p class="lead reveal" id="gift-lead"></p>
+    <div class="cards reveal" id="funds"></div>
+    <div class="bank reveal"><small id="b-bank"></small><div class="acct" id="b-acct"></div><div class="nm" id="b-name"></div><button type="button" id="b-copy">COPY ACCOUNT</button></div>
+  </div>
+</section>
+
+<section id="faqs" class="section-pad paper center">
+  <div class="wrap">
+    <div class="kicker reveal">Information</div>
+    <h2 class="h2 reveal">The Fine Print</h2>
+    <div class="faq reveal" id="faq"></div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="names" id="f-names"></div>
+  <div class="meta" id="f-meta"></div>
+  <div class="made">Made with love on <a href="https://deeday.ng" target="_blank" rel="noopener">deeday.ng</a></div>
+  <div class="credit" id="f-music"></div>
+</footer>
+
+<div class="lightbox" id="lb" role="dialog" aria-label="Photo viewer">
+  <img id="lb-img" alt="">
+  <button class="lb-btn lb-x" id="lb-x" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<div class="np paused" id="np" role="group" aria-label="Now playing">
+  <span class="np-art"><img src="assets/deeday-crest.png" alt="deeday.ng"><span class="np-eq" aria-hidden="true"><i></i><i></i><i></i></span></span>
+  <span class="np-meta"><a class="np-title" href="https://deeday.ng" target="_blank" rel="noopener">Made with deeday.ng</a><span class="np-sub"><span id="np-credit"></span></span></span>
+  <button class="np-btn" id="np-btn" aria-label="Play music">
+    <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+    <svg class="ic-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+  </button>
+  <span class="np-bar"><i id="np-prog"></i></span>
+</div>
+<audio id="bgm" src="assets/canon-in-d.mp3" preload="metadata"></audio>
+
+<script>
+/* =========================================================
+   EDIT THIS BLOCK FOR EACH COUPLE
+   ========================================================= */
+const config = {
+  bride: "Adanna", groom: "Tobi", initials: "A & T",
+  date_iso: "2027-11-27T14:00:00+01:00",
+  date_short: "27 · 11 · 27", city: "Lagos, Nigeria",
+  date_long: "Saturday, 27th November 2027", time_long: "2:00 PM",
+  story_title: "An Exposure of Time & Tenderness",
+  story: [
+    "A love captured in stolen glances and long drives home. Their story began not with grand gestures, but with the quiet certainty of finding the one person who feels like home.",
+    "What started as small talk in a Lekki office lift became Sunday lunches, road trips to Ibadan, and a promise written across every year since."
+  ],
+  events: [
+    { tab: "The Ceremony", title: "Exchange of Vows", venue: "The Harbour Chapel, Victoria Island", time: "2:00 PM, Ceremony", text: "Join us as we say our vows in the soft afternoon light, surrounded by the people we love most.", map: "Victoria Island, Lagos" },
+    { tab: "Cocktail", title: "Cocktail Hour", venue: "The Garden Terrace", time: "4:00 PM, Garden", text: "Chapman, small chops and conversation on the terrace while the photographers steal us away.", map: "Victoria Island, Lagos" },
+    { tab: "Dinner & Party", title: "Reception & Owambe", venue: "The Harbour Pavilion", time: "6:00 PM till late", text: "Dinner, toasts, our first dance and a live band. Bring your dancing shoes and your spraying money.", map: "Victoria Island, Lagos" }
+  ],
+  schedule: [
+    { t: "14:00", h: "The Exchange of Vows", p: "An intimate ceremony with our families and closest friends." },
+    { t: "16:00", h: "Cocktail Hour", p: "Mocktails, chapman and canapés on the garden terrace." },
+    { t: "18:00", h: "The Grand Entrance", p: "The couple arrives, followed by dinner and toasts." },
+    { t: "20:30", h: "First Dance & Owambe", p: "Live band, dancing and celebration until the early hours." }
+  ],
+  gallery: ["assets/story.jpg", "assets/g1.jpg", "assets/g2.jpg", "assets/g3.jpg", "assets/g4.jpg", "assets/g5.jpg", "assets/hero.jpg"],
+  quote: "In you, I found the clarity of forever.", quote_by: "— A. & T.",
+  rsvp_by: "Kindly reply by 1st November 2027",
+  rsvp_whatsapp: "2348012345678",
+  stays: [
+    { name: "Eko Hotel & Suites", text: "Five minutes from the venue, with pools and easy parking.", link: "https://www.google.com/maps/search/?api=1&query=Eko+Hotel+Victoria+Island" },
+    { name: "The Wheatbaker, Ikoyi", text: "A quiet boutique stay for guests who want calm after the party.", link: "https://www.google.com/maps/search/?api=1&query=The+Wheatbaker+Ikoyi" },
+    { name: "Radisson Blu, Ikeja", text: "Ideal for guests flying in, close to the airport.", link: "https://www.google.com/maps/search/?api=1&query=Radisson+Blu+Ikeja" }
+  ],
+  party: [ { name: "Kunle Adebayo", role: "BEST MAN" }, { name: "Chioma Nwosu", role: "MAID OF HONOUR" }, { name: "Emeka Obi", role: "GROOMSMAN" }, { name: "Zainab Bello", role: "BRIDESMAID" } ],
+  travel: [
+    { h: "By Air", p: "Fly into Murtala Muhammed International Airport (LOS), Ikeja. Allow 60 to 90 minutes to Victoria Island, depending on traffic." },
+    { h: "By Road", p: "From the mainland, take the Third Mainland Bridge or Eko Bridge. Parking is available at the venue with attendants on duty." },
+    { h: "On the Day", p: "A shuttle runs from the suggested hotels from 12:30 PM. Message us on WhatsApp to reserve a seat." }
+  ],
+  guests: "200 guests", guests_note: "An intimate celebration",
+  venue_short: "The Harbour Pavilion",
+  map_query: "Victoria Island, Lagos",
+  gift_lead: "Your presence is our greatest gift. Should you wish to bless us further, we've set up two funds for this new chapter.",
+  funds: [
+    { h: "Home Fund", p: "Help us build the home of our dreams and start our life together.", goal: "₦2,000,000", pct: 46 },
+    { h: "Honeymoon Fund", p: "Help us explore Zanzibar and make memories we'll tell our children about.", goal: "₦1,500,000", pct: 62 }
+  ],
+  bank: { name: "GTBank", account: "0123456789", holder: "ADANNA & TOBI" },
+  faqs: [
+    { q: "Can I bring a plus one?", a: "Because the celebration is intimate, we kindly ask that only named guests attend. Your invite will say if a plus one is included." },
+    { q: "What's the RSVP deadline?", a: "Please reply by 1st November 2027 so we can finalise numbers with the venue and caterers." },
+    { q: "What should I wear?", a: "Black tie optional. Navy, ivory and gold are our colours, and aso-ebi is available for family and close friends." },
+    { q: "Will there be parking?", a: "Yes. The venue has secure parking with attendants, and there's a shuttle from the suggested hotels." },
+    { q: "Can I take photos?", a: "We'd love an unplugged ceremony, so please keep phones away during the vows. Snap away at the reception." }
+  ],
+  music_title: "Canon in D", music_artist: "Johann Pachelbel, performed by Kevin MacLeod",
+  music_credit: "\"Canon in D Major\" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0",
+  music_start: 0
+};
+/* ========================================================= */
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const wa = (num, msg) => `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+const mapUrl = q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 2200); }
+function copyText(txt, msg) { (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(msg), () => { const i = el("textarea"); i.value = txt; document.body.appendChild(i); i.select(); document.execCommand("copy"); i.remove(); toast(msg); }); }
+
+/* text */
+$("#mono").textContent = config.initials;
+$("#h-a").textContent = config.bride; $("#h-b").textContent = config.groom;
+$("#h-meta").textContent = `${config.date_short} · ${config.city}`;
+$("#story-title").textContent = config.story_title;
+config.story.forEach(p => $("#story-text").appendChild(el("p", "reveal", p)));
+$("#q-text").textContent = config.quote; $("#q-by").textContent = config.quote_by;
+$("#rsvp-by").textContent = config.rsvp_by;
+$("#f-names").textContent = `${config.bride} & ${config.groom}`;
+$("#f-meta").textContent = `${config.date_long.replace(/^\w+, /, "").toUpperCase()} · ${config.city.toUpperCase()}`;
+$("#f-music").textContent = `Music: ${config.music_credit}`;
+
+/* nav + menu */
+const nav = $("#nav");
+addEventListener("scroll", () => nav.classList.toggle("solid", scrollY > innerHeight * .7), { passive: true });
+function setMenu(open) { document.body.classList.toggle("menu-open", open); $("#burger").setAttribute("aria-expanded", open); $("#menu").setAttribute("aria-hidden", !open); document.body.style.overflow = open ? "hidden" : ""; }
+$("#burger").addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+document.querySelectorAll("#menu a").forEach((a, i) => { a.style.transitionDelay = (.05 + i * .04) + "s"; a.addEventListener("click", () => setMenu(false)); });
+
+/* countdown */
+const target = new Date(config.date_iso).getTime(), pad = n => String(n).padStart(2, "0");
+function tick() { const d = Math.max(0, target - Date.now()); $("#c-d").textContent = Math.floor(d / 864e5); $("#c-h").textContent = pad(Math.floor(d / 36e5) % 24); $("#c-m").textContent = pad(Math.floor(d / 6e4) % 60); $("#c-s").textContent = pad(Math.floor(d / 1e3) % 60); }
+tick(); setInterval(tick, 1000);
+
+/* events: tabs */
+function ics() {
+  const t = new Date(config.date_iso), p = n => String(n).padStart(2, "0"), f = d => `${d.getUTCFullYear()}${p(d.getUTCMonth() + 1)}${p(d.getUTCDate())}T${p(d.getUTCHours())}${p(d.getUTCMinutes())}00Z`;
+  const body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//deeday.ng//invite//EN", "BEGIN:VEVENT", `UID:${Date.now()}@deeday.ng`, `DTSTAMP:${f(t)}`, `DTSTART:${f(t)}`, `DTEND:${f(new Date(t.getTime() + 10 * 36e5))}`,
+    `SUMMARY:${config.bride} & ${config.groom} wedding`, `LOCATION:${config.venue_short}, ${config.city}`, "BEGIN:VALARM", "TRIGGER:-P7D", "ACTION:DISPLAY", "DESCRIPTION:Wedding in one week", "END:VALARM", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+  return "data:text/calendar;charset=utf-8," + encodeURIComponent(body);
+}
+config.events.forEach((ev, i) => {
+  const b = el("button", i === 0 ? "on" : "", ev.tab); b.type = "button"; b.setAttribute("role", "tab"); $("#tabs").appendChild(b);
+  const pane = el("div", "ev" + (i === 0 ? " on" : "")); pane.append(el("h3", null, ev.title), el("div", "venue", ev.venue), el("div", "time", ev.time), el("p", null, ev.text));
+  const row = el("div", "btn-row"); const d = el("a", "btn", "Directions"); d.href = mapUrl(ev.map); d.target = "_blank"; d.rel = "noopener";
+  const c = el("a", "btn line", "Add to calendar"); c.href = ics(); c.download = "wedding.ics"; row.append(d, c); pane.appendChild(row); $("#ev-panes").appendChild(pane);
+  b.addEventListener("click", () => { document.querySelectorAll("#tabs button").forEach((x, j) => x.classList.toggle("on", j === i)); document.querySelectorAll("#ev-panes .ev").forEach((x, j) => x.classList.toggle("on", j === i)); });
+});
+
+/* schedule */
+config.schedule.forEach(s => { const r = el("div", "ord"); const b = el("div"); b.append(el("h4", null, s.h), el("p", null, s.p)); r.append(el("div", "t", s.t), b); $("#order").appendChild(r); });
+
+/* film strip + lightbox */
+const G = config.gallery;
+G.forEach((src, i) => { const f = el("button", "frame"); f.type = "button"; f.setAttribute("aria-label", "Open photo " + (i + 1)); const im = el("img"); im.src = src; im.alt = ""; im.loading = "lazy"; f.append(im, el("span", null, `FRAME ${pad(i + 1)}`)); f.addEventListener("click", () => openLb(i)); $("#strip").appendChild(f); });
+let lbI = 0;
+function showLb() { $("#lb-img").src = G[lbI]; $("#lb-count").textContent = `${lbI + 1} / ${G.length}`; }
+function openLb(i) { lbI = i; showLb(); $("#lb").classList.add("show"); }
+function closeLb() { $("#lb").classList.remove("show"); }
+$("#lb-x").addEventListener("click", closeLb);
+$("#lb").addEventListener("click", e => { if (e.target.id === "lb") closeLb(); });
+$("#lb-prev").addEventListener("click", () => { lbI = (lbI - 1 + G.length) % G.length; showLb(); });
+$("#lb-next").addEventListener("click", () => { lbI = (lbI + 1) % G.length; showLb(); });
+addEventListener("keydown", e => { if (e.key === "Escape") { closeLb(); setMenu(false); } if (!$("#lb").classList.contains("show")) return; if (e.key === "ArrowLeft") $("#lb-prev").click(); if (e.key === "ArrowRight") $("#lb-next").click(); });
+let tx = 0; $("#lb").addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+$("#lb").addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) (dx < 0 ? $("#lb-next") : $("#lb-prev")).click(); });
+
+/* rsvp */
+const KEY = "dd-rsvp-" + config.bride + config.groom;
+$("#r-att").addEventListener("change", () => { $("#guests-fg").style.display = $("#r-att").value === "no" ? "none" : ""; });
+function showThanks(r) {
+  $("#rsvp-form").style.display = "none"; $("#thanks").style.display = "block";
+  const first = r.name.split(" ")[0];
+  $("#t-h").textContent = r.att === "yes" ? `Thank you, ${first}` : `We'll miss you, ${first}`;
+  $("#t-p").textContent = r.att === "yes" ? `Your seat is noted. We can't wait to celebrate with you on ${config.date_long}.` : "Thank you for letting us know. You'll be in our hearts on the day.";
+  $("#t-ref").textContent = "REF " + r.ref;
+}
+$("#rsvp-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = $("#r-name").value.trim(), att = $("#r-att").value;
+  if (name.length < 2) { toast("Please enter your name"); $("#r-name").focus(); return; }
+  if (!att) { toast("Please tell us if you'll attend"); $("#r-att").focus(); return; }
+  const guests = att === "yes" ? +$("#r-guests").value : 0, msg = $("#r-msg").value.trim();
+  const ref = (config.bride[0] + config.groom[0]).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+  const r = { name, att, guests, msg, ref }; try { localStorage.setItem(KEY, JSON.stringify(r)); } catch {}
+  const lines = [`*RSVP: ${config.bride} & ${config.groom}*`, `Name: ${name}`, `Attending: ${att === "yes" ? "Yes" : "No, sorry"}`];
+  if (att === "yes") lines.push(`Guests: ${guests}`); if (msg) lines.push(`Message: ${msg}`); lines.push(`Ref: ${ref}`);
+  window.open(wa(config.rsvp_whatsapp, lines.join("\n")), "_blank", "noopener"); showThanks(r);
+});
+$("#again").addEventListener("click", () => { $("#thanks").style.display = "none"; $("#rsvp-form").style.display = ""; });
+(function () { try { const r = JSON.parse(localStorage.getItem(KEY)); if (r && r.name) showThanks(r); } catch {} })();
+
+/* stays, party, travel, details */
+config.stays.forEach(s => { const c = el("div", "card"); c.append(el("h4", null, s.name), el("p", null, s.text)); const a = el("a", null, "View on map"); a.href = s.link; a.target = "_blank"; a.rel = "noopener"; c.appendChild(a); $("#stays").appendChild(c); });
+config.party.forEach(p => { const d = el("div", "person"); d.append(el("i", null, p.name.split(" ").map(w => w[0]).join("")), el("b", null, p.name), el("span", null, p.role)); $("#party").appendChild(d); });
+config.travel.forEach(t => { const c = el("div", "card"); c.append(el("h4", null, t.h), el("p", null, t.p)); $("#travel").appendChild(c); });
+const FI = { cal: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>', pin: '<svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>', ppl: '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.2.6 3.5 2.8 3.5 6"/></svg>' };
+[[FI.cal, config.date_long.replace(/^\w+, /, ""), `${config.date_long.split(",")[0]}, ${config.time_long}`], [FI.pin, config.city.split(",")[0], config.venue_short], [FI.ppl, config.guests, config.guests_note]].forEach(([ic, b, s]) => { const f = el("div", "fact"); f.innerHTML = ic; f.append(el("b", null, b), el("span", null, s)); $("#facts").appendChild(f); });
+$("#map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(config.map_query)}&z=14&output=embed`;
+
+/* gifts */
+$("#gift-lead").textContent = config.gift_lead;
+config.funds.forEach(f => {
+  const c = el("div", "fund"); c.append(el("h4", null, f.h), el("p", null, f.p));
+  const g = el("div", "goal"); g.append(el("span", null, `GOAL: ${f.goal}`), el("span", null, `${f.pct}% RAISED`)); const bar = el("div", "bar"); const bi = el("i"); bar.appendChild(bi); bi.dataset.pct = f.pct;
+  const b = el("button", "btn", "Contribute"); b.type = "button"; b.addEventListener("click", () => { $(".bank").scrollIntoView({ behavior: "smooth", block: "center" }); toast("Use the account below. Thank you!"); });
+  c.append(g, bar, b); $("#funds").appendChild(c);
+});
+$("#b-bank").textContent = config.bank.name.toUpperCase(); $("#b-acct").textContent = config.bank.account; $("#b-name").textContent = config.bank.holder;
+$("#b-copy").addEventListener("click", () => { copyText(config.bank.account, "Account number copied"); $("#b-copy").textContent = "COPIED ✓"; setTimeout(() => $("#b-copy").textContent = "COPY ACCOUNT", 1800); });
+
+/* faq */
+config.faqs.forEach(f => { const q = el("div", "q"); const b = el("button"); b.type = "button"; b.append(el("span", null, f.q), el("i")); const a = el("div", "a"); const inner = el("div"); inner.appendChild(el("p", null, f.a)); a.appendChild(inner); q.append(b, a); b.addEventListener("click", () => q.classList.toggle("open")); $("#faq").appendChild(q); });
+
+/* reveal on scroll (+ fill fund bars) */
+const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; e.target.classList.add("in"); e.target.querySelectorAll(".bar i").forEach(i => i.style.width = i.dataset.pct + "%"); io.unobserve(e.target); }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(r => io.observe(r));
+
+/* ---------- music: starts on the guest's first tap; now-playing card docks to the side ---------- */
+const MUSIC_START = config.music_start || 0;
+const audio = $("#bgm"), np = $("#np"), npBtn = $("#np-btn");
+const credit = `Now playing: ${config.music_title} · ${config.music_artist}`, npCredit = $("#np-credit");
+npCredit.textContent = credit;
+let hideTimer, fadeTimer, started = false;
+function fadeVolume(to, ms, done) {
+  clearInterval(fadeTimer); const from = audio.volume, steps = 24; let n = 0;
+  fadeTimer = setInterval(() => { n++; audio.volume = Math.max(0, Math.min(1, from + (to - from) * n / steps)); if (n >= steps) { clearInterval(fadeTimer); done && done(); } }, ms / steps);
+}
+function setPaused(p) { np.classList.toggle("paused", p); npBtn.setAttribute("aria-label", p ? "Play music" : "Pause music"); }
+function dockIn(ms) { clearTimeout(hideTimer); hideTimer = setTimeout(() => np.classList.add("docked"), ms); }
+function popOut(ms) { np.classList.remove("docked"); dockIn(ms); }
+function fitCredit() { if (npCredit.scrollWidth > npCredit.parentElement.clientWidth && !npCredit.classList.contains("run")) { npCredit.textContent = credit + "    •    " + credit + "    •    "; npCredit.classList.add("run"); } }
+function play() {
+  if (!started && audio.currentTime < MUSIC_START) {
+    if (audio.readyState < 1) audio.addEventListener("loadedmetadata", () => { if (audio.currentTime < MUSIC_START) audio.currentTime = MUSIC_START; }, { once: true });
+    else audio.currentTime = MUSIC_START;
+  }
+  started = true; audio.volume = 0; const p = audio.play(); if (p && p.catch) p.catch(() => setPaused(true)); fadeVolume(.75, 1800); setPaused(false);
+}
+function pause() { setPaused(true); fadeVolume(0, 450, () => audio.pause()); }
+audio.addEventListener("ended", () => { audio.currentTime = MUSIC_START; audio.play().catch(() => {}); });
+audio.addEventListener("timeupdate", () => { const d = audio.duration - MUSIC_START; if (d > 0) $("#np-prog").style.width = Math.max(0, (audio.currentTime - MUSIC_START) / d * 100) + "%"; });
+if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: config.music_title, artist: config.music_artist, album: "Wedding invite by deeday.ng", artwork: [{ src: "assets/deeday-crest.png", sizes: "512x512", type: "image/png" }] });
+setTimeout(() => { np.classList.add("show"); fitCredit(); dockIn(2500); }, 1200);
+function firstTap(e) {
+  removeEventListener("pointerdown", firstTap, true);
+  if (started || (e && npBtn.contains(e.target))) return;   // the play button starts it itself
+  play(); popOut(2500);
+}
+addEventListener("pointerdown", firstTap, true);
+np.addEventListener("click", e => {
+  if (np.classList.contains("docked")) { e.preventDefault(); popOut(2000); return; }
+  dockIn(2000);   // any touch on the open card resets the 2s timer
+});
+npBtn.addEventListener("click", () => { if (audio.paused) { started ? (audio.play().catch(() => {}), fadeVolume(.75, 800), setPaused(false)) : play(); } else pause(); });
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden && !audio.paused) { audio.pause(); audio.dataset.resume = "1"; }
+  else if (!document.hidden && audio.dataset.resume) { delete audio.dataset.resume; audio.play().catch(() => {}); }
+});
+</script>
+</body>
+</html>
