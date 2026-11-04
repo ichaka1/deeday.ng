@@ -56,7 +56,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .topbar-right{display:flex;align-items:center;gap:10px}
 .brand{display:flex;align-items:center;gap:9px}
 .brand img{width:36px;height:36px;flex:none}
-.brand .word{display:block;height:22px;aspect-ratio:801/160;background:var(--logo);-webkit-mask:url(assets/logo-word.png) center/contain no-repeat;mask:url(assets/logo-word.png) center/contain no-repeat}
+.brand .word{font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.03em;line-height:1;color:var(--logo)}
 .theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
 .theme-btn:hover{background:var(--panel);transform:translateY(-1px)}
 .pill{background:var(--wine);color:#fff;font-weight:700;font-size:.82rem;padding:10px 20px;border-radius:40px;transition:transform .2s,background .2s;border:none;cursor:pointer}
@@ -160,7 +160,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 footer.foot{margin-top:40px;padding:34px 0 30px;text-align:center;color:#D9C2C5;font-size:.84rem}
 footer.foot .brand{justify-content:center;margin-bottom:10px}
 footer.foot .brand img{width:44px;height:44px}
-footer.foot .brand .word{height:26px;background:#F3E5E2}
+footer.foot .brand .word{font-size:1.55rem;color:#F3E5E2}
 footer.foot a{color:var(--rose);font-weight:600}
 
 /* bottom nav */
@@ -234,7 +234,7 @@ footer.foot a{color:var(--rose);font-weight:600}
 
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word" role="img" aria-label="deeday.ng"></span></a>
+    <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word">deeday.ng</span></a>
     <button class="pill" onclick="openOrder()">Order an invite</button>
   </div>
 </header>
@@ -338,7 +338,7 @@ footer.foot a{color:var(--rose);font-weight:600}
 </section>
 
 <footer class="foot grunge"><div class="wrap">
-  <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word" role="img" aria-label="deeday.ng"></span></a>
+  <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word">deeday.ng</span></a>
   <p>Nigerian digital wedding invitations · © <span id="yr"></span> deeday.ng</p>
   <p style="margin-top:8px"><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html">Terms of Service</a></p>
 </div></footer>
