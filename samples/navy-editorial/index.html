@@ -40,6 +40,43 @@ button{font-family:inherit}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
+/* ---------- opening: full-screen envelope with a wax seal ---------- */
+body.sealed{overflow:hidden}
+.env{position:fixed;inset:0;z-index:100;cursor:pointer;overflow:hidden;background:#FDFCFA}
+.env.open{background:transparent;pointer-events:none}
+.env.gone{visibility:hidden;transition:visibility 0s 1.5s}
+.flap{position:absolute;inset:0;filter:drop-shadow(0 1px 1.5px rgba(27,42,74,.16)) drop-shadow(0 6px 14px rgba(27,42,74,.06));transition:transform 1.35s cubic-bezier(.7,0,.2,1)}
+.flap i{position:absolute;inset:0;background:linear-gradient(180deg,#FFFFFF,#F7F5F1)}
+.flap.l i{clip-path:polygon(0 30%,50% 51%,0 74%)}
+.flap.r i{clip-path:polygon(100% 30%,50% 51%,100% 74%)}
+.flap.b i{clip-path:polygon(0 100%,100% 100%,100% 74%,50% 51%,0 74%);background:linear-gradient(0deg,#FFFFFF,#F6F4EF)}
+.flap.t i{clip-path:polygon(0 0,100% 0,100% 30%,50% 51%,0 30%)}
+.env.open .flap.t{transform:translateY(-105%)}
+.env.open .flap.b{transform:translateY(105%)}
+.env.open .flap.l{transform:translateX(-105%)}
+.env.open .flap.r{transform:translateX(105%)}
+.env-names{position:absolute;z-index:3;top:11%;left:0;right:0;text-align:center;font-family:"Dancing Script",cursive;font-weight:700;color:#5B6478;font-size:clamp(2rem,9vw,2.6rem);line-height:1.05;transition:opacity .5s,transform 1.35s cubic-bezier(.7,0,.2,1)}
+.env-names small{display:block;font-size:.5em;line-height:1.2;color:var(--gold-2)}
+.env-foot{position:absolute;z-index:3;left:0;right:0;bottom:14%;text-align:center;transition:opacity .5s,transform 1.35s cubic-bezier(.7,0,.2,1)}
+.env-foot em{display:block;font-family:"Dancing Script",cursive;font-weight:700;font-style:normal;font-size:1.25rem;color:#5B6478}
+.env-foot b{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-size:.62rem;font-weight:700;letter-spacing:.3em;color:#7A8296}
+.env-foot b i{display:inline-block;width:7px;height:7px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0) rotate(45deg)}50%{transform:translateX(4px) rotate(45deg)}}
+.env.open .env-names{transform:translateY(-60vh);opacity:0}
+.env.open .env-foot{transform:translateY(60vh);opacity:0}
+.seal{position:absolute;z-index:4;left:50%;top:51%;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 34% 30%,#F3DDA6 0%,#D9B36A 30%,#B08A45 62%,#8A6A30 100%);
+  box-shadow:0 6px 14px -4px rgba(80,56,20,.55),inset 0 2px 3px rgba(255,248,225,.7),inset 0 -3px 6px rgba(90,62,22,.45);
+  animation:sealPulse 2.4s ease-in-out infinite;transition:transform .5s cubic-bezier(.5,-0.4,.6,1.4),opacity .45s}
+.seal::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1.5px dashed rgba(110,80,30,.45)}
+.seal span{position:relative;font-family:"Dancing Script",cursive;font-weight:700;font-size:1.35rem;color:#6E5021;text-shadow:0 1px 0 rgba(255,240,205,.6)}
+@keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.env.open .seal{animation:none;transform:scale(1.5);opacity:0}
+.env-brand{position:absolute;z-index:3;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;gap:6px;font-size:.62rem;color:#9AA1B0;text-decoration:none;transition:opacity .4s}
+.env-brand img{width:14px;height:14px;border-radius:50%}
+.env-brand b{color:#5B6478}
+.env.open .env-brand{opacity:0}
+
 /* nav */
 #nav{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;justify-content:space-between;padding:calc(16px + env(safe-area-inset-top)) 22px 14px;color:#fff;transition:background .35s,color .35s,box-shadow .35s}
 #nav.solid{background:rgba(255,255,255,.94);color:var(--navy);box-shadow:0 1px 0 var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
@@ -59,8 +96,9 @@ button{font-family:inherit}
 
 /* hero */
 #hero{position:relative;height:100svh;min-height:600px;overflow:hidden;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center}
-#hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform:scale(1.06);animation:slowzoom 14s ease-out forwards}
-@keyframes slowzoom{to{transform:scale(1)}}
+#hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform:scale(1.12)}
+body.opened #hero img{animation:slowzoom 9s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes slowzoom{from{transform:scale(1.12)}to{transform:scale(1)}}
 #hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,26,46,.45),rgba(18,26,46,.25) 40%,rgba(18,26,46,.7))}
 .hero-in{position:relative;z-index:2;padding:0 22px;margin-top:4vh}
 .hero-in .kicker{color:#E7D3AE}
@@ -244,7 +282,18 @@ button{font-family:inherit}
 .np.docked .np-meta,.np.docked .np-btn,.np.docked .np-bar{opacity:0;pointer-events:none}
 </style>
 </head>
-<body>
+<body class="sealed">
+
+<div class="env" id="env" role="button" tabindex="0" aria-label="Open the invitation">
+  <div class="flap l"><i></i></div>
+  <div class="flap r"><i></i></div>
+  <div class="flap b"><i></i></div>
+  <div class="flap t"><i></i></div>
+  <div class="env-names"><span id="e-a"></span><small>&amp;</small><span id="e-b"></span></div>
+  <div class="seal" aria-hidden="true"><span id="e-mono"></span></div>
+  <div class="env-foot"><em>We have news...</em><b>TAP THE SEAL TO OPEN <i></i></b></div>
+  <a class="env-brand" href="https://deeday.ng" target="_blank" rel="noopener"><img src="assets/deeday-crest.png" alt="">Brought to you by <b>deeday.ng</b></a>
+</div>
 
 <nav id="nav">
   <a class="mono" href="#hero" id="mono"></a>
@@ -622,17 +671,26 @@ function pause() { setPaused(true); fadeVolume(0, 450, () => audio.pause()); }
 audio.addEventListener("ended", () => { audio.currentTime = MUSIC_START; audio.play().catch(() => {}); });
 audio.addEventListener("timeupdate", () => { const d = audio.duration - MUSIC_START; if (d > 0) $("#np-prog").style.width = Math.max(0, (audio.currentTime - MUSIC_START) / d * 100) + "%"; });
 if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: config.music_title, artist: config.music_artist, album: "Wedding invite by deeday.ng", artwork: [{ src: "assets/deeday-crest.png", sizes: "512x512", type: "image/png" }] });
-setTimeout(() => { np.classList.add("show"); fitCredit(); dockIn(2500); }, 1200);
-function firstTap(e) {
-  removeEventListener("pointerdown", firstTap, true);
-  if (started || (e && npBtn.contains(e.target))) return;   // the play button starts it itself
-  play(); popOut(2500);
-}
-addEventListener("pointerdown", firstTap, true);
+const NP_MS = 4000;   // how long the now-playing card stays out before docking
 np.addEventListener("click", e => {
-  if (np.classList.contains("docked")) { e.preventDefault(); popOut(2000); return; }
-  dockIn(2000);   // any touch on the open card resets the 2s timer
+  if (np.classList.contains("docked")) { e.preventDefault(); popOut(NP_MS); return; }
+  dockIn(NP_MS);   // any touch on the open card restarts the timer
 });
+
+/* opening: tap the seal, the flaps part, music starts */
+$("#e-a").textContent = config.bride; $("#e-b").textContent = config.groom;
+$("#e-mono").textContent = config.bride[0] + config.groom[0];
+history.scrollRestoration = "manual"; scrollTo(0, 0);
+function openEnvelope(e) {
+  const env = $("#env"); if (env.classList.contains("open")) return;
+  if (e && e.target.closest(".env-brand")) return;
+  env.classList.add("open"); env.classList.add("gone");
+  document.body.classList.remove("sealed"); document.body.classList.add("opened");
+  play();
+  setTimeout(() => { np.classList.add("show"); fitCredit(); dockIn(NP_MS); }, 900);
+}
+$("#env").addEventListener("click", openEnvelope);
+$("#env").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEnvelope(); } });
 npBtn.addEventListener("click", () => { if (audio.paused) { started ? (audio.play().catch(() => {}), fadeVolume(.75, 800), setPaused(false)) : play(); } else pause(); });
 document.addEventListener("visibilitychange", () => {
   if (document.hidden && !audio.paused) { audio.pause(); audio.dataset.resume = "1"; }
