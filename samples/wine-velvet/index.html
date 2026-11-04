@@ -248,7 +248,7 @@ footer .made b{color:rgba(255,255,255,.85)}
 .np-meta{flex:1;min-width:0;line-height:1.25;transition:opacity .3s}
 .np-title{display:block;font-size:.84rem;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .np-sub{display:block;overflow:hidden;white-space:nowrap;font-size:.72rem;color:rgba(255,255,255,.75);-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
-.np-sub span{display:inline-block;animation:marq 16s linear infinite}
+.np-sub span{display:inline-block}.np-sub span.run{animation:marq 14s linear infinite}
 @keyframes marq{0%,10%{transform:none}100%{transform:translateX(-50%)}}
 .np-btn{flex:none;width:38px;height:38px;border:none;background:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .3s,transform .15s}
 .np-btn:active{transform:scale(.9)}
@@ -765,8 +765,10 @@ $("#th-edit").addEventListener("click", () => {
 /* ---------- music: starts on the guest's first tap at 0:37; now-playing card docks to the side ---------- */
 const MUSIC_START = 37;
 const audio = $("#bgm"), np = $("#np"), npBtn = $("#np-btn");
-const credit = `Wedding invites & websites by deeday.ng  •  Song: ${config.music_title}, ${config.music_artist}  •  `;
-$("#np-credit").textContent = credit + credit;
+const credit = `Now playing: ${config.music_title} · ${config.music_artist}`, npCredit = $("#np-credit");
+npCredit.textContent = credit;
+// scroll it Spotify-style only when it doesn't fit
+requestAnimationFrame(() => { if (npCredit.scrollWidth > npCredit.parentElement.clientWidth) { npCredit.textContent = credit + "    •    " + credit + "    •    "; npCredit.classList.add("run"); } });
 let hideTimer, fadeTimer, started = false;
 function fadeVolume(to, ms, done) {
   clearInterval(fadeTimer); const from = audio.volume, steps = 24; let n = 0;
