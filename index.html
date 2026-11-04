@@ -120,13 +120,34 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .car-arrow.prev{left:2px} .car-arrow.next{right:2px}
 @media(max-width:560px){.car-arrow{display:none}}
 @media(min-width:900px){
-  .sampleswiper{max-width:1080px;margin:0 auto;padding:0 20px}
-  #sample-swiper{overflow:visible;padding:6px 0 0}
-  #sample-swiper .swiper-wrapper{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 22px;transform:none!important}
-  #sample-swiper .swiper-slide{width:auto;height:auto;max-height:none;aspect-ratio:270/502;filter:none;opacity:1;pointer-events:auto;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+  .sampleswiper{max-width:1040px;margin:0 auto;padding:0 66px}
+  #sample-swiper{padding:10px 4px 30px}
+  #sample-swiper .swiper-slide{height:auto;max-height:none;aspect-ratio:270/502;filter:none;opacity:1;pointer-events:auto!important;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
   #sample-swiper .swiper-slide:hover{transform:translateY(-8px);box-shadow:0 0 0 1.5px rgba(107,15,31,.5),0 30px 50px -24px rgba(0,0,0,.6)}
-  .sample-dots,.car-arrow{display:none!important}
+  .sample-dots{display:none!important}
+  .car-arrow{width:48px;height:48px;top:46%}
+  .car-arrow.prev{left:6px} .car-arrow.next{right:6px}
 }
+.samples-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.see-all{flex:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;padding:10px 16px;border-radius:30px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;box-shadow:0 8px 20px -14px rgba(0,0,0,.35);transition:background .2s,transform .2s}
+.see-all:hover{background:var(--wine-tint);transform:translateY(-1px)}
+.see-all span{color:var(--muted);font-weight:600}
+.see-all svg{width:16px;height:16px;stroke:var(--wine);fill:none;stroke-width:2}
+@media(max-width:620px){.samples-head{flex-direction:column;align-items:flex-start;gap:0}.see-all{margin:-8px 0 6px}}
+#all-modal .all-card{max-width:1080px;max-height:90vh}
+.all-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:6px}
+@media(min-width:700px){.all-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+@media(min-width:1000px){.all-grid{grid-template-columns:repeat(4,1fr)}}
+.all-grid .card{height:auto;aspect-ratio:270/502;border-radius:30px;border-width:5px}
+.all-grid .card::after{top:7px;width:56px;height:14px}
+.all-grid .card-plan{top:30px;right:9px;font-size:.56rem;padding:4px 9px}
+.all-grid .card-info{padding:12px}
+.all-grid .card-title{font-size:1rem}
+.all-grid .card-blurb{display:none}
+.all-grid .card-actions{flex-direction:column;gap:6px}
+.all-grid .mini{padding:9px 10px;font-size:.74rem}
+@media(min-width:700px){.all-grid .card-blurb{display:-webkit-box;font-size:.78rem}.all-grid .card-actions{flex-direction:row}}
+
 /* plans */
 .plans{display:flex;flex-direction:column;gap:16px;max-width:620px;margin:0 auto}
 .plan{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 22px;box-shadow:0 10px 30px -20px rgba(0,0,0,.25)}
@@ -306,10 +327,13 @@ footer.foot a{color:var(--rose);font-weight:600}
 <!-- TEMPLATES -->
 <section id="samples" class="sec">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="kicker">The Collection</p>
-      <h2>A design for every <span class="script">love story</span></h2>
-      <p>Browse the looks and preview any you like. Pricing is by plan, not by design, see the plans below.</p>
+    <div class="samples-head reveal">
+      <div class="sec-head">
+        <p class="kicker">The Collection</p>
+        <h2>A design for every <span class="script">love story</span></h2>
+        <p>Browse the looks and preview any you like. Pricing is by plan, not by design, see the plans below.</p>
+      </div>
+      <button class="see-all" id="see-all" type="button">See all <span id="see-all-n"></span><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
     </div>
   </div>
   <div class="sampleswiper">
@@ -442,6 +466,19 @@ footer.foot a{color:var(--rose);font-weight:600}
   </div>
 </div>
 
+<!-- ALL SAMPLES MODAL -->
+<div class="modal" id="all-modal">
+  <div class="modal-card all-card">
+    <button class="modal-x" onclick="closeModal('all-modal')">&times;</button>
+    <div class="modal-scroll">
+      <div class="modal-h">All <span class="script">designs</span></div>
+      <div class="modal-sub">Every look in the collection. Tap Preview to open one, or Order this to start.</div>
+      <div class="all-grid" id="all-grid"></div>
+    </div>
+    <div class="scroll-cue"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+  </div>
+</div>
+
 <!-- ORDER MODAL -->
 <div class="modal" id="order-modal">
   <div class="modal-card">
@@ -526,11 +563,11 @@ mq.addEventListener("change",()=>{ if(currentPref()==="system") applyTheme("syst
 applyTheme(currentPref());
 
 /* render cards */
-function renderSamples(){ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
-  <div class="swiper-slide card" data-i="${i}">
+const cardHTML=(t,i,cls)=>`
+  <div class="${cls} card" data-i="${i}">
     <div class="card-thumb"><img src="${t.thumb}" alt="${t.title} preview" loading="lazy"></div>
     <div class="card-fade"></div>
-    <span class="card-plan">${t.plan==="Essential"?"All plans":"Signature & up"}</span>
+    <span class="card-plan">${planLabel(t.plan)}</span>
     <div class="card-info">
       <div class="card-tag">${t.tag}</div>
       <div class="card-title">${t.title}</div>
@@ -540,7 +577,12 @@ function renderSamples(){ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>`
         <a class="mini ghost" href="${t.url}" target="_blank" rel="noopener">Preview</a>
       </div>
     </div>
-  </div>`).join(""); }
+  </div>`;
+function planLabel(p){ return p==="Essential"?"All plans":p==="Grand"?"Grand":"Signature & up"; }
+function renderSamples(){ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>cardHTML(t,i,"swiper-slide")).join(""); }
+$("#all-grid").innerHTML = TEMPLATES.map((t,i)=>cardHTML(t,i,"all-item")).join("");
+$("#see-all-n").textContent = `(${TEMPLATES.length})`;
+$("#see-all").addEventListener("click",()=>openModal("all-modal"));
 $("#plans-grid").innerHTML = PLANS.map(p=>`
   <div class="swiper-slide plan ${p.pop?'pop':''}">
     ${p.pop?'<span class="pp-badge">Most popular</span>':''}
@@ -562,7 +604,10 @@ const DESK=matchMedia("(min-width:900px)"); let sampleSwiper=null;
 function setupSamples(){
   if(sampleSwiper){ sampleSwiper.destroy(true,true); sampleSwiper=null; }
   renderSamples();
-  if(DESK.matches) return;   // desktop shows a plain grid
+  if(DESK.matches){   // desktop: three at a time, arrows to move
+    sampleSwiper = new Swiper("#sample-swiper",{ slidesPerView:3, spaceBetween:28, loop:true, speed:650, grabCursor:true, keyboard:{enabled:true} });
+    return;
+  }
   sampleSwiper = new Swiper("#sample-swiper",{
     effect:"coverflow", grabCursor:true, centeredSlides:true, slidesPerView:"auto", loop:true, keyboard:{enabled:true}, speed:650,
     pagination:{el:"#sample-dots", clickable:true},
