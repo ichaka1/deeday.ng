@@ -287,6 +287,7 @@ footer.foot a{color:var(--rose);font-weight:600}
 #feat-modal .pill{width:100%;margin-top:20px;padding:14px}
 
 @media(max-width:680px){.grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}.cta-card{flex-direction:column;text-align:center}}
+.plan-note{max-width:620px;margin:14px auto 0;text-align:center;font-size:.8rem;line-height:1.55;color:var(--muted)}
 .previewbar{background:var(--deep);color:var(--rose);text-align:center;font-size:.76rem;font-weight:600;padding:7px}
 </style>
 </head>
@@ -365,6 +366,7 @@ footer.foot a{color:var(--rose);font-weight:600}
     <p class="swipe-hint reveal" id="swipe-hint">Swipe to see the other packages<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></p>
     <div class="swiper plan-swiper reveal" id="plan-swiper"><div class="swiper-wrapper" id="plans-grid"></div></div>
     <p class="plan-pager" id="plan-pager"></p>
+    <p class="plan-note reveal">Delivery is counted in working days from when we have your details, photos and payment. Revisions cover wording and photo changes, not a switch to a different design. After 12 months, keep your link online for ₦5,000 a year, or let it expire.</p>
   </div>
 </section>
 
@@ -550,9 +552,9 @@ const TEMPLATES = [
   {tag:"Yoruba Traditional", title:"Aso-Oke", url:"https://aso-oke.deeday.ng", thumb:"assets/thumb-0.jpg", plan:"Essential", blurb:"Wine, gold and aso-oke stripes, rich traditional Yoruba styling."}
 ];
 const PLANS = [
-  {key:"Essential", price:"₦35,000", sub:"Clean, simple designs", feats:["Any Essential design","Your own link: yournames.deeday.ng","Personalised details, story & programme","Live countdown to the day","Venue directions + add-to-calendar","RSVP via WhatsApp","Gift box with one-tap account copy","Hosted for 12 months","2 revisions"]},
-  {key:"Signature", price:"₦65,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening screen + background music","Photo slideshow + gallery (up to 10 photos)","Love story timeline","Schedule of events + dress code colours","Aso-ebi order on WhatsApp","RSVP keepsake + guest wishes to the couple","Gift registry QR code","2 revisions"]},
-  {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","PIN-protected private event (e.g. after party)","Guest photo wall for the day","Up to 25 photos in your gallery","Personal reminder messages to your guests","Shared live guest list (Google Sheet)","Priority delivery","3 revisions"]}
+  {key:"Essential", price:"₦35,000", sub:"Clean, simple designs", feats:["Any Essential design","Your own link: yournames.deeday.ng","Personalised details, story & programme","Live countdown to the day","Venue directions + add-to-calendar","RSVP via WhatsApp","Gift box with one-tap account copy","Delivered in 5 working days","Hosted for 12 months","2 rounds of revisions (wording and photo swaps)"]},
+  {key:"Signature", price:"₦65,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening screen + background music","Photo slideshow + gallery (up to 10 photos)","Love story timeline","Schedule of events + dress code colours","Aso-ebi order on WhatsApp","RSVP keepsake + guest wishes to the couple","Gift registry QR code","Delivered in 7 working days","Hosted for 12 months","2 rounds of revisions (wording and photo swaps)"]},
+  {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","PIN-protected private event (e.g. after party)","Guest photo wall for the day","Up to 25 photos in your gallery","Personal reminder messages to your guests","Shared guest list (Google Sheet), kept up to date for you","Priority delivery in 3 working days","Hosted for 12 months","3 rounds of revisions (wording and photo swaps)"]}
 ];
 const $ = s => document.querySelector(s);
 $("#yr").textContent = new Date().getFullYear();
