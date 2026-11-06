@@ -632,7 +632,7 @@ function renderDesigns(keep){
   $("#o-template").innerHTML='<option value="" disabled selected>Choose a design</option>'+list.map(({t,i})=>`<option value="${i}">${t.tag} · ${t.title}</option>`).join("");
   if(keep!=null && list.some(x=>x.i===keep)) $("#o-template").value=String(keep);
 }
-$("#o-plan").addEventListener("change",()=>renderDesigns());
+$("#o-plan").addEventListener("change",()=>{ const cur=$("#o-template").value; renderDesigns(cur===""?null:+cur); });  /* keep the chosen design when the plan changes */
 renderDesigns();
 
 function toggleCard(i){
