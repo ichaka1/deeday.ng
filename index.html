@@ -360,13 +360,12 @@ footer.foot a{color:var(--rose);font-weight:600}
     <div class="plan-tabs reveal" id="plan-tabs">
       <span class="tab-ind" id="tab-ind"></span>
       <button type="button" data-k="Essential">Essential</button>
-      <button type="button" data-k="Signature">Signature</button>
-      <button type="button" data-k="Grand">Grand</button>
+            <button type="button" data-k="Grand">Grand</button>
     </div>
-    <p class="swipe-hint reveal" id="swipe-hint">Swipe to see the other packages<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></p>
+    <p class="swipe-hint reveal" id="swipe-hint">Swipe to see the other package<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></p>
     <div class="swiper plan-swiper reveal" id="plan-swiper"><div class="swiper-wrapper" id="plans-grid"></div></div>
     <p class="plan-pager" id="plan-pager"></p>
-    <p class="plan-note reveal">Delivery is counted in working days from when we have your details, photos and payment. Revisions cover wording and photo changes, not a switch to a different design. After 12 months, keep your link online for ₦5,000 a year, or let it expire.</p>
+    <p class="plan-note reveal">Delivery is counted in working days from when we have your details, photos and payment. Revisions cover wording and photo changes, not a switch to a different design. Every invite stays online for 1 year. Want it longer? Ask when you order, or any time after, and add extra years at ₦20,000 each. For Grand, extra years on your own domain are charged at the domain's yearly price.</p>
   </div>
 </section>
 
@@ -541,20 +540,19 @@ function saveOrder(row){
 }
 /* samples = looks only (newest first); price lives in PLANS */
 const TEMPLATES = [
-  {tag:"Editorial Website", title:"Navy Editorial", url:"https://navy-editorial.deeday.ng", thumb:"assets/thumb-9.jpg", plan:"Signature", blurb:"A magazine-style wedding website in navy and gold: tabbed celebrations, film-strip gallery, where to stay, wedding party, travel guide, gift funds and FAQs."},
-  {tag:"Civil Wedding", title:"Stone & Blush", url:"https://stone-blush.deeday.ng", thumb:"assets/thumb-8.jpg", plan:"Signature", blurb:"A clean, modern civil-wedding invite: open-invitation screen, love story timeline, countdown, PIN-locked after party, photo gallery, RSVP, gift box and music."},
-  {tag:"Full Wedding Website", title:"Wine & Cream", url:"https://wine-cream.deeday.ng", thumb:"assets/thumb-7.jpg", plan:"Signature", blurb:"A full wedding website in wine and cream: lace-card envelope, live map, ceremony timeline, countdown, aso-ebi orders, gift registry QR, RSVP and background music."},
-  {tag:"Wax-Seal Envelope", title:"Ivory & Green", url:"https://ivory-green.deeday.ng", thumb:"assets/thumb-6.jpg", plan:"Signature", blurb:"Ivory, forest green and olive drawn from the couple's photos, with a wax-seal opening, Canon in D, RSVP keepsake receipts and guest wishes."},
-  {tag:"Editorial", title:"Black & Gold", url:"https://black-gold.deeday.ng", thumb:"assets/thumb-5.jpg", plan:"Signature", blurb:"Editorial black-and-gold with a full-bleed photo hero, a modern mail-opening and real aso-ebi energy."},
-  {tag:"Luxury Wax Seal", title:"Emerald & Gold", url:"https://emerald-gold.deeday.ng", thumb:"assets/thumb-4.jpg", plan:"Signature", blurb:"Emerald-and-gold luxury: a break-the-seal opening and a floral arch hero."},
-  {tag:"Shareable Flyer", title:"WhatsApp Flyer", url:"https://whatsapp-flyer.deeday.ng", thumb:"assets/thumb-3.jpg", plan:"Signature", blurb:"The viral WhatsApp-flyer look, gold frame, bold and built to be shared."},
+  {tag:"Editorial Website", title:"Navy Editorial", url:"https://navy-editorial.deeday.ng", thumb:"assets/thumb-9.jpg", plan:"Grand", blurb:"A magazine-style wedding website in navy and gold: tabbed celebrations, film-strip gallery, where to stay, wedding party, travel guide, gift funds and FAQs."},
+  {tag:"Civil Wedding", title:"Stone & Blush", url:"https://stone-blush.deeday.ng", thumb:"assets/thumb-8.jpg", plan:"Grand", blurb:"A clean, modern civil-wedding invite: open-invitation screen, love story timeline, countdown, PIN-locked after party, photo gallery, RSVP, gift box and music."},
+  {tag:"Full Wedding Website", title:"Wine & Cream", url:"https://wine-cream.deeday.ng", thumb:"assets/thumb-7.jpg", plan:"Grand", blurb:"A full wedding website in wine and cream: lace-card envelope, live map, ceremony timeline, countdown, aso-ebi orders, gift registry QR, RSVP and background music."},
+  {tag:"Wax-Seal Envelope", title:"Ivory & Green", url:"https://ivory-green.deeday.ng", thumb:"assets/thumb-6.jpg", plan:"Grand", blurb:"Ivory, forest green and olive drawn from the couple's photos, with a wax-seal opening, Canon in D, RSVP keepsake receipts and guest wishes."},
+  {tag:"Editorial", title:"Black & Gold", url:"https://black-gold.deeday.ng", thumb:"assets/thumb-5.jpg", plan:"Grand", blurb:"Editorial black-and-gold with a full-bleed photo hero, a modern mail-opening and real aso-ebi energy."},
+  {tag:"Luxury Wax Seal", title:"Emerald & Gold", url:"https://emerald-gold.deeday.ng", thumb:"assets/thumb-4.jpg", plan:"Grand", blurb:"Emerald-and-gold luxury: a break-the-seal opening and a floral arch hero."},
+  {tag:"Shareable Flyer", title:"WhatsApp Flyer", url:"https://whatsapp-flyer.deeday.ng", thumb:"assets/thumb-3.jpg", plan:"Grand", blurb:"The viral WhatsApp-flyer look, gold frame, bold and built to be shared."},
   {tag:"Classic Church", title:"Church Wedding", url:"https://church-wedding.deeday.ng", thumb:"assets/thumb-2.jpg", plan:"Essential", blurb:"Navy, gold and cream. Formal, scriptural and quietly elegant."},
   {tag:"Yoruba Traditional", title:"Aso-Oke", url:"https://aso-oke.deeday.ng", thumb:"assets/thumb-0.jpg", plan:"Essential", blurb:"Wine, gold and aso-oke stripes, rich traditional Yoruba styling."}
 ];
 const PLANS = [
-  {key:"Essential", price:"₦35,000", sub:"Clean, simple designs", feats:["Any Essential design","Your own link: yournames.deeday.ng","Personalised details, story & programme","Live countdown to the day","Venue directions + add-to-calendar","RSVP via WhatsApp","Gift box with one-tap account copy","Delivered in 5 working days","Hosted for 12 months","2 rounds of revisions (wording and photo swaps)"]},
-  {key:"Signature", price:"₦65,000", sub:"Animated & interactive", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Opening screen + background music","Photo slideshow + gallery (up to 10 photos)","Love story timeline","Schedule of events + dress code colours","Aso-ebi order on WhatsApp","RSVP keepsake + guest wishes to the couple","Gift registry QR code","Delivered in 7 working days","Hosted for 12 months","2 rounds of revisions (wording and photo swaps)"]},
-  {key:"Grand", price:"₦100,000", sub:"The full concierge", feats:["Everything in Signature","PIN-protected private event (e.g. after party)","Guest photo wall for the day","Up to 25 photos in your gallery","Personal reminder messages to your guests","Shared guest list (Google Sheet), kept up to date for you","Priority delivery in 3 working days","Hosted for 12 months","3 rounds of revisions (wording and photo swaps)"]}
+  {key:"Essential", price:"₦35,000", sub:"Clean, simple designs", feats:["Any Essential design","Your own link: yournames.deeday.ng","Personalised details, story & programme","Live countdown to the day","Venue directions + add-to-calendar","RSVP via WhatsApp","Gift box with one-tap account copy","Delivered in 2 working days","Hosted for 1 year (add more years on request)","2 rounds of revisions (wording and photo swaps)"]},
+  {key:"Grand", price:"₦100,000", sub:"Your own domain + dashboard", badge:"The full experience", pop:true, feats:["Everything in Essential","Any design, including the animated looks","Your own domain, e.g. ujuemeka2026.com (first year included)","Your dashboard: RSVPs, guest list, wishes and aso-ebi orders in one place","Opening screen + background music","Photo slideshow + gallery (up to 25 photos)","Love story timeline","Schedule of events + dress code colours","Aso-ebi order on WhatsApp","RSVP keepsake + guest wishes to the couple","Gift registry QR code","PIN-protected private event (e.g. after party)","Guest photo wall for the day","Personal reminder messages to your guests","Delivered in 3 working days","Hosted for 1 year (add more years on request)","3 rounds of revisions (wording and photo swaps)"]}
 ];
 const $ = s => document.querySelector(s);
 $("#yr").textContent = new Date().getFullYear();
@@ -586,14 +584,14 @@ const cardHTML=(t,i,cls)=>`
       </div>
     </div>
   </div>`;
-function planLabel(p){ return p==="Essential"?"All plans":p==="Grand"?"Grand":"Signature & up"; }
+function planLabel(p){ return p==="Essential"?"Both plans":"Grand"; }
 function renderSamples(){ $("#tpl-grid").innerHTML = TEMPLATES.map((t,i)=>cardHTML(t,i,"swiper-slide")).join(""); }
 $("#all-grid").innerHTML = TEMPLATES.map((t,i)=>cardHTML(t,i,"all-item")).join("");
 $("#see-all-n").textContent = `(${TEMPLATES.length})`;
 $("#see-all").addEventListener("click",()=>openModal("all-modal"));
 $("#plans-grid").innerHTML = PLANS.map(p=>`
   <div class="swiper-slide plan ${p.pop?'pop':''}">
-    ${p.pop?'<span class="pp-badge">Most popular</span>':''}
+    ${p.pop?`<span class="pp-badge">${p.badge||'Most popular'}</span>`:''}
     <div class="pp-top"><div><div class="plan-name">${p.key}</div><div class="plan-sub">${p.sub}</div></div><div class="plan-price">${p.price}</div></div>
     <ul class="plan-feats">${p.feats.map(f=>`<li><b>✓</b><span>${f}</span></li>`).join("")}</ul>
     <button class="pill" style="width:100%" onclick="openOrder(null,'${p.key}')">Choose ${p.key}</button>
@@ -753,7 +751,7 @@ window.addEventListener("scroll",()=>{ if(scrollY<120) items.forEach(it=>it.clas
 /* desktop menu = page links + everything in More */
 const donut=$("#donut"), desk=document.createElement("nav"); desk.className="desk-menu"; desk.id="desk-menu"; desk.setAttribute("aria-label","Menu");
 const NAV_ICO={home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',samples:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',plans:'<path d="M4 7h16v10H4z"/><path d="M4 11h16"/>',about:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',order:'<path d="M5 7h14"/><path d="M5 12h14"/><path d="M5 17h9"/>'};
-const NAV_LINKS=[["home","Home","Back to the top"],["samples","Samples","Browse every design"],["plans","Plans & prices","Essential, Signature, Grand"],["about","About us","Who we are"],["order","Order an invite","Fill one form, we build it"]];
+const NAV_LINKS=[["home","Home","Back to the top"],["samples","Samples","Browse every design"],["plans","Plans & prices","Essential and Grand"],["about","About us","Who we are"],["order","Order an invite","Fill one form, we build it"]];
 desk.innerHTML='<div class="dm-label">Menu</div>'+NAV_LINKS.map(([k,t,sub])=>`<button class="more-row" data-go="${k}"><span class="more-ico"><svg viewBox="0 0 24 24">${NAV_ICO[k]}</svg></span><span>${t}<span class="more-sub">${sub}</span></span></button>`).join("")+'<hr><div class="dm-label">More</div>';
 const moreClone=document.querySelector("#more-modal .more-list").cloneNode(true);
 moreClone.querySelectorAll("[id]").forEach(n=>{ if(n.id==="theme-seg") n.classList.add("theme-seg"); n.removeAttribute("id"); });
