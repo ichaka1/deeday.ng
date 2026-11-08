@@ -9,7 +9,9 @@ const str = (v, max) => (typeof v === "string" ? v.replace(/[\u0000-\u001f\u007f
 const DETAIL_KEYS = {
   hashtag: 40, ceremony_venue: 160, ceremony_time: 40, reception_venue: 160, reception_time: 40, colours: 120,
   asoebi_dealer: 20, gift_bank: 60, gift_acct: 20, story: 600, whatsapp_message: 4000,
+  email: 120, consent_text: 300, consent_at: 40,
 };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ ok: false });
@@ -40,6 +42,13 @@ export default async function handler(req, res) {
   if (!row.client_name || !row.client_phone || !row.groom || !row.bride) return res.status(400).json({ ok: false, error: "missing fields" });
   const d = o.details && typeof o.details === "object" ? o.details : {};
   for (const [k, max] of Object.entries(DETAIL_KEYS)) { const s = str(d[k], max); if (s) row.details[k] = s; }
+  if (row.details.email && !EMAIL_RE.test(row.details.email)) delete row.details.email;
+  // marketing consent only counts with a valid email, the exact wording and a timestamp
+  if (d.marketing_consent === true && row.details.email && row.details.consent_text) {
+    row.details.marketing_consent = true;
+    row.details.consent_at = new Date().toISOString();
+    row.details.consent_ip = ip || "";
+  } else { delete row.details.consent_text; delete row.details.consent_at; }
 
   // 3. Save (the Supabase webhook then sends the email alert)
   const r = await fetch(`${SB_URL}/rest/v1/orders`, {

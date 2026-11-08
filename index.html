@@ -264,6 +264,9 @@ footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6
 .fg input,.fg select,.fg textarea{width:100%;max-width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-family:inherit;font-size:16px;color:var(--ink)}
 .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--wine-soft);box-shadow:0 0 0 3px var(--wine-tint)}
 #order-form .pill{width:100%;margin-top:18px;padding:15px;font-size:.95rem}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.84rem;line-height:1.45;color:var(--ink);cursor:pointer}
+.consent input{flex:none;width:18px;height:18px;margin-top:1px;accent-color:var(--wine)}
+.consent-note{font-size:.76rem;color:var(--muted);margin-top:8px}.consent-note a{color:var(--wine);text-decoration:underline}
 .form-note{font-size:.8rem;color:var(--muted);margin-top:12px;text-align:center}
 
 /* more menu */
@@ -507,6 +510,7 @@ footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6
         <div class="fg full"><label>What style are you going for?</label><textarea id="o-style" rows="2" maxlength="300" placeholder="e.g. soft & romantic, bold & modern, traditional Igbo, gold & burgundy, elegant & minimal... tell us your vibe"></textarea></div>
         <div class="fg"><label>Your name *</label><input id="o-cname" required maxlength="80" autocomplete="name" placeholder="Who are we speaking with?"></div>
         <div class="fg"><label>Your WhatsApp *</label><input id="o-cphone" required type="tel" inputmode="tel" maxlength="20" placeholder="08000000000"></div>
+        <div class="fg full"><label>Your email (for a copy of your order)</label><input id="o-email" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="you@example.com"></div>
         <div class="fg"><label>Groom's name *</label><input id="o-groom" required maxlength="60" placeholder="e.g. Uche"></div>
         <div class="fg"><label>Bride's name *</label><input id="o-bride" required maxlength="60" placeholder="e.g. Anita"></div>
         <div class="fg"><label>Wedding date</label><input id="o-date" type="date" min="2024-01-01" max="2035-12-31"></div>
@@ -522,6 +526,8 @@ footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6
         <div class="fg full"><label>Your love story (optional)</label><textarea id="o-story" rows="3" maxlength="600" placeholder="A few lines about how you met..."></textarea></div>
         <div class="fg full"><label>Anything else?</label><textarea id="o-notes" rows="2" maxlength="400" placeholder="Photos, special requests, delivery date..."></textarea></div>
       </div>
+      <label class="consent"><input type="checkbox" id="o-marketing"> <span>Send me wedding planning tips and occasional offers from deeday.ng by email. Optional; unsubscribe any time.</span></label>
+      <p class="consent-note">If you add your email, we will send you a copy of this order. See our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
       <div class="cf-turnstile" data-sitekey="0x4AAAAAAFpuHDNUD2WxvFg0" data-appearance="interaction-only" data-size="flexible" style="margin-top:14px"></div>
       <button class="pill" type="submit">Send my order on WhatsApp</button>
       <p class="form-note">We will reply on WhatsApp to confirm and request your photos.</p>
@@ -533,6 +539,7 @@ footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
 <script>
+const MARKETING_CONSENT_TEXT = "Send me wedding planning tips and occasional offers from deeday.ng by email. Optional; unsubscribe any time.";
 const ORDER_WHATSAPP = "2348063941963";
 /* Supabase — history of every order (publishable key is client-safe; tables are RLS-locked to insert-only) */
 const SB_URL = "https://otohaeukgewcnehllnsm.supabase.co";
@@ -707,6 +714,10 @@ $("#order-form").addEventListener("submit",e=>{
   if(document.getElementById("o-company").value) return; /* honeypot: bot filled a hidden field */
   const v=(id,max)=>clean(document.getElementById(id).value,max||120);
   const vp=id=>cleanPhone(document.getElementById(id).value);
+  const em=clean(document.getElementById("o-email").value,120).toLowerCase();
+  const emOk=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em);
+  if(em && !emOk){ const f=document.getElementById("o-email"); f.setCustomValidity("Please check your email address"); f.reportValidity(); f.addEventListener("input",()=>f.setCustomValidity(""),{once:true}); return; }
+  const mk=!!(emOk && document.getElementById("o-marketing").checked);
   if(!v("o-cname")||!vp("o-cphone")||!v("o-groom")||!v("o-bride")) return;
   const tsel=$("#o-template"); const tlabel=tsel.value ? tsel.options[tsel.selectedIndex].text : "Not specified";
   const plan=$("#o-plan").value||"Not specified";
@@ -715,6 +726,7 @@ $("#order-form").addEventListener("submit",e=>{
     `*Design:* ${tlabel}`,
     v("o-style",300)?`*Style wanted:* ${v("o-style",300)}`:null,
     `*Client:* ${v("o-cname")} (${vp("o-cphone")})`,
+    emOk?`*Email:* ${em}`:null,
     `*Couple:* ${v("o-groom")} & ${v("o-bride")}`,
     v("o-date")?`*Date:* ${v("o-date")}`:null,
     v("o-hashtag")?`*Hashtag:* ${v("o-hashtag")}`:null,
@@ -736,6 +748,10 @@ $("#order-form").addEventListener("submit",e=>{
       hashtag:v("o-hashtag"), ceremony_venue:v("o-cer-venue"), ceremony_time:v("o-cer-time"),
       reception_venue:v("o-rec-venue"), reception_time:v("o-rec-time"), colours:v("o-colours"),
       asoebi_dealer:vp("o-dealer"), gift_bank:v("o-bank"), gift_acct:v("o-acct"), story:v("o-story",600),
+      email: emOk?em:"",
+      marketing_consent: mk,
+      consent_text: mk?MARKETING_CONSENT_TEXT:"",
+      consent_at: mk?new Date().toISOString():"",
       whatsapp_message:L
     }
   });
