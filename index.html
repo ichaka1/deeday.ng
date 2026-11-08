@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>deeday.ng | Nigerian Digital Wedding Invitations</title>
-<meta name="description" content="Beautiful Nigerian digital wedding invitations. Pick a design, fill one form, we build it for you." />
+<meta name="description" content="Nigerian digital wedding invitations from ₦35,000. Pick a design, fill one form, and we deliver your invite link in 2 to 3 working days." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <meta name="theme-color" content="#500310" />
@@ -200,6 +200,7 @@ footer.foot .brand{justify-content:center;margin-bottom:10px}
 footer.foot .brand img{width:44px;height:44px}
 footer.foot .brand .word{font-size:1.55rem;color:#F3E5E2}
 footer.foot a{color:var(--rose);font-weight:600}
+footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin:14px auto 6px;max-width:640px}
 
 /* bottom nav */
 .bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:100;background:var(--bar);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px 10px}
@@ -290,6 +291,11 @@ footer.foot a{color:var(--rose);font-weight:600}
 .plan-note{max-width:620px;margin:14px auto 0;text-align:center;font-size:.8rem;line-height:1.55;color:var(--muted)}
 .previewbar{background:var(--deep);color:var(--rose);text-align:center;font-size:.76rem;font-weight:600;padding:7px}
 </style>
+<meta property="og:site_name" content="deeday.ng" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://deeday.ng/#org", "name": "deeday.ng", "url": "https://deeday.ng/", "logo": "https://deeday.ng/assets/logo-crest.png", "email": "nwanicyriluchenna@gmail.com", "telephone": "+2348063941963", "sameAs": ["https://www.instagram.com/deeday.ng/"], "areaServed": "NG"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "deeday.ng", "url": "https://deeday.ng/", "publisher": {"@id": "https://deeday.ng/#org"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Digital wedding invitations", "serviceType": "Digital wedding invitation design", "provider": {"@id": "https://deeday.ng/#org"}, "areaServed": "NG", "offers": [{"@type": "Offer", "name": "Essential", "price": "35000", "priceCurrency": "NGN", "url": "https://deeday.ng/pricing"}, {"@type": "Offer", "name": "Grand", "price": "100000", "priceCurrency": "NGN", "url": "https://deeday.ng/pricing"}]}</script>
+<script src="/assets/consent.js" defer></script>
 </head>
 <body>
 
@@ -410,7 +416,8 @@ footer.foot a{color:var(--rose);font-weight:600}
 <footer class="foot grunge"><div class="wrap">
   <a class="brand" href="#home" aria-label="deeday.ng home"><img src="assets/logo-crest.png" alt="" width="36" height="36"><span class="word">deeday.ng</span></a>
   <p>Nigerian digital wedding invitations · © <span id="yr"></span> deeday.ng</p>
-  <p style="margin-top:8px"><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html">Terms of Service</a></p>
+  <nav class="foot-links" aria-label="Site pages"><a href="/pricing">Pricing</a><a href="/how-it-works">How it works</a><a href="/faq">FAQ</a><a href="/about">About</a><a href="/digital-wedding-invitations-nigeria">Digital invites guide</a><a href="/yoruba-wedding-invitations">Yoruba invites</a><a href="/igbo-wedding-invitations">Igbo invites</a><a href="/church-wedding-invitations">Church invites</a></nav>
+  <p style="margin-top:8px"><a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms of Service</a></p>
 </div></footer>
 </div><!-- /.over -->
 
@@ -458,11 +465,11 @@ footer.foot a{color:var(--rose);font-weight:600}
         <span class="more-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></span>
         <span>Instagram<span class="more-sub">@deeday.ng</span></span>
       </a>
-      <a class="more-row" href="privacy.html">
+      <a class="more-row" href="/privacy">
         <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>
         <span>Privacy Policy<span class="more-sub">How we handle your details</span></span>
       </a>
-      <a class="more-row" href="terms.html">
+      <a class="more-row" href="/terms">
         <span class="more-ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span>
         <span>Terms of Service<span class="more-sub">The basics of working with us</span></span>
       </a>
@@ -765,6 +772,7 @@ donut.addEventListener("click",e=>{ e.stopPropagation(); setDesk(!desk.classList
 desk.addEventListener("click",e=>{ const g=e.target.closest("[data-go]"); if(g){ setDesk(false); if(g.dataset.go==="order") openOrder(); else goTo(g.dataset.go); } else if(e.target.closest("a")) setDesk(false); });
 document.addEventListener("click",e=>{ if(desk.classList.contains("open") && !desk.contains(e.target)) setDesk(false); });
 addEventListener("keydown",e=>{ if(e.key==="Escape") setDesk(false); });
+if(location.hash==="#order"){ history.replaceState(null,"",location.pathname); setTimeout(()=>openOrder(),300); }
 </script>
 </body>
 </html>
