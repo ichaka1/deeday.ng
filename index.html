@@ -540,7 +540,8 @@ const SB_KEY = "sb_publishable_S4HgZAhnx0Or6C60O2CvmQ_haGzggKU";
 /* Orders go through /api/order (Cloudflare Turnstile check + server-side save).
    Fallback: direct insert, only used while the server keys are not configured (503). */
 async function saveOrder(row){
-  let token=""; try{ token=(window.turnstile && turnstile.getResponse()) || ""; }catch{}
+  let token="";
+  for(let i=0;i<16 && !token;i++){ try{ token=(window.turnstile && turnstile.getResponse()) || ""; }catch{} if(!token) await new Promise(r=>setTimeout(r,500)); }
   try{
     const r=await fetch("/api/order",{ method:"POST", keepalive:true, headers:{"Content-Type":"application/json"}, body:JSON.stringify({token, order:row}) });
     try{ window.turnstile && turnstile.reset(); }catch{}

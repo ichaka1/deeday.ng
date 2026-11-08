@@ -28,7 +28,8 @@ export default async function handler(req, res) {
 
   const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
   if (body.type !== "INSERT" || body.table !== "orders" || !body.record) return res.status(200).json({ ok: true, skipped: true });
-  const o = body.record;
+  const o = { ...body.record };
+  for (const k of ["plan", "design"]) if (/^not specified$/i.test(String(o[k] || "").trim())) o[k] = "";
 
   const couple = [o.bride, o.groom].filter(Boolean).join(" & ") || "New couple";
   const wa = waLink(o.client_phone);
