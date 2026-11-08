@@ -29,7 +29,7 @@ export default async function handler(req, res) {
   const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
   if (ip) form.set("remoteip", ip);
   const v = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form }).then((r) => r.json()).catch(() => null);
-  if (!v || !v.success || (v.hostname && !HOSTS.has(v.hostname))) return res.status(403).json({ ok: false, error: "check failed" });
+  if (!v || !v.success || (v.hostname && !HOSTS.has(v.hostname))) return res.status(403).json({ ok: false, error: "check failed", codes: (v && v["error-codes"]) || [] });
 
   // 2. Validate
   const row = {
@@ -50,7 +50,23 @@ export default async function handler(req, res) {
     row.details.consent_ip = ip || "";
   } else { delete row.details.consent_text; delete row.details.consent_at; }
 
-  // 3. Save (the Supabase webhook then sends the email alert)
+  // 3. Rate limit: max 3 orders per hour from the same phone number or IP address
+  if (ip) row.details.client_ip = ip;
+  const since = new Date(Date.now() - 3600e3).toISOString();
+  const count = async (filter) => {
+    const r = await fetch(`${SB_URL}/rest/v1/orders?select=id&created_at=gte.${encodeURIComponent(since)}&${filter}`, {
+      headers: { apikey: SUPABASE_SECRET_KEY, Prefer: "count=exact", Range: "0-0" },
+    });
+    const n = Number(String(r.headers.get("content-range") || "").split("/")[1]);
+    return Number.isFinite(n) ? n : 0;
+  };
+  const [byPhone, byIp] = await Promise.all([
+    count(`client_phone=eq.${encodeURIComponent(row.client_phone)}`),
+    ip ? count(`details->>client_ip=eq.${encodeURIComponent(ip)}`) : 0,
+  ]);
+  if (byPhone >= 3 || byIp >= 3) return res.status(429).json({ ok: false, error: "too many orders, try again later" });
+
+  // 4. Save (the Supabase webhook then sends the email alerts)
   const r = await fetch(`${SB_URL}/rest/v1/orders`, {
     method: "POST",
     headers: { apikey: SUPABASE_SECRET_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },

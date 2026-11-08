@@ -11,7 +11,7 @@ const OWNER = "nwanicyriluchenna@gmail.com";
 const FROM = "deeday.ng <orders@deeday.ng>";
 const BUSINESS_WA = "2348063941963"; // deeday.ng WhatsApp shown to customers
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const HIDDEN = new Set(["whatsapp_message", "email", "marketing_consent", "consent_text", "consent_at", "consent_ip"]);
+const HIDDEN = new Set(["whatsapp_message", "email", "marketing_consent", "consent_text", "consent_at", "consent_ip", "client_ip"]);
 const LABELS = {
   hashtag: "Hashtag", ceremony_venue: "Ceremony venue", ceremony_time: "Ceremony time", reception_venue: "Reception venue",
   reception_time: "Reception time", colours: "Colours", asoebi_dealer: "Aso-ebi dealer", gift_bank: "Gift bank",
@@ -30,6 +30,9 @@ const waLink = (phone, text) => {
 };
 const fmtDate = (d) => { const x = new Date(d + "T12:00:00Z"); return isNaN(x) ? d : x.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric", timeZone: "Africa/Lagos" }); };
 const fmtPhone = (p) => { const d = String(p || "").replace(/\D/g, ""); if (!d) return ""; const n = d.startsWith("0") ? "234" + d.slice(1) : d; return n.length === 13 ? `+${n.slice(0, 3)} ${n.slice(3, 6)} ${n.slice(6, 9)} ${n.slice(9)}` : p; };
+// Customer copies echo what was typed into the form, so strip links: the form must not become a way to mail scam links to strangers.
+const LINK_RE = /\b(?:https?:\/\/|www\.)\S+|\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,24}(?:\/\S*)?(?![a-z0-9@])/gi;
+const noLinks = (s) => String(s ?? "").replace(LINK_RE, "[link removed]");
 const filled = (rows) => rows.filter(([, v]) => v !== null && v !== undefined && String(v).trim() !== "");
 
 const F = "font-family:Helvetica,Arial,sans-serif;";
@@ -116,24 +119,34 @@ export default async function handler(req, res) {
 
   // 2. Customer copy (transactional)
   let customerOk = null;
-  if (custEmail) {
-    const name = String(o.client_name || "").trim().split(/\s+/)[0] || "there";
-    const bizWa = waLink(BUSINESS_WA, `Hello deeday.ng, this is about my order ${ref} (${couple}).`);
-    const custRows = filled([["Your name", o.client_name], ["Your WhatsApp", fmtPhone(o.client_phone)], ...orderRows]);
+  let recentCopies = 0;
+  if (custEmail && process.env.SUPABASE_SECRET_KEY) {
+    const since = new Date(Date.now() - 864e5).toISOString();
+    const r = await fetch(`https://otohaeukgewcnehllnsm.supabase.co/rest/v1/orders?select=id&created_at=gte.${encodeURIComponent(since)}&details->>email=eq.${encodeURIComponent(custEmail)}&id=neq.${encodeURIComponent(o.id)}`, {
+      headers: { apikey: process.env.SUPABASE_SECRET_KEY, Prefer: "count=exact", Range: "0-0" },
+    }).catch(() => null);
+    const n = r ? Number(String(r.headers.get("content-range") || "").split("/")[1]) : 0;
+    recentCopies = Number.isFinite(n) ? n : 0;
+  }
+  if (custEmail && recentCopies === 0) {
+    const name = noLinks(String(o.client_name || "").trim().split(/\s+/)[0] || "there");
+    const safeCouple = noLinks(couple);
+    const bizWa = waLink(BUSINESS_WA, `Hello deeday.ng, this is about my order ${ref}.`);
+    const custRows = filled([["Your name", o.client_name], ["Your WhatsApp", fmtPhone(o.client_phone)], ...orderRows]).map(([k, v]) => [k, noLinks(v)]);
     customerOk = await send({
       from: FROM, to: [custEmail], reply_to: OWNER,
-      subject: `Your deeday.ng order: ${couple}`,
+      subject: `Your deeday.ng order: ${safeCouple}`,
       html: render({
         preheader: "Here is a copy of what you sent us, and what happens next.",
         eyebrow: "ORDER RECEIVED",
         title: `Thank you, ${name}!`,
-        intro: `We have your order for <b>${esc(couple)}</b>. Here is a copy of what you sent us. Next, we will message you on WhatsApp to confirm the details and ask for your photos. Your delivery time starts once we have your details, photos and payment.`,
+        intro: `We have your order for <b>${esc(safeCouple)}</b>. Here is a copy of what you sent us. Next, we will message you on WhatsApp to confirm the details and ask for your photos. Your delivery time starts once we have your details, photos and payment.`,
         rows: custRows,
         buttons: [bizWa ? button(bizWa, "Message us on WhatsApp", true) : "", button("https://deeday.ng/pricing", "See what your plan includes", false)],
         small: `Order ref ${esc(ref)}${received ? ` &middot; ${esc(received)}` : ""}. Spotted a mistake? Just reply to this email or message us on WhatsApp.`,
         footer: `You received this email because you placed an order at <a href="https://deeday.ng" style="color:#8A7477;">deeday.ng</a>. <a href="https://deeday.ng/privacy" style="color:#8A7477;">Privacy Policy</a>`,
       }),
-      text: `Thank you, ${name}!\n\nWe have your order for ${couple}. Here is a copy of what you sent us:\n\n` + custRows.map(([k, v]) => `${k}: ${v}`).join("\n") +
+      text: `Thank you, ${name}!\n\nWe have your order for ${safeCouple}. Here is a copy of what you sent us:\n\n` + custRows.map(([k, v]) => `${k}: ${v}`).join("\n") +
         `\n\nNext, we will message you on WhatsApp to confirm the details and ask for your photos.\n\nOrder ref ${ref}. Spotted a mistake? Reply to this email.\n\ndeeday.ng`,
     });
   }
