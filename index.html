@@ -295,6 +295,7 @@ footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "deeday.ng", "url": "https://deeday.ng/", "publisher": {"@id": "https://deeday.ng/#org"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Digital wedding invitations", "serviceType": "Digital wedding invitation design", "provider": {"@id": "https://deeday.ng/#org"}, "areaServed": "NG", "offers": [{"@type": "Offer", "name": "Essential", "price": "35000", "priceCurrency": "NGN", "url": "https://deeday.ng/pricing"}, {"@type": "Offer", "name": "Grand", "price": "100000", "priceCurrency": "NGN", "url": "https://deeday.ng/pricing"}]}</script>
 <script src="/assets/consent.js" defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -521,6 +522,7 @@ footer.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6
         <div class="fg full"><label>Your love story (optional)</label><textarea id="o-story" rows="3" maxlength="600" placeholder="A few lines about how you met..."></textarea></div>
         <div class="fg full"><label>Anything else?</label><textarea id="o-notes" rows="2" maxlength="400" placeholder="Photos, special requests, delivery date..."></textarea></div>
       </div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAFpuHDNUD2WxvFg0" data-appearance="interaction-only" data-size="flexible" style="margin-top:14px"></div>
       <button class="pill" type="submit">Send my order on WhatsApp</button>
       <p class="form-note">We will reply on WhatsApp to confirm and request your photos.</p>
     </form>
@@ -535,7 +537,15 @@ const ORDER_WHATSAPP = "2348063941963";
 /* Supabase — history of every order (publishable key is client-safe; tables are RLS-locked to insert-only) */
 const SB_URL = "https://otohaeukgewcnehllnsm.supabase.co";
 const SB_KEY = "sb_publishable_S4HgZAhnx0Or6C60O2CvmQ_haGzggKU";
-function saveOrder(row){
+/* Orders go through /api/order (Cloudflare Turnstile check + server-side save).
+   Fallback: direct insert, only used while the server keys are not configured (503). */
+async function saveOrder(row){
+  let token=""; try{ token=(window.turnstile && turnstile.getResponse()) || ""; }catch{}
+  try{
+    const r=await fetch("/api/order",{ method:"POST", keepalive:true, headers:{"Content-Type":"application/json"}, body:JSON.stringify({token, order:row}) });
+    try{ window.turnstile && turnstile.reset(); }catch{}
+    if(r.status!==503){ if(!r.ok) console.warn("order save failed",r.status); return; }
+  }catch(err){ console.warn("order api error",err); }
   try{
     return fetch(SB_URL+"/rest/v1/orders",{
       method:"POST", keepalive:true,
